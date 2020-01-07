@@ -1,0 +1,30 @@
+{
+  "name": "reactjs",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/jest": "24.0.15",
+    "@types/node": "12.6.8",
+    "@types/react": "16.8.23",
+    "@types/react-dom": "16.8.4",
+    "antd": "^3.20.3",
+    "jquery": "^3.4.1",
+    "rc-queue-anim": "^1.6.12",
+    "react": "^16.8.6",
+    "react-copy-to-clipboard": "^5.0.1",
+    "react-countdown-now": "^2.1.2",
+    "react-dom": "^16.8.6",
+    "react-flip-move": "^3.0.4",
+    "react-owl-carousel2": "^0.3.0",
+    "react-pose": "^4.0.10",
+    "react-scripts": "0.9.x",
+    "typescript": "3.5.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

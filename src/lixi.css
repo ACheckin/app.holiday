@@ -1,0 +1,344 @@
+body {
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
+    
+}
+.bg:before {
+    content: "";
+    background: url('./image/maskbg.png') repeat top left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.bg {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: url('./image/bg.jpg') repeat top left;
+}
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+a {
+    display: inline-block;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+}
+.fade.in {
+    opacity: 1;
+}
+
+.owl-nav {
+    display: none;
+}
+
+@-webkit-keyframes cloud /* Safari and Chrome */ {
+    0%, 100% {
+      transform: translateX(-15px);
+      opacity: 1;
+    }
+    20%  {
+        transform: translateX(5px);
+        opacity: 0.2;
+    }
+  }
+  @keyframes cloud {
+    0%, 100% {
+      transform: translateX(-15px);
+      opacity: 1;
+
+    }
+    20% {
+        transform: translateX(5px);
+        opacity: 0.2;
+    }
+  }
+.cloud {
+    -webkit-animation: cloud 3s linear  infinite;
+    animation: cloud 3s linear  infinite;
+}
+
+@-webkit-keyframes shake {
+    0%, 100% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  
+    10%, 30%, 50%, 70%, 90% {
+      -webkit-transform: translateX(-10px);
+      transform: translateX(-10px);
+    }
+  
+    20%, 40%, 60%, 80% {
+      -webkit-transform: translateX(10px);
+      transform: translateX(10px);
+    }
+  }
+  
+  @keyframes shake {
+    0%, 100% {
+      -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+      transform: translateX(0);
+    }
+  
+    10%, 30%, 50%, 70%, 90% {
+      -webkit-transform: translateX(-3px);
+      -ms-transform: translateX(-3px);
+      transform: translateX(-3px);
+    }
+  
+    20%, 40%, 60%, 80% {
+      -webkit-transform: translateX(3px);
+      -ms-transform: translateX(3px);
+      transform: translateX(3px);
+    }
+  }
+  
+  .shake {
+    -webkit-animation: shake 2s linear infinite;
+    -moz-animation: shake 2s linear infinite;
+    -ms-animation: shake 2s linear infinite;
+    -o-animation: shake 2s linear infinite;
+    animation: shake 2s linear infinite;
+  }
+
+  
+@keyframes brightness {
+    0%{
+        filter: brightness(90%);
+    }
+
+    100% {
+        filter: brightness(200%);
+    }
+}
+
+
+.hoatop, .nen, .outer {
+    top: 0;
+    left: 0;
+}
+.hoatop {
+    z-index: 4;
+    width: 110%;
+    left: -10px;
+    -webkit-animation: shake 5s linear infinite;
+    -moz-animation: shake 5s linear infinite;
+    -ms-animation: shake 5s linear infinite;
+    -o-animation: shake 5s linear infinite;
+    animation: shake 5s linear infinite;
+}
+.footer {
+    left: 0;
+    bottom: 0;
+}
+.wrap, .lixi_wrap {
+    height: 100vh;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    flex-direction: column;
+}
+.lixi_wrap {
+    height: 400px;
+}
+.lixi {
+    position: relative;
+    z-index: 9;
+}
+.outer  {
+    transform: translateX(10px);
+}
+.may1  {
+    z-index: 10;
+    width: 230px;
+    left: -25px;
+    top: 60%;
+}
+
+.may2  {
+    z-index: 10;
+    width: 130px;
+    right: -35px;
+    bottom: 15%;
+}
+
+.btn_lac, .txt_lac {
+    position: absolute;
+    top: 75px;
+    width: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+
+}
+.txt_lac {
+    position: absolute;
+    width: 55px;
+    top: 40px;
+}
+
+.light-top {
+    position: absolute;
+    top: 8px;
+    width: 273px;
+    left: 13px;
+    animation: brightness 0.5s linear infinite;
+}
+
+.light-bot {
+    position: absolute;
+    bottom: 19px;
+    width: 273px;
+    left: 13px;
+    animation: brightness 0.5s linear infinite;
+}
+
+.lixi.doilixi .btn_lac, .lixi.doilixi .txt_lac {
+    top: 145px;
+}
+
+.lixi.doilixi .txt_lac  {
+    top: 40px;
+}
+
+.txt_lixi {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    letter-spacing: 0.169091px;
+    color: #C00405;
+}
+.txt_lixi p {
+    display: none;
+}
+.txt_lixi p.show {
+    display: block;
+}
+.menhgia_lixi {
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: center;
+    letter-spacing: 0.563636px;
+    color: #C00405;
+}
+
+.txt_lixi p {
+    margin-bottom: 8px;
+}
+
+.action {
+    bottom: 45px;
+    z-index: 9;
+    width: 300px;
+    left: 50%;
+    display: flex;
+    margin: 0 auto;
+    transform: translateX(-50%);
+}
+
+.btn_lichsu , .btn_share  {
+    padding: 0 10px;
+}
+
+.time_lac {
+    z-index: 9;
+    width: 230px;
+    margin: 0 auto;
+    position: relative;
+}
+.txt_time_lac {
+    position: absolute;
+    top: 18px;
+    width: 100%;
+    left: 50%;
+    text-align: CENTER;
+    transform: translateX(-50%);
+}
+
+.txt_time_lac p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    letter-spacing: 0.140909px;
+    text-transform: uppercase;
+    color: #F8EBC5;
+}
+.txt_time_lac span {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.281818px;
+    color: #F9F3D0;
+}
+.snowflakes {
+   
+   
+}
+
+.snowflake img {
+    width: 32px !important;
+}
+
+.canhhoa {
+    top: 0;
+    left: 0;
+    z-index: 8;
+    width: 100%;
+    color: #fff;
+}
+.canhhoa .owl-carousel, .canhhoa .owl-stage-outer, .canhhoa .owl-carousel .owl-item {
+    height: 100vh;
+}
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}
+
+/* /////////////////////// */
+@media only screen and (orientation:portrait){
+    #warning-message { display:none; }
+}
+@media only screen and (orientation:landscape){
+   .lixi_wrap, .hoatop { display:none; }
+    #warning-message { display:block; }
+}
+#warning-message {
+	font-size: 16px;
+    vertical-align: middle;
+    margin: 30px auto;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
