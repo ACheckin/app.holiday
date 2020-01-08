@@ -328,13 +328,13 @@ a {
 
 /* /////////////////////// */
 @media only screen and (orientation:portrait){
-    #warning-message { display:none; }
+   .pagelaclixi  #warning-message { display:none; }
 }
 @media only screen and (orientation:landscape){
-   .lixi_wrap, .hoatop { display:none; }
-    #warning-message { display:block; }
+   .pagelaclixi .lixi_wrap, .pagelaclixi .hoatop { display:none; }
+    .pagelaclixi #warning-message { display:block; }
 }
-#warning-message {
+.pagelaclixi #warning-message {
 	font-size: 16px;
     vertical-align: middle;
     margin: 30px auto;

@@ -78,6 +78,22 @@ class App extends Component {
                             <b>Nguyễn Văn Hải</b> vừa đổi  Lì Xì <b>500.000đ</b> lấy <b>200.000đ</b> với bạn
                         </div>
                     </div>
+                    <div className="item">
+                        <div className="image-user">
+                            <img src={require('./image/imguser.png')} />
+                        </div>
+                        <div className="info-item">
+                            <b>Nguyễn Văn Hải</b> vừa đổi  Lì Xì <b>500.000đ</b> lấy <b>200.000đ</b> với bạn
+                        </div>
+                    </div>
+                    <div className="item">
+                        <div className="image-user">
+                            <img src={require('./image/imguser.png')} />
+                        </div>
+                        <div className="info-item">
+                            <b>Nguyễn Văn Hải</b> vừa đổi  Lì Xì <b>500.000đ</b> lấy <b>200.000đ</b> với bạn
+                        </div>
+                    </div>
                 </div>
              
                 <div id="warning-message">

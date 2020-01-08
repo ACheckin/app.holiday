@@ -35,11 +35,15 @@
 }
 
 .lichsu .may1 {
-    top: 200px;
+    top: 150px;
+    z-index: 11;
+
 }
 .lichsu .may2 {
-    top: 220px;
+    top: 200px;
     bottom: inherit;
+    z-index: 11;
+
 }
 .item {
     background: #D40606;
@@ -79,11 +83,16 @@
     z-index: 8;
 }
 
-
+.item:last-child {
+    margin-bottom: 80px;
+}
 .danhsach-lichsu {
     z-index: 10;
     position: fixed;
     top: 245px;
+    height: 380px;
+    overflow: auto;
+    padding-bottom: 50px;
 }
 
 .image-user {
