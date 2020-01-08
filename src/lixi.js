@@ -13,7 +13,7 @@ const options = {
     smartSpeed: 500,
     animateOut: 'fadeOut',
     animateIn: 'fadeIn',
-    loop: true,  
+    loop: true,
 };
 const options2 = {
     items: 1,
@@ -23,9 +23,9 @@ const options2 = {
     smartSpeed: 500,
     animateOut: 'fadeOut',
     animateIn: 'fadeIn',
-    loop: true,  
+    loop: true,
 };
- 
+
 
 const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -36,8 +36,8 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
     }
   };
 
-class App extends Component {   
-    
+class App extends Component {
+
     render() {
         return (
             <div className="wrap pagelaclixi">
@@ -53,38 +53,38 @@ class App extends Component {
                 </div>
 
                 <div className="canhhoa fixed">
-                    <OwlCarousel options={options2}> 
+                    <OwlCarousel options={options2}>
                         <div>
                             <div className="snowflakes">
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao1.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao1.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao2.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao2.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao3.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao3.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao1.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao1.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao2.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao2.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao3.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao3.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao1.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao1.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao2.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao2.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao3.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao3.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao1.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao1.png')} /></div>
                                 </div>
                             </div>
                         </div>
@@ -92,38 +92,38 @@ class App extends Component {
                         <div>
                             <div className="snowflakes">
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao1.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao1.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao2.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao2.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao3.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao3.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao1.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao1.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao2.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao2.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao3.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao3.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao1.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao1.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao2.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao2.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao3.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao3.png')} /></div>
                                 </div>
                                 <div className="snowflake">
-                                    <div> <img  src={require('./image/hoadao1.png')} /></div>  
+                                    <div> <img  src={require('./image/hoadao1.png')} /></div>
                                 </div>
                             </div>
                         </div>
-                      
+
                     </OwlCarousel>
                 </div>
 
@@ -152,37 +152,37 @@ class App extends Component {
                             />
                             </span>
                         </div>
-                    </div> 
-                    
-                    {/* <div className="lixi">
+                    </div>
+
+                     {/*<div className="lixi">
                         <img  src={require('./image/molixxi.png')} />
                             <div className="btn_lac">
                                 <img className="" src={require('./image/btn-lac.png')} />
                                 <div className="txt_lac">
                                     <img className="shake"  src={require('./image/txt-lac.png')} />
-                                </div>                         
+                                </div>
                             </div>
                             <div className="light-top">
                                 <img  src={require('./image/light-top.png')} />
                             </div>
-                    </div> */}
+                    </div>*/}
 
                     <div className="lixi doilixi">
                         <img  src={require('./image/doilixi.png')} />
                         <div className="txt_lixi">
-                            <p className="fade">- Bạn nhận được lì xì -</p> 
+                            <p className="fade">- Bạn nhận được lì xì -</p>
                             <p className="show fade in">
                             TA79 vừa đổi Lì Xì với bạn <br/> và Lì Xì mới của bạn là
                             </p>
                             <div className="menhgia_lixi">
                                 500.000đ
                             </div>
-                        </div>  
+                        </div>
                         <div className="btn_lac">
                             <img className="shake" src={require('./image/btn-lac.png')} />
                             <div className="txt_lac">
                                 <img  src={require('./image/txt-lac.png')} />
-                            </div>                         
+                            </div>
                         </div>
 
                         <div className="light-bot">
@@ -196,23 +196,23 @@ class App extends Component {
                             <a href="#">
                                 <img  src={require('./image/btn_history.png')} />
                             </a>
-                        </div> 
+                        </div>
 
                         <div className="btn_share ">
                             <a href="#">
                                 <img  src={require('./image/btn_share.png')} />
                             </a>
-                        </div> 
-                    </div> 
+                        </div>
+                    </div>
 
                     <div className="footer fixed">
                         <img  src={require('./image/footer.png')} />
-                    </div>                  
+                    </div>
                 </div>
 
                 <div id="warning-message">
                     Vui Lòng Xoay Dọc Màn Hình :)
-                </div>                             
+                </div>
            </div>
         );
     }
