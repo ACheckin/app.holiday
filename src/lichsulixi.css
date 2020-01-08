@@ -47,13 +47,13 @@
 }
 .item {
     background: #D40606;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     padding: 12px 15px ;    
-    margin-bottom: 7px;
+    margin-bottom: 10px;
     overflow: hidden;
     position: relative;
-    
+    border: 2px solid #F2CC8E;
 }
 
 .item:before {

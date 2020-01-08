@@ -130,17 +130,17 @@ class App extends Component {
 
 
                 <div className="lixi_wrap" >
-                    <div className="nen fixed">
+                    <div class="animated infinite brightness slow easily nen fixed" className="nen fixed">
                         <img  src={require('./image/nen.png')} />
                     </div>
                     <div className="outer fixed">
                         <img  src={require('./image/outer.png')} />
                     </div>
                     <div className="may1 fixed ">
-                        <img  src={require('./image/may1.png')} />
+                        <img class="animated infinite pulse slow easily delay-1s"  src={require('./image/may1.png')} />
                     </div>
                     <div className="may2 fixed ">
-                        <img  src={require('./image/may2.png')} />
+                        <img class="animated infinite pulse slow easily delay-2s" src={require('./image/may2.png')} />
                     </div>
 
                     <div className="time_lac">
@@ -192,7 +192,7 @@ class App extends Component {
 
                     </div>
 
-                    <div className="action fixed">
+                    <div className="action">
                         <div className="btn_lichsu ">
                             <a href="#">
                                 <img  src={require('./image/btn_history.png')} />
@@ -206,7 +206,7 @@ class App extends Component {
                         </div>
                     </div>
 
-                    <div className="footer fixed">
+                    <div className="footer fixed animated infinite slower easily delay-2s">
                         <img  src={require('./image/footer.png')} />
                     </div>
                 </div>
