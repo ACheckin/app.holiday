@@ -11,7 +11,7 @@ body {
 }
 .bg:before {
     content: "";
-    background: url('./image/maskbg.png') repeat top left;
+    /* background: url('./image/maskbg.png') repeat top left; */
     position: absolute;
     top: 0;
     left: 0;
@@ -22,7 +22,9 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background: url('./image/bg.jpg') repeat top left;
+    background: url('./image/bg_mobile.jpg') top center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 img {
     max-width: 100%;
@@ -142,11 +144,11 @@ a {
     z-index: 4;
     width: 110%;
     left: -10px;
-    -webkit-animation: shake 5s linear infinite;
-    -moz-animation: shake 5s linear infinite;
-    -ms-animation: shake 5s linear infinite;
-    -o-animation: shake 5s linear infinite;
-    animation: shake 5s linear infinite;
+    -webkit-animation: shake 10s linear infinite;
+    -moz-animation: shake 10s linear infinite;
+    -ms-animation: shake 10s linear infinite;
+    -o-animation: shake 10s linear infinite;
+    animation: shake 10s linear infinite;
 }
 .footer {
     left: 0;
@@ -244,11 +246,14 @@ a {
 }
 .txt_lixi p.show {
     display: block;
+    margin: 0;;
+    padding: 10px 50px 10px 50px;
 }
 .menhgia_lixi {
+    font-weight: bold;
     font-weight: 900;
-    font-size: 40px;
-    line-height: 48px;
+    font-size: 34px;
+    line-height: 44px;
     text-align: center;
     letter-spacing: 0.563636px;
     color: #C00405;
@@ -311,7 +316,7 @@ a {
 }
 
 .snowflake img {
-    width: 32px !important;
+    width: 24px !important;
 }
 
 .canhhoa {
