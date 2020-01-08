@@ -1,0 +1,221 @@
+.bxhlixi {
+    width: 100%;
+    height: 100vh;
+    background: url('./image/bgbxh.jpg') repeat top left;
+    background-size: cover;
+}
+
+.bxhlixi .hoamai {
+    top: 0;
+    left: -10px;
+    width: 400px;
+}
+.bxhlixi .hoadao {
+    right: -10px;
+    top: 0;
+    transform: rotateY(180deg);
+    width: 500px;
+}
+
+.hoamai img , .hoadao img {
+    animation-duration: 5s;
+}
+
+.qrCode {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    z-index: 99999;
+}
+
+.innerBxh {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    height: 100vh;
+}
+
+.imageUser {
+    display: inline-block;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 100px;
+    border: 3px solid #fff;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.robUser {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 100px;
+    border: 2px solid #fff;
+    width: 22px;
+    height: 22px;
+    margin-left: -5px;
+}
+.robUser img {
+    vertical-align: text-top;
+}
+.robListUsers {
+    display: flex;
+    justify-content: center;
+}
+
+.nameUser {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.281818px;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+}
+
+.more {
+    background: #FFFFFF;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 12px;
+    letter-spacing: 0.140909px;
+    color: #BE0706;
+    padding: 0 7px;
+    display: flex;
+    align-items: center;
+    margin-left: 3px;
+}
+
+.valueUser {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 31px;
+    text-align: right;
+    letter-spacing: 0.366364px;
+    color: #FFCC00;
+    text-align: center;
+}
+
+.block-1 {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.block-1 .user {
+    display: inline-block;
+    z-index: 9;
+    position: relative;
+}
+
+.imageShelf {
+    position: absolute;
+    bottom: -147px;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+}
+
+.imageShelf img {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.block-1 .userLeft {
+    position: absolute;
+    left: 210px;
+    top: 65px;
+    width: 20%;
+}
+.block-1 .userRight {
+    position: absolute;
+    right: 210px;
+    top: 65px;
+    width: 20%;
+}
+
+
+.userLeft .valueUser {
+    margin-top: 53px;
+}
+
+.userRight .valueUser {
+    margin-top: 60px;
+}
+
+.userMid .imageUser  {
+    border: 4px solid #fff;
+}
+
+.userMid  .nameUser {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    letter-spacing: 0.338182px;
+    color: #FFFFFF;
+}
+.userMid .valueUser {
+    font-size: 35px;
+    line-height: 36px;
+    text-align: center;
+    letter-spacing: 0.422727px;
+    color: #FFCC00;
+    position: absolute;
+    bottom: -95px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.block-2 {
+    position: absolute;
+    top: 375px;
+    width: 100%;
+    left: 0;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 5px 20px;
+}
+.block-2 .robListUsers {
+    justify-content: flex-start;
+}
+.block-2  .valueUserItem {
+    position: absolute;
+    right: 15px;
+    z-index: 9;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: right;
+    letter-spacing: 0.281818px;
+    color: #FFCC00;
+}
+.block-2 .nameUser-item {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.281818px;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+}
+.block-2 .item {
+    padding: 10px 15px;
+    border: 1px solid #F2CC8E;
+}
+
+.block-2 .item:last-child {
+    margin-bottom: 7px;
+}
+.block-2 .info-item {
+    overflow: unset;
+    padding-top: 0;
+}
+.block-2 .image-user {
+    width: 60px;
+}
