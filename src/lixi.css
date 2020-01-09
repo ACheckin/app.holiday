@@ -7,7 +7,7 @@ body {
     height: 100vh;
     overflow: hidden;
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
-    
+    background-color: #C00405;
 }
 .bg:before {
     content: "";
@@ -156,12 +156,16 @@ a {
     -o-animation: shake 10s linear infinite;
     animation: shake 10s linear infinite;
 }
+.hoatop img {
+    width: 84%;
+}
 .footer {
     left: 0;
     bottom: 0;
 }
 .wrap, .lixi_wrap {
     height: 100vh;
+    max-height: 100%;
     width: 310px;
     display: flex;
     justify-content: center;
@@ -351,16 +355,22 @@ a {
         height: 420px;
     }
     .action {
-        margin-top: 30px;
         z-index: 100;
         width: 300px;
-        /* left: 50%; */
         display: flex;
         margin: 0 auto;
-        /* transform: translateX(-50%); */
+        margin-top: 10px;
     }
 }
-
+@media (max-width: 375px) and (min-height: 800px) {
+    .action {
+        z-index: 100;
+        width: 300px;
+        display: flex;
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+}
 @media (max-width: 320px) {
     .wrap, .lixi_wrap {
         height: 100vh;
@@ -375,13 +385,14 @@ a {
         height: 380px;
     }
     .action {
-        margin-top: 40px;
         z-index: 100;
         width: 300px;
-        /* left: 50%; */
         display: flex;
         margin: 0 auto;
-        /* transform: translateX(-50%); */
+        margin-top: 10px;
+    }
+    .footer {
+        display: none;
     }
     .light-top {
         position: absolute;
@@ -428,7 +439,77 @@ a {
         position: relative;
     }
 }
-
+@media (max-width: 320px) and (max-height: 480px) {
+    .wrap, .lixi_wrap {
+        height: 100vh;
+        width: 240px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        flex-direction: column;
+    }
+    .lixi_wrap {
+        height: 340px;
+    }
+    .action {
+        z-index: 100;
+        width: 240px;
+        display: flex;
+        margin: 0 auto;
+        margin-top: 0;
+    }
+    .footer {
+        display: none;
+    }
+    .light-top {
+        position: absolute;
+        top: 8px;
+        width: 220px;
+        left: 10px;
+        animation: brightness 0.5s linear infinite;
+    }
+    
+    .light-bot {
+        position: absolute;
+        bottom: 17px;
+        width: 220px;
+        left: 10px;
+        animation: brightness 0.5s linear infinite;
+    }
+    .lixi.doilixi .btn_lac, .lixi.doilixi .txt_lac {
+        top: 125px;
+    }
+    .btn_lac, .txt_lac {
+        position: absolute;
+        top: 125px;
+        width: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+    
+    }
+    .txt_lixi p.show {
+        display: block;
+        margin: 0;;
+        padding: 5px 20px 5px 20px;
+    }
+    .menhgia_lixi {
+        font-weight: bold;
+        font-weight: 900;
+        font-size: 24px;
+        line-height: 40px;
+        text-align: center;
+        letter-spacing: 0.563636px;
+        color: #C00405;
+    }
+    .time_lac {
+        z-index: 9;
+        width: 210px;
+        margin: 0 auto;
+        position: relative;
+    }
+}
 @media (max-height: 800px) {
 
 }

@@ -3,7 +3,10 @@
 }
 
 .ketqua  {
-    top: 65px;
+    margin-top: 65px;
+    margin-bottom: 10px;
+    z-index: 100;
+    position: relative;
 }
 
 .txt_ketqua {
@@ -36,13 +39,13 @@
 
 .lichsu .may1 {
     top: 150px;
-    z-index: 11;
+    z-index: 110;
 
 }
 .lichsu .may2 {
     top: 200px;
     bottom: inherit;
-    z-index: 11;
+    z-index: 110;
 
 }
 .item {
@@ -87,25 +90,38 @@
     margin-bottom: 80px;
 }
 .danhsach-lichsu {
-    z-index: 10;
+    /* z-index: 10;
     position: fixed;
     top: 245px;
     height: 380px;
-    overflow: auto;
+    overflow: auto; */
     padding-bottom: 50px;
+    height: 100%;
+    overflow-x: auto;
+    margin-bottom: -50px;
 }
 
 .image-user {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
     border-radius: 100px;
-    border: 2px solid #fff;
     position: relative;
     z-index: 10;
-    width: 50px;
+    width: 54px;
+    height: 54px;
+    border-radius: 100%;
+    background-color: #fff;
     margin-right: 15px;
     float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
+.image-user img {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
 .info-item {
     float: left;
     width: 75%;
