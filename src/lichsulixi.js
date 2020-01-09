@@ -27,7 +27,7 @@ class App extends Component {
                     <img  src={require('./image/may2.png')} />
                 </div>
               
-                <div className="ketqua fixed ">
+                <div className="ketqua  ">
                     <img  src={require('./image/bg-ketqua.png')} />
                     <div className="txt_ketqua">
                         <p> Bạn nhận được Lì Xì </p>
@@ -37,7 +37,7 @@ class App extends Component {
                     </div>
                 </div>
 
-                <div className="danhsach-lichsu wrap_danhsach fixed">
+                <div className="danhsach-lichsu wrap_danhsach ">
                     <div className="item">
                         <div className="image-user">
                             <img src={require('./image/imguser.png')} />

@@ -9,6 +9,6 @@ import Bxhlixi from './bxhlixi';
 //import "antd/dist/antd.css";
 import './index.css';
 ReactDOM.render(
-  <Lixi />,
+  <Bxhlixi />,
   document.getElementById('root')
 );

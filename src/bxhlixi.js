@@ -63,97 +63,98 @@ class App extends Component {
                     <div className="imageShelf">
                         <img  src={require('./image/shelf.png')}  />  
                     </div>
-                    <div className="user userLeft">              
-                        <div className="imageUser">
-                            <img  src={require('./image/Oval.png')} width="94" />  
-                        </div>
-                        <div className="infoUser">
-                            <div className="nameUser">
-                                Trần Mạnh Dũng 
-                            </div> 
-                            <div className="robListUsers">
-                                <div className="robUser">
-                                    <img  src={require('./image/Oval.png')} width="22" />  
-                                </div>
-                                <div className="robUser">
-                                    <img  src={require('./image/Oval.png')} width="22" />  
-                                </div>
-                                <div className="robUser">
-                                    <img  src={require('./image/Oval.png')} width="22" />  
-                                </div>
-                                <div className="robUser">
-                                    <img  src={require('./image/Oval.png')} width="22" />  
-                                </div>
-                                <div className="more">
-                                    + 12 người khác  
-                                </div>             
+                    <div className="topUser">
+                        <div className="user userLeft">              
+                            <div className="imageUser">
+                                <img  src={require('./image/Oval.png')} width="94" />  
                             </div>
-                        </div>
-                        <div className="valueUser">
-                            1.000.000đ  
-                        </div>                                          
-                    </div>
-                    <div className="user userMid">              
-                        <div className="imageUser">
-                            <img  src={require('./image/Oval.png')} width="128" />  
-                        </div>
-                        <div className="infoUser">
-                            <div className="nameUser">
-                                Trần Mạnh Dũng
-                            </div> 
-                            <div className="robListUsers">
-                                <div className="robUser">
-                                    <img  src={require('./image/Oval.png')} width="22" />  
+                            <div className="infoUser">
+                                <div className="nameUser">
+                                    Trần Mạnh Dũng 
+                                </div> 
+                                <div className="robListUsers">
+                                    <div className="robUser">
+                                        <img  src={require('./image/Oval.png')} width="22" />  
+                                    </div>
+                                    <div className="robUser">
+                                        <img  src={require('./image/Oval.png')} width="22" />  
+                                    </div>
+                                    <div className="robUser">
+                                        <img  src={require('./image/Oval.png')} width="22" />  
+                                    </div>
+                                    <div className="robUser">
+                                        <img  src={require('./image/Oval.png')} width="22" />  
+                                    </div>
+                                    <div className="more">
+                                        + 12 người khác  
+                                    </div>             
                                 </div>
-                                <div className="robUser">
-                                    <img  src={require('./image/Oval.png')} width="22" />  
-                                </div>
-                                <div className="robUser">
-                                    <img  src={require('./image/Oval.png')} width="22" />  
-                                </div>
-                                <div className="robUser">
-                                    <img  src={require('./image/Oval.png')} width="22" />  
-                                </div>
-                                <div className="more">
-                                    + 12 người khác  
-                                </div>             
                             </div>
+                            <div className="valueUser">
+                                1.000.000đ  
+                            </div>                                          
                         </div>
-                        <div className="valueUser">
-                            3.000.000đ  
-                        </div>                                          
-                    </div>
-
-                    <div className="user userRight">              
-                        <div className="imageUser">
-                            <img  src={require('./image/Oval.png')} width="94" />  
-                        </div>
-                        <div className="infoUser">
-                            <div className="nameUser">
-                                Trần Mạnh Dũng Trần 
-                            </div> 
-                            <div className="robListUsers">
-                                <div className="robUser">
-                                    <img  src={require('./image/Oval.png')} width="22" />  
-                                </div>
-                                <div className="robUser">
-                                    <img  src={require('./image/Oval.png')} width="22" />  
-                                </div>
-                                <div className="robUser">
-                                    <img  src={require('./image/Oval.png')} width="22" />  
-                                </div>
-                                <div className="robUser">
-                                    <img  src={require('./image/Oval.png')} width="22" />  
-                                </div>
-                                <div className="more">
-                                    + 12 người khác  
-                                </div>             
+                        <div className="user userMid">              
+                            <div className="imageUser">
+                                <img  src={require('./image/Oval.png')} width="128" />  
                             </div>
+                            <div className="infoUser">
+                                <div className="nameUser">
+                                    Trần Mạnh Dũng
+                                </div> 
+                                <div className="robListUsers">
+                                    <div className="robUser">
+                                        <img  src={require('./image/Oval.png')} width="22" />  
+                                    </div>
+                                    <div className="robUser">
+                                        <img  src={require('./image/Oval.png')} width="22" />  
+                                    </div>
+                                    <div className="robUser">
+                                        <img  src={require('./image/Oval.png')} width="22" />  
+                                    </div>
+                                    <div className="robUser">
+                                        <img  src={require('./image/Oval.png')} width="22" />  
+                                    </div>
+                                    <div className="more">
+                                        + 12 người khác  
+                                    </div>             
+                                </div>
+                            </div>
+                            <div className="valueUser">
+                                3.000.000đ  
+                            </div>                                          
                         </div>
-                      
-                        <div className="valueUser">
-                            500.000đ  
-                        </div>                                          
+                        <div className="user userRight">              
+                            <div className="imageUser">
+                                <img  src={require('./image/Oval.png')} width="94" />  
+                            </div>
+                            <div className="infoUser">
+                                <div className="nameUser">
+                                    Trần Mạnh Dũng Trần 
+                                </div> 
+                                <div className="robListUsers">
+                                    <div className="robUser">
+                                        <img  src={require('./image/Oval.png')} width="22" />  
+                                    </div>
+                                    <div className="robUser">
+                                        <img  src={require('./image/Oval.png')} width="22" />  
+                                    </div>
+                                    <div className="robUser">
+                                        <img  src={require('./image/Oval.png')} width="22" />  
+                                    </div>
+                                    <div className="robUser">
+                                        <img  src={require('./image/Oval.png')} width="22" />  
+                                    </div>
+                                    <div className="more">
+                                        + 12 người khác  
+                                    </div>             
+                                </div>
+                            </div>
+                        
+                            <div className="valueUser">
+                                500.000đ  
+                            </div>                                          
+                        </div>
                     </div>
                 </div>  
                 {/* end block1 */}

@@ -155,18 +155,18 @@ class App extends Component {
                         </div>
                     </div>
 
-                     {/*<div className="lixi">
+                     {/* <div className="lixi">
                         <img  src={require('./image/molixxi.png')} />
                             <div className="btn_lac">
                                 <img className="" src={require('./image/btn-lac.png')} />
-                                <div className="txt_lac">
-                                    <img className="shake"  src={require('./image/txt-lac.png')} />
-                                </div>
                             </div>
                             <div className="light-top">
                                 <img  src={require('./image/light-top.png')} />
                             </div>
-                    </div>*/}
+                             <div className="light-bot">
+                                <img  src={require('./image/light-bot.png')} />
+                            </div>
+                    </div> */}
 
                     <div className="lixi doilixi">
                         <img  src={require('./image/doilixi.png')} />
@@ -181,15 +181,10 @@ class App extends Component {
                         </div>
                         <div className="btn_lac">
                             <img className="shake" src={require('./image/btn-lac.png')} />
-                            {/* <div className="txt_lac">
-                                <img  src={require('./image/txt-lac.png')} />
-                            </div> */}
                         </div>
-
                         <div className="light-bot">
                             <img  src={require('./image/light-bot.png')} />
                         </div>
-
                     </div>
 
                     <div className="action">
