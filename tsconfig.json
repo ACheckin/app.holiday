@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		"module": "esnext",
+		"target": "es5",
+		"jsx": "react",
+		"skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": ".",
+		"outDir": "build",
+		"allowJs": true,
+		"removeComments": true,
+		"sourceMap": false,
+		"lib": [
+			"dom",
+			"dom.iterable",
+			"esnext"
+		],
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"paths": {
+			"src/*": [
+				"./src/*"
+			]
+		}
+	},
+	"include": [
+		"src"
+	]
+}

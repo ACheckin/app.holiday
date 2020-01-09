@@ -7,28 +7,28 @@ import './lichsulixi.css';
 
 
 
-class App extends Component {   
-    
+class App extends Component {
+
     render() {
         return (
             <div className="wrap lichsu">
-                <div className="bg fixed"></div>
-                
+                <div className="bg fixed" />
+
                 <div className="nen fixed">
-                    <img  src={require('./image/nen.png')} />
+                    <img  src={require('src/image/nen.png')} />
                 </div>
                 <div className="outer fixed">
-                    <img  src={require('./image/outer.png')} />
+                    <img  src={require('src/image/outer.png')} />
                 </div>
                 <div className="may1 fixed ">
-                    <img  src={require('./image/may1.png')} />
+                    <img  src={require('src/image/may1.png')} />
                 </div>
                 <div className="may2 fixed ">
-                    <img  src={require('./image/may2.png')} />
+                    <img  src={require('src/image/may2.png')} />
                 </div>
-              
+
                 <div className="ketqua fixed ">
-                    <img  src={require('./image/bg-ketqua.png')} />
+                    <img  src={require('src/image/bg-ketqua.png')} />
                     <div className="txt_ketqua">
                         <p> Bạn nhận được Lì Xì </p>
                         <div className="menhgia_lixi">
@@ -95,10 +95,10 @@ class App extends Component {
                         </div>
                     </div>
                 </div>
-             
+
                 <div id="warning-message">
                     Vui Lòng Xoay Dọc Màn Hình :)
-                </div>                             
+                </div>
            </div>
         );
     }
