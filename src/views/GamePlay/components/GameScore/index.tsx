@@ -1,16 +1,11 @@
 import React from 'react';
+import { formatMoney } from 'src/helpers';
 
 interface GameScoreProps {
-	score: number
+	score: number;
 }
 
 const GameScore: React.FC<GameScoreProps> = ({ score }) => {
-
-	const formatter = new Intl.NumberFormat('en-US', {
-		style: 'currency',
-		currency: 'VND',
-	});
-
 	return (
 		<div className="lixi doilixi">
 			<img src={require('src/image/doilixi.png')} />
@@ -21,7 +16,7 @@ const GameScore: React.FC<GameScoreProps> = ({ score }) => {
 					<br />
 					Lì Xì mới của bạn là
 				</p>
-				<div className="menhgia_lixi">{formatter.format(score)}</div>
+				<div className="menhgia_lixi">{formatMoney(score)}</div>
 			</div>
 			<div className="btn_lac">
 				<img className="shake" src={require('src/image/btn-lac.png')} />
@@ -33,4 +28,4 @@ const GameScore: React.FC<GameScoreProps> = ({ score }) => {
 	);
 };
 
-export default GameScore;
+export default React.memo(GameScore);

@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@acheckin/react-app-sdk@^0.0.12":
-  version "0.0.12"
-  resolved "http://192.168.9.38:5000/@acheckin%2freact-app-sdk/-/react-app-sdk-0.0.12.tgz#def78c9a100e1f19dc3656f9f14fc3a10ddc1dfd"
-  integrity sha512-Y4eODeBPnIs37b5d5aIR4esNkp1x1+KKsJOCvuQ+WubwWCXJTdBWTinMAYrf4nIzdJJPoLRSTK46rmfHioclxA==
+"@acheckin/react-app-sdk@^0.0.15":
+  version "0.0.15"
+  resolved "http://192.168.9.38:5000/@acheckin%2freact-app-sdk/-/react-app-sdk-0.0.15.tgz#2e67cb8b9b6406ac1b6dd29ed35e6db20ff7ecdc"
+  integrity sha512-bF/k7VKnF7aimJJ+GYOaZcKwcCeKuJt1ZUlOGF+B9zENGSeaafO5p7moFgfsUlnctm9WvVY2aZoxDpLIl7ETMQ==
 
 "@ant-design/colors@^3.1.0":
   version "3.1.0"
@@ -1726,6 +1726,13 @@
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
+
+"@types/moment-timezone@^0.5.12":
+  version "0.5.12"
+  resolved "https://registry.yarnpkg.com/@types/moment-timezone/-/moment-timezone-0.5.12.tgz#0fb680c03db194fe8ff4551eaeb1eec8d3d80e9f"
+  integrity sha512-hnHH2+Efg2vExr/dSz+IX860nSiyk9Sk4pJF2EmS11lRpMcNXeB4KBW5xcgw2QPsb9amTXdsVNEe5IoJXiT0uw==
+  dependencies:
+    moment ">=2.14.0"
 
 "@types/node@*", "@types/node@13.1.4":
   version "13.1.4"
@@ -7443,7 +7450,14 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   dependencies:
     minimist "0.0.8"
 
-moment@2.x, moment@^2.24.0:
+moment-timezone@^0.5.27:
+  version "0.5.27"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.27.tgz#73adec8139b6fe30452e78f210f27b1f346b8877"
+  integrity sha512-EIKQs7h5sAsjhPCqN6ggx6cEbs94GK050254TIJySD1bzoM5JTYDwAU1IoVOeTOL6Gm27kYJ51/uuvq1kIlrbw==
+  dependencies:
+    moment ">= 2.9.0"
+
+moment@2.x, "moment@>= 2.9.0", moment@>=2.14.0, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==

@@ -38,8 +38,13 @@ export interface Player {
 }
 
 export interface HistoryValue {
-	action: string;
+	action: any;
 	reward: HistoryReward;
+	from: {
+		avatar: string
+		id: string
+		name: string
+	}
 }
 
 export interface HistoryReward {

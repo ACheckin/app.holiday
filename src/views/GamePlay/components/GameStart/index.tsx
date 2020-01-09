@@ -14,4 +14,4 @@ const GameStart: React.FC = () => {
 	);
 };
 
-export default GameStart;
+export default React.memo(GameStart);

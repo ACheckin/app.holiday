@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@acheckin/react-app-sdk": "^0.0.12",
+    "@acheckin/react-app-sdk": "^0.0.15",
     "antd": "^3.26.6",
     "firebase": "^7.6.1",
     "jquery": "^3.4.1",
     "lodash": "^4.17.15",
+    "moment-timezone": "^0.5.27",
     "rc-queue-anim": "^1.8.3",
     "react": "^16.12.0",
     "react-copy-to-clipboard": "^5.0.2",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@types/jest": "24.0.25",
     "@types/lodash": "^4.14.149",
+    "@types/moment-timezone": "^0.5.12",
     "@types/node": "13.1.4",
     "@types/react": "^16.9.17",
     "@types/react-dom": "16.9.4",
@@ -34,7 +36,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "patch-package"
   },
   "browserslist": {
     "production": [

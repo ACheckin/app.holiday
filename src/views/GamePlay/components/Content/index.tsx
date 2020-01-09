@@ -10,10 +10,18 @@ const Content: React.FC = ({ children }) => {
 				<img src={require('src/image/outer.png')} alt="" />
 			</div>
 			<div className="may1 fixed ">
-				<img className="animated infinite pulse slow easily delay-1s" src={require('src/image/may1.png')} alt="" />
+				<img
+					className="animated infinite pulse slow easily delay-1s"
+					src={require('src/image/may1.png')}
+					alt=""
+				/>
 			</div>
 			<div className="may2 fixed ">
-				<img className="animated infinite pulse slow easily delay-2s" src={require('src/image/may2.png')} alt="" />
+				<img
+					className="animated infinite pulse slow easily delay-2s"
+					src={require('src/image/may2.png')}
+					alt=""
+				/>
 			</div>
 			{children}
 			<div className="footer fixed animated infinite slower easily delay-2s">

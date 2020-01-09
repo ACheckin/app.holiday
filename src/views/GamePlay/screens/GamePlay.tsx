@@ -3,13 +3,15 @@ import { ACheckinSDK } from '@acheckin/react-app-sdk';
 import Apis from 'src/services/apis';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import * as firebase from 'firebase';
+import { Player } from 'src/interfaces/db';
+import { useEventCallback } from 'src/helpers';
+import moment from 'moment-timezone';
 
 import Animation from 'src/views/GamePlay/components/Animation';
 import Content from 'src/views/GamePlay/components/Content';
 import CountDown from 'src/views/GamePlay/components/CountDown';
 import Footer from 'src/views/GamePlay/components/Footer';
 import GameStart from 'src/views/GamePlay/components/GameStart';
-import { Player } from 'src/interfaces/db';
 import GameScore from 'src/views/GamePlay/components/GameScore';
 import LoadingView from 'src/components/LoadingView';
 
@@ -28,8 +30,30 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 
 	const params = useParams<Params>();
 
+	/**
+	 * @event onShake
+	 *
+	 * Handle When Shake Device¬
+	 */
+	const onShake = useEventCallback(async () => {
+		if (!Apis.isChangeReward()) {
+			try {
+				Apis.setChangeReward(true);
+
+				const change_reward_response = await Apis.changeReward({
+					game_access_code: Apis.getGameAccessCode(),
+					game_id: '670075',
+				});
+
+				Apis.setGameAccessCode(change_reward_response.game_access_code);
+			} catch (e) {}
+
+			Apis.setChangeReward(false);
+		}
+	});
+
 	useEffect(() => {
-		const removeListener = ACheckinSDK.addShakeEventListener(() => {});
+		const removeListener = ACheckinSDK.addShakeEventListener(onShake);
 
 		return () => {
 			removeListener();
@@ -39,6 +63,12 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 	useEffect(() => {
 		(async () => {
 			try {
+				const game_detail_response = await Apis.gameDetail({ game_id: '670075' });
+
+				const start_time = moment.unix(game_detail_response.game.start_time);
+				const end_time = moment.unix(game_detail_response.game.end_time);
+				const current_time = moment().unix();
+
 				/**
 				 * Join Game
 				 */
@@ -58,13 +88,32 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 						const player: Player = snapshot.val();
 
 						if (player) {
-							setLoading(false);
 							setScore(player.reward.money);
+							setLoading(false);
 						}
 					});
 			} catch (e) {}
 		})();
 	}, []);
+
+	/**
+	 * @event onCountdownComplete
+	 *
+	 * Handle When Countdown complete
+	 */
+	const onCowndownComplete = useEventCallback(() => {
+		setIsEndGame(true);
+	});
+
+	const onShareCLick = useEventCallback(async () => {
+		try {
+			await ACheckinSDK.shareScreen('Chúc bạn và gia đình một năm mới an khang thịnh vượng');
+		} catch (e) {}
+	});
+
+	const onHistoryClick = useEventCallback(() => {
+		navigation.history.push(`/game/670075/history`)
+	});
 
 	return (
 		<div className="wrap pagelaclixi">
@@ -74,10 +123,10 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 				{loading && <LoadingView />}
 				{!loading && (
 					<>
-						<CountDown />
+						{!is_end_game && <CountDown onComplete={onCowndownComplete} />}
 						{score === 0 && <GameStart />}
 						{score > 0 && <GameScore score={score} />}
-						{is_end_game && <Footer />}
+						{is_end_game && <Footer onShareClick={onShareCLick} onHistoryClick={onHistoryClick} />}
 					</>
 				)}
 			</Content>

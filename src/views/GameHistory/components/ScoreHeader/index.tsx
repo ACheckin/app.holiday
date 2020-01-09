@@ -1,7 +1,24 @@
 import React from 'react';
 
-const ScoreHeader: React.FC = () => {
-	return null;
+interface ScoreHeaderProps {
+	score: number;
+}
+
+const ScoreHeader: React.FC<ScoreHeaderProps> = ({ score }) => {
+	const formatter = new Intl.NumberFormat('vi-VN', {
+		style: 'currency',
+		currency: 'VND',
+	});
+
+	return (
+		<div className="ketqua">
+			<img src={require('src/image/bg-ketqua.png')} />
+			<div className="txt_ketqua">
+				<p> Bạn nhận được Lì Xì </p>
+				<div className="menhgia_lixi">{formatter.format(score)}</div>
+			</div>
+		</div>
+	);
 };
 
 export default ScoreHeader;

@@ -18,6 +18,7 @@ class Apis {
 	private game_access_code: string;
 	private user_info: UserWorkspaceInfo;
 	private is_joined_game: boolean = false;
+	private is_change_reward = false;
 
 	public setAccessToken = (access_token: string) => {
 		this.access_token = access_token;
@@ -45,6 +46,14 @@ class Apis {
 
 	public isJoinedGame = () => {
 		return this.is_joined_game;
+	};
+
+	public isChangeReward = () => {
+		return this.is_change_reward;
+	};
+
+	public setChangeReward = (value: boolean) => {
+		this.is_change_reward = value;
 	};
 
 	public createGame = (options: ArgsToCreateGame): Promise<CreateGameResponse> => {

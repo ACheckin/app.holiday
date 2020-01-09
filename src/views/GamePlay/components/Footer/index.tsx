@@ -1,16 +1,26 @@
 import React from 'react';
 
-const Footer: React.FC = () => {
+
+interface FooterProps {
+	onShareClick: () => void;
+	onHistoryClick: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onShareClick, onHistoryClick }) => {
+
 	return (
 		<div className="action">
 			<div className="btn_lichsu ">
-				<a href="#">
+				<a onClick={onHistoryClick} href="javascript:void();">
 					<img src={require('src/image/btn_history.png')} alt="" />
 				</a>
 			</div>
 
 			<div className="btn_share ">
-				<a href="#">
+				<a
+					onClick={onShareClick}
+					href="javascript:void();"
+				>
 					<img src={require('src/image/btn_share.png')} alt="" />
 				</a>
 			</div>
@@ -18,4 +28,4 @@ const Footer: React.FC = () => {
 	);
 };
 
-export default Footer;
+export default React.memo(Footer);

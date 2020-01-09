@@ -38,4 +38,4 @@ const Animation: React.FC = () => {
 	);
 };
 
-export default Animation;
+export default React.memo(Animation);

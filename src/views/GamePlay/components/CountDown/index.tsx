@@ -10,7 +10,11 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
 	}
 };
 
-const CountDown: React.FC = () => {
+interface CoundDownProps {
+	onComplete: () => void;
+}
+
+const CountDown: React.FC<CoundDownProps> = ({ onComplete }) => {
 	return (
 		<>
 			<div className="time_lac">
@@ -18,12 +22,12 @@ const CountDown: React.FC = () => {
 				<div className="txt_time_lac">
 					<p>Thời gian kết thúc</p>
 					<span>
-							<Countdown date={Date.now() + 60000} renderer={renderer} />
-						</span>
+						<Countdown date={Date.now() + 5000} renderer={renderer} onComplete={onComplete} />
+					</span>
 				</div>
 			</div>
 		</>
 	);
 };
 
-export default CountDown;
+export default React.memo(CountDown);
