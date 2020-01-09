@@ -10,6 +10,9 @@ const GameStart: React.FC = () => {
 			<div className="light-top">
 				<img src={require('src/image/light-top.png')} />
 			</div>
+			<div className="light-bot">
+				<img  src={require('src/image/light-bot2.png')} />
+			</div>
 		</div>
 	);
 };

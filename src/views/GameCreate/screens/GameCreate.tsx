@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Field, FieldArray, Form, Formik } from 'formik';
-
+import $ from 'jquery';
 interface FormValues {
 	name?: string;
 	start_time?: number;
@@ -14,17 +14,38 @@ interface FormValues {
 const GameCreate: React.FC = () => {
 	const formRef = useRef<Formik<FormValues>>(null);
 
+	var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+	// Get the device pixel ratio
+	var ratio = window.devicePixelRatio || 1;
+
+	// Define the users device screen dimensions
+	var screen = {
+		width: window.screen.width * ratio,
+		height: window.screen.height * ratio,
+	};
+
+	// iPhone X Detection
+	if (iOS && (screen.width == 2436 || screen.height === 2436 || screen.width == 1242 || screen.height === 2688)) {
+		$('body').removeClass('bodyFull');
+		$('body').addClass('bodyX');
+		$('body').addClass('isIPX');
+	} else {
+		$('body').removeClass('bodyFull');
+		$('body').removeClass('isIPX');
+	}
+	
 	return (
-		<div
-			style={{
-				justifyContent: 'center',
-				alignItems: 'center',
-				display: 'flex',
-				width: '100vw',
-				height: '100vh',
-			}}
-		>
-			<div>
+		<div className="container">
+			<div className="header">
+				<a
+					className="btnBack"
+					// onClick={}
+				>
+					<img src={require('./back.svg')} />
+				</a>
+			</div>
+			<div className="content">
 				<Formik<FormValues>
 					ref={formRef}
 					initialValues={{}}

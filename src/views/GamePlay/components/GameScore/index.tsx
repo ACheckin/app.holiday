@@ -12,7 +12,7 @@ const GameScore: React.FC<GameScoreProps> = ({ score }) => {
 			<div className="txt_lixi">
 				<p className="fade">- Bạn nhận được lì xì -</p>
 				<p className="show fade in">
-					Nguyễn Văn Hải vừa đổi Lì Xì 300.000đ lấy 200.000đ với bạn.
+					Nguyễn Văn Hải giật Lì Xì 300.000đ lấy 200.000đ của bạn.
 					<br />
 					Lì Xì mới của bạn là
 				</p>

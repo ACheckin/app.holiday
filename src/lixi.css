@@ -9,6 +9,47 @@ body {
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
     background-color: #C00405;
 }
+body.bodyX {
+    padding-top: 120px;
+}
+.bodyX .header {
+    top: 56px!important;
+}
+.bodyFull {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.container {
+    clear: both;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+.header {
+    top: 32px;
+    position: fixed;
+    left: 20px;
+    right: 0;
+    height: 36px;
+}
+.btnBack {
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    background-color: rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-width: 0;
+    margin: 0;
+    padding: 0;
+}
+.btnBack img {
+    width: 24px;
+    height: 24px;
+    margin: 0 auto;
+}
 .bg:before {
     content: "";
     /* background: url('./image/maskbg.png') repeat top left; */
@@ -185,16 +226,16 @@ a {
 }
 .may1  {
     z-index: 10;
-    width: 230px;
-    left: -25px;
-    top: 50%;
+    width: 200px;
+    left: -10px;
+    top: 45%;
 }
 
 .may2  {
     z-index: 10;
-    width: 130px;
-    right: -35px;
-    top: 70%;
+    width: 200px;
+    right: -10px;
+    top: 65%;
 }
 
 .btn_lac, .txt_lac {
@@ -221,6 +262,13 @@ a {
 }
 
 .light-bot {
+    position: absolute;
+    bottom: 19px;
+    width: 283px;
+    left: 13px;
+    animation: brightness 0.5s linear infinite;
+}
+.light-bot2 {
     position: absolute;
     bottom: 19px;
     width: 283px;
@@ -284,7 +332,9 @@ a {
     /* transform: translateX(-50%); */
 }
 
-.btn_lichsu , .btn_share  {
+.btn_footer,
+.btn_lichsu , 
+.btn_share  {
     padding: 0 10px;
 }
 
@@ -341,6 +391,57 @@ a {
     height: 100vh;
 }
 
+@media (max-width: 420px) {
+    .wrap, .lixi_wrap {
+        height: 100vh;
+        width: 340px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        flex-direction: column;
+    }
+    .lixi_wrap {
+        height: 460px;
+    }
+    .action {
+        z-index: 100;
+        width: 340px;
+        display: flex;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+    .light-top {
+        position: absolute;
+        top: 8px;
+        width: 312px;
+        left: 13px;
+        animation: brightness 0.5s linear infinite;
+    }
+    
+    .light-bot {
+        position: absolute;
+        bottom: 19px;
+        width: 312px;
+        left: 13px;
+        animation: brightness 0.5s linear infinite;
+    }
+    .light-bot2 {
+        position: absolute;
+        bottom: 19px;
+        width: 312px;
+        left: 13px;
+        animation: brightness 0.5s linear infinite;
+    }
+    
+    .lixi.doilixi .btn_lac, .lixi.doilixi .txt_lac {
+        top: 165px;
+    }
+    .txt_lixi {
+        top: 50px;
+    }
+}
+
 @media (max-width: 375px) {
     .wrap, .lixi_wrap {
         height: 100vh;
@@ -361,7 +462,37 @@ a {
         margin: 0 auto;
         margin-top: 10px;
     }
+    .light-top {
+        position: absolute;
+        top: 8px;
+        width: 283px;
+        left: 13px;
+        animation: brightness 0.5s linear infinite;
+    }
+    
+    .light-bot {
+        position: absolute;
+        bottom: 19px;
+        width: 283px;
+        left: 13px;
+        animation: brightness 0.5s linear infinite;
+    }
+    .light-bot2 {
+        position: absolute;
+        bottom: 19px;
+        width: 283px;
+        left: 13px;
+        animation: brightness 0.5s linear infinite;
+    }
+    
+    .lixi.doilixi .btn_lac, .lixi.doilixi .txt_lac {
+        top: 145px;
+    }
+    .txt_lixi {
+        top: 40px;
+    }
 }
+
 @media (max-width: 375px) and (min-height: 800px) {
     .action {
         z-index: 100;
@@ -403,6 +534,13 @@ a {
     }
     
     .light-bot {
+        position: absolute;
+        bottom: 17px;
+        width: 256px;
+        left: 12px;
+        animation: brightness 0.5s linear infinite;
+    }
+    .light-bot2 {
         position: absolute;
         bottom: 17px;
         width: 256px;
@@ -471,6 +609,13 @@ a {
     }
     
     .light-bot {
+        position: absolute;
+        bottom: 17px;
+        width: 220px;
+        left: 10px;
+        animation: brightness 0.5s linear infinite;
+    }
+    .light-bot2 {
         position: absolute;
         bottom: 17px;
         width: 220px;

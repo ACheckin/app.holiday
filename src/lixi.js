@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Countdown from 'react-countdown-now';
 import OwlCarousel from 'react-owl-carousel2';
+import moment from 'moment-timezone';
+
 import './owl2.css';
 import './animate.css';
 import './lixi.css';
@@ -34,8 +36,18 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
       // Render a countdown
       return <span>{seconds}</span>;
     }
-  };
+};
 
+const rendererCountDown = ({ days, hours, minutes, seconds }) => {
+	return (
+		<div style={{ fontSize: 30, fontWeight: 600 }}>
+			{days > 0 && <span>{days < 10 ? `0${days}` : days}:</span>}
+			{hours > 0 && <span>{hours < 10 ? `0${hours}` : hours}:</span>}
+			{minutes > 0 && <span>{minutes < 10 ? `0${minutes}` : minutes}:</span>}
+			<span>{seconds < 10 ? `0${seconds}` : seconds}</span>
+		</div>
+	);
+};
 class App extends Component {
 
     render() {
@@ -143,7 +155,7 @@ class App extends Component {
                         <img class="animated infinite pulse slow easily delay-2s" src={require('./image/may2.png')} />
                     </div>
 
-                    <div className="time_lac">
+                    {/* <div className="time_lac">
                         <img  src={require('./image/time.png')} />
                         <div className ="txt_time_lac">
                             <p>Thời gian kết thúc</p>
@@ -153,22 +165,41 @@ class App extends Component {
                             />
                             </span>
                         </div>
-                    </div>
-
-                     {/* <div className="lixi">
-                        <img  src={require('./image/molixxi.png')} />
-                            <div className="btn_lac">
-                                <img className="" src={require('./image/btn-lac.png')} />
-                            </div>
-                            <div className="light-top">
-                                <img  src={require('./image/light-top.png')} />
-                            </div>
-                             <div className="light-bot">
-                                <img  src={require('./image/light-bot.png')} />
-                            </div>
                     </div> */}
 
-                    <div className="lixi doilixi">
+                    <div className="lixi">
+                        <img  src={require('./image/baolixxi.png')} />
+                        <div className="btn_lac">
+                            <img className="" src={require('./image/btn-lac.png')} />
+                        </div>
+                        <div className="light-top">
+                            <img  src={require('./image/light-top.png')} />
+                        </div>
+                        <div className="light-bot">
+                            <img  src={require('./image/light-bot2.png')} />
+                        </div>
+                        <div>
+                            <Countdown
+                                date={moment().toDate()} 
+                                renderer={rendererCountDown}
+                            />
+                        </div>
+                    </div>
+
+                    {/* <div className="lixi">
+                        <img  src={require('./image/molixxi.png')} />
+                        <div className="btn_lac">
+                            <img className="" src={require('./image/btn-lac.png')} />
+                        </div>
+                        <div className="light-top">
+                            <img  src={require('./image/light-top.png')} />
+                        </div>
+                            <div className="light-bot">
+                            <img  src={require('./image/light-bot2.png')} />
+                        </div>
+                    </div> */}
+
+                    {/* <div className="lixi doilixi">
                         <img  src={require('./image/doilixi.png')} />
                         <div className="txt_lixi">
                             <p className="fade">- Bạn nhận được lì xì -</p>
@@ -185,21 +216,20 @@ class App extends Component {
                         <div className="light-bot">
                             <img  src={require('./image/light-bot.png')} />
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div className="action">
+                    {/* <div className="action">
                         <div className="btn_lichsu ">
                             <a href="#">
                                 <img  src={require('./image/btn_history.png')} />
                             </a>
                         </div>
-
                         <div className="btn_share ">
                             <a href="#">
                                 <img  src={require('./image/btn_share.png')} />
                             </a>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="footer fixed animated infinite slower easily delay-2s">
                         <img  src={require('./image/footer.png')} />
