@@ -57,61 +57,77 @@ const GameCreate: React.FC = () => {
 						const { handleSubmit, values, errors, touched, handleChange } = props;
 
 						return (
-							<Form style={{ width: '100%', padding: '0px 20px' }}>
-								<Field style={{ width: '100%' }} type="name" name="email" placeholder="Tên trò chơi" />
-								<input
-									style={{ width: '100%' }}
-									type="datetime-local"
-									name="start_time"
-									value={values.start_time}
-									onChange={handleChange('start_time')}
-									placeholder="Thời gian bắt đầu"
-								/>
-								<input
-									style={{ width: '100%' }}
-									type="datetime-local"
-									name="end_time"
-									value={values.end_time}
-									onChange={handleChange('end_time')}
-									placeholder="Thời gian kết thúc"
-								/>
-								<FieldArray name="rewards">
+							<Form className="viewForm">
+								<div className="rowInput">
+									<div className="viewInput">
+										<Field className="viewInput_Item" type="name" name="email" placeholder="Tên trò chơi" />
+									</div>
+									<div className="viewInput">
+										<input
+											className="viewInput_Item"
+											type="datetime-local"
+											name="start_time"
+											value={values.start_time}
+											onChange={handleChange('start_time')}
+											placeholder="Thời gian bắt đầu"
+										/>
+									</div>
+									<div className="viewInput">
+										<input
+											className="viewInput_Item"
+											type="datetime-local"
+											name="end_time"
+											value={values.end_time}
+											onChange={handleChange('end_time')}
+											placeholder="Thời gian kết thúc"
+										/>
+									</div>
+								</div>
+								
+								<FieldArray name="rewards" >
 									{arrayHelpers => {
 										return (
-											<div>
+											<div >
 												{values.rewards && values.rewards.length > 0 ? (
 													values.rewards.map((reward, index) => (
-														<div key={index}>
-															<Field name={`rewards[${index}][money]`} />
-															<Field name={`rewards[${index}][total]`} />
-															<button
-																type="button"
-																onClick={() => arrayHelpers.remove(index)}
-															>
-																-
-															</button>
-															{index === 0 && (
+														<div key={index} className="rowInput">
+															<Field className="viewInput_RowItem" name={`rewards[${index}][money]`} />
+															<Field className="viewInput_RowItem" name={`rewards[${index}][total]`} />
+															<div className="viewAdd">
 																<button
+																	className="viewAdd_Btn"
 																	type="button"
-																	onClick={() =>
-																		arrayHelpers.insert(index, {
-																			money: 0,
-																			total: 0,
-																		})
-																	}
+																	onClick={() => arrayHelpers.remove(index)}
 																>
-																	+
+																	-
 																</button>
-															)}
+																{index === 0 && (
+																	<button
+																		className="viewAdd_Btn"
+																		type="button"
+																		onClick={() =>
+																			arrayHelpers.insert(index, {
+																				money: 0,
+																				total: 0,
+																			})
+																		}
+																	>
+																		+
+																	</button>
+																)}
+															</div>
 														</div>
 													))
 												) : (
-													<button
-														type="button"
-														onClick={() => arrayHelpers.push({ money: 0, total: 0 })}
-													>
-														Thêm giải thưởng
-													</button>
+													<div >
+														<button
+															className="btnSubmit_Btn"
+															type="button"
+															onClick={() => arrayHelpers.push({ money: 0, total: 0 })}
+														>
+															Thêm giải thưởng
+														</button>
+													</div>
 												)}
 											</div>
 										);
@@ -122,13 +138,14 @@ const GameCreate: React.FC = () => {
 					}}
 				</Formik>
 			</div>
-			<div>
+			<div className="btnSubmit">
 				<button
+					className="btnSubmit_Btn"
 					onClick={() => {
 						formRef.current && formRef.current.submitForm();
 					}}
 				>
-					Submit
+					Tạo trò chơi
 				</button>
 			</div>
 		</div>

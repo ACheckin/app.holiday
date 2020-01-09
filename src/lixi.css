@@ -1,3 +1,8 @@
+html, html a, html button, html input {
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -33,6 +38,9 @@ body.bodyX {
     right: 0;
     height: 36px;
 }
+.content {
+    padding: 20px;
+}
 .btnBack {
     width: 36px;
     height: 36px;
@@ -49,6 +57,109 @@ body.bodyX {
     width: 24px;
     height: 24px;
     margin: 0 auto;
+}
+.viewForm {
+    width: 100%;
+}
+.viewInput {
+    clear: both;
+    margin: 8px 0;
+}
+.viewInput_Item {
+    max-width: 100%;
+    min-width: 100%;
+    display: block;
+    font-size: 16px;
+    min-height: 36px;
+    padding: 5px 0px;
+    text-indent: 10px;
+    line-height: 36px;
+    margin: 0 auto;
+    background-color: #E93E2C;
+    border: 1px #8C0000 solid;
+    color: #EFBC61;
+    outline: 0;
+    user-select: none;
+    -webkit-appearance: none;
+    border-radius: 5px;
+}
+.viewInput_Row {
+    margin: 8px 0;
+}
+.viewInput_RowItem {
+    min-width: 32%;
+    max-width: 32%;
+    display: inline-block;
+    font-size: 16px;
+    min-height: 36px;
+    padding: 5px 0px;
+    text-indent: 10px;
+    line-height: 36px;
+    margin: 0 auto;
+    background-color: #E93E2C;
+    border: 1px #8C0000 solid;
+    color: #EFBC61;
+    outline: 0;
+    user-select: none;
+    -webkit-appearance: none;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+.viewInput_Item::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #EFBC61;
+    opacity: 1; /* Firefox */
+}
+.rowInput {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 5px;
+}
+.viewAdd {
+    flex-direction: row;
+    width: 30%;
+    float: right;
+    display: flex;
+    justify-content: space-between;
+}
+.viewAdd_Btn {
+    flex: 1;
+    height: 46px;
+    text-align: center;
+    background-color: #8C0000;
+    border: 1px #8C0000 solid;
+    color: #EFBC61;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 36px;
+    border-radius: 5px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
+.btnSubmit {
+    clear: both;
+}
+.btnSubmit {
+    padding: 20px;
+    
+}
+.btnSubmit_Btn {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    min-height: 36px;
+    padding: 5px 0px;
+    text-indent: 10px;
+    line-height: 36px;
+    margin: 0 auto;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #8C0000;
+    border: 1px #8C0000 solid;
+    color: #EFBC61;
 }
 .bg:before {
     content: "";
