@@ -67,7 +67,7 @@ export function useDisableKeyboardScroll() {
  * Use Multi State
  * @param init_state
  */
-export function useStates<T>(init_state: T): [T, (state?: T) => void] {
+export function useStates<T>(init_state?: T): [T, (state?: T) => void] {
 	const state = useRef<T>(init_state);
 	const [_, forceUpdate] = useReducer<any>(x => x + 1, 0);
 

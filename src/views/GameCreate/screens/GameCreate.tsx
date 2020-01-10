@@ -59,7 +59,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 	const [error, setError] = useState(null);
 	const [total_money, setTotalMoney] = useState(0);
 
-	const [game_code, setGameCode] = useState('123456');
+	const [game_code, setGameCode] = useState(null);
 
 	useStyleIphoneX();
 	useDisableKeyboardScroll();
@@ -110,6 +110,15 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 		navigation.history.push('/');
 	});
 
+	/**
+	 * @event onClick
+	 *
+	 * Share Game Code
+	 */
+	const onClickShareGame = useEventCallback(() => {
+
+	});
+
 	return (
 		<>
 			<div className="container">
@@ -153,13 +162,14 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 								initialValues={init_values}
 								onSubmit={onSubmit}
 								validationSchema={validate_schema}
+								validateOnBlur={false}
 								validate={values => {
 									let total_money = 0;
 									for (let reward of values.rewards) {
 										total_money += reward.money * reward.total;
 									}
 
-									setTotalMoney(total_money);
+									setTotalMoney(total_money || 0);
 								}}
 							>
 								{props => {
@@ -263,10 +273,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																					type="button"
 																					onClick={e => {
 																						e.preventDefault();
-																						arrayHelpers.insert(index, {
-																							total: null,
-																							money: null,
-																						});
+																						arrayHelpers.insert(index, {});
 																					}}
 																				>
 																					+
@@ -304,10 +311,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																		type="button"
 																		onClick={e => {
 																			e.preventDefault();
-																			arrayHelpers.push({
-																				total: null,
-																				money: null,
-																			});
+																			arrayHelpers.push({});
 																		}}
 																	>
 																		Thêm giải thưởng

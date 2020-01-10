@@ -2,12 +2,17 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import GameDashboard from 'src/views/GameDashboard/screens/GameDashboard';
+import GameDashboardStart from 'src/views/GameDashboard/screens/GameDashboardStart';
 
 import './lixi.css';
 import './lichsulixi.css';
 import './bxhlixi.css';
 
-const routes = [{ path: '/', name: 'Game Dashboard', Component: GameDashboard }];
+
+const routes = [
+	{ path: '/', name: 'Game Dashboard', Component: GameDashboardStart },
+	{ path: '/:game_id', name: 'Game Dashboard', Component: GameDashboard },
+];
 
 const Web: React.FC = () => {
 	return (

@@ -1,3 +1,18 @@
+diff --git a/node_modules/react-scripts/scripts/build.js b/node_modules/react-scripts/scripts/build.js
+index 7a2bb8d..a98095b 100644
+--- a/node_modules/react-scripts/scripts/build.js
++++ b/node_modules/react-scripts/scripts/build.js
+@@ -27,8 +27,8 @@ const verifyPackageTree = require('./utils/verifyPackageTree');
+ if (process.env.SKIP_PREFLIGHT_CHECK !== 'true') {
+   verifyPackageTree();
+ }
+-const verifyTypeScriptSetup = require('./utils/verifyTypeScriptSetup');
+-verifyTypeScriptSetup();
++// const verifyTypeScriptSetup = require('./utils/verifyTypeScriptSetup');
++// verifyTypeScriptSetup();
+ // @remove-on-eject-end
+ 
+ const path = require('path');
 diff --git a/node_modules/react-scripts/scripts/start.js b/node_modules/react-scripts/scripts/start.js
 index 6c2602f..9cccb8a 100644
 --- a/node_modules/react-scripts/scripts/start.js
