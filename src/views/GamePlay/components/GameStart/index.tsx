@@ -4,9 +4,12 @@ const GameStart: React.FC = () => {
 	return (
 		<div className="animated easily bounceIn lixi">
 			<img className="animated easily" src={require('src/image/molixxi.png')} />
-			<div className="animated easily bounceIn btn_lac">
+			<div className="btn_lac">
 				<img className="" src={require('src/image/btn-lac.png')} alt="" />
 			</div>
+			{/* <div className="laclac">
+				<img className="tada" src={require('src/image/laclac.png')} alt="" />
+			</div> */}
 			<div className="light-top">
 				<img src={require('src/image/light-top.png')} />
 			</div>
