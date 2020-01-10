@@ -121,6 +121,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 
 	return (
 		<>
+			<div className="bg fixed" />
 			<div className="container">
 				<div className="header">
 					<a className="btnBack" onClick={onClickBackButton}>
@@ -129,158 +130,213 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 				</div>
 				{loading && <LoadingView />}
 				{game_code && (
-					<div>
-						<div>Mã chia sẻ của bạn là</div>
-						<div style={{ fontSize: 35, fontWeight: 700 }}>{game_code}</div>
-						<button>Chia sẻ ngay</button>
+					<div className="wrap pagelaclixi">
+						<div className="animated easily bounceIn lixi">
+							<img className="animated easily" src={require('src/image/baolixxi.png')} />
+							<div className="animated easily bounceIn btn_lac">
+								<img className="" src={require('src/image/btn-lac.png')} alt="" />
+							</div>
+							<div className="light-top">
+								<img src={require('src/image/light-top.png')} />
+							</div>
+							<div className="light-bot">
+								<img  src={require('src/image/light-bot2.png')} />
+							</div>
+							<div className="codeGame">
+								<div className="codeGame_Title">Mã chia sẻ của bạn</div>
+								<div className="codeGame_Code">{game_code}</div>
+								{/* <button className="codeGame_Button">Chia sẻ ngay</button> */}
+								<a className="codeGame_Share" href="javascript:void();" >
+									<img src={require('src/image/btn_share.png')} alt="" />
+								</a>
+							</div>
+						</div>
+						
 					</div>
 				)}
 				{!game_code && (
 					<>
 						<div className="content">
-							<div className="total-money">
-								<div className="title">Tổng giải thưởng</div>
-								<div className="money">{formatMoney(total_money)}</div>
-							</div>
-							{error && (
-								<div
-									style={{
-										background: '#fff',
-										color: 'red',
-										marginTop: 5,
-										borderRadius: 5,
-										textAlign: 'center',
-										padding: '5px',
-										fontSize: 14,
+							<div className="content-form">
+								<div className="total-money">
+									<div className="title">Tổng giải thưởng</div>
+									<div className="money">{formatMoney(total_money)}</div>
+								</div>
+								{error && (
+									<div
+										style={{
+											background: '#fff',
+											color: 'red',
+											marginTop: 5,
+											borderRadius: 5,
+											textAlign: 'center',
+											padding: '5px',
+											fontSize: 14,
+										}}
+									>
+										{error}
+									</div>
+								)}
+								<Formik<FormValues>
+									ref={formRef}
+									initialValues={init_values}
+									onSubmit={onSubmit}
+									validationSchema={validate_schema}
+									validateOnBlur={false}
+									validate={values => {
+										let total_money = 0;
+										for (let reward of values.rewards) {
+											total_money += reward.money * reward.total;
+										}
+
+										setTotalMoney(total_money || 0);
 									}}
 								>
-									{error}
-								</div>
-							)}
-							<Formik<FormValues>
-								ref={formRef}
-								initialValues={init_values}
-								onSubmit={onSubmit}
-								validationSchema={validate_schema}
-								validateOnBlur={false}
-								validate={values => {
-									let total_money = 0;
-									for (let reward of values.rewards) {
-										total_money += reward.money * reward.total;
-									}
+									{props => {
+										const { values, errors } = props;
 
-									setTotalMoney(total_money || 0);
-								}}
-							>
-								{props => {
-									const { values, errors } = props;
+										return (
+											<Form className="viewForm">
+												<div className="rowInput">
+													<div className="viewInput">
+														<Field
+															className="viewInput_Item"
+															type="text"
+															name="name"
+															placeholder="Tên trò chơi"
+														/>
+														{errors.name && (
+															<div
+																style={{
+																	color: '#fff',
+																	fontSize: 12,
+																	padding: '5px 0px',
+																}}
+															>
+																Lỗi: {errors.name}
+															</div>
+														)}
+													</div>
+													<div className="viewInput">
+														<Field
+															className="viewInput_Item"
+															type="datetime-local"
+															name="start_time"
+															placeholder="Thời gian bắt đầu"
+														/>
+														{errors.start_time && (
+															<div
+																style={{
+																	color: '#fff',
+																	fontSize: 12,
+																	padding: '5px 0px',
+																}}
+															>
+																Lỗi: {errors.start_time}
+															</div>
+														)}
+													</div>
+													<div className="viewInput">
+														<Field
+															className="viewInput_Item"
+															type="datetime-local"
+															name="end_time"
+															placeholder="Thời gian kết thúc"
+														/>
+														{errors.end_time && (
+															<div
+																style={{
+																	color: '#fff',
+																	fontSize: 12,
+																	padding: '5px 0px',
+																}}
+															>
+																Lỗi: {errors.end_time}
+															</div>
+														)}
+													</div>
+												</div>
 
-									return (
-										<Form className="viewForm">
-											<div className="rowInput">
-												<div className="viewInput">
-													<Field
-														className="viewInput_Item"
-														type="text"
-														name="name"
-														placeholder="Tên trò chơi"
-													/>
-													{errors.name && (
-														<div
-															style={{
-																color: '#fff',
-																fontSize: 12,
-																padding: '5px 0px',
-															}}
-														>
-															Lỗi: {errors.name}
-														</div>
-													)}
-												</div>
-												<div className="viewInput">
-													<Field
-														className="viewInput_Item"
-														type="datetime-local"
-														name="start_time"
-														placeholder="Thời gian bắt đầu"
-													/>
-													{errors.start_time && (
-														<div
-															style={{
-																color: '#fff',
-																fontSize: 12,
-																padding: '5px 0px',
-															}}
-														>
-															Lỗi: {errors.start_time}
-														</div>
-													)}
-												</div>
-												<div className="viewInput">
-													<Field
-														className="viewInput_Item"
-														type="datetime-local"
-														name="end_time"
-														placeholder="Thời gian kết thúc"
-													/>
-													{errors.end_time && (
-														<div
-															style={{
-																color: '#fff',
-																fontSize: 12,
-																padding: '5px 0px',
-															}}
-														>
-															Lỗi: {errors.end_time}
-														</div>
-													)}
-												</div>
-											</div>
-
-											<FieldArray validateOnChange={false} name="rewards">
-												{arrayHelpers => {
-													return (
-														<div>
-															{values.rewards && values.rewards.length > 0 ? (
-																values.rewards.map((reward, index) => (
-																	<div key={index} className="rowInput">
-																		<Field
-																			type="number"
-																			placeholder="Số tiền"
-																			className="viewInput_RowItem"
-																			name={`rewards[${index}][money]`}
-																		/>
-																		<Field
-																			type="number"
-																			placeholder="Tổng số"
-																			className="viewInput_RowItem"
-																			name={`rewards[${index}][total]`}
-																		/>
-																		<div className="viewAdd">
-																			<button
-																				className="viewAdd_Btn"
-																				type="button"
-																				onClick={e => {
-																					e.preventDefault();
-																					arrayHelpers.remove(index);
-																				}}
-																			>
-																				-
-																			</button>
-																			{index === 0 && (
+												<FieldArray validateOnChange={false} name="rewards">
+													{arrayHelpers => {
+														return (
+															<div>
+																{values.rewards && values.rewards.length > 0 ? (
+																	values.rewards.map((reward, index) => (
+																		<div key={index} className="rowInput">
+																			<Field
+																				type="number"
+																				placeholder="Số tiền"
+																				className="viewInput_RowItem"
+																				name={`rewards[${index}][money]`}
+																			/>
+																			<Field
+																				type="number"
+																				placeholder="Tổng số"
+																				className="viewInput_RowItem"
+																				name={`rewards[${index}][total]`}
+																			/>
+																			<div className="viewAdd">
 																				<button
 																					className="viewAdd_Btn"
 																					type="button"
 																					onClick={e => {
 																						e.preventDefault();
-																						arrayHelpers.insert(index, {});
+																						arrayHelpers.remove(index);
 																					}}
 																				>
-																					+
+																					-
 																				</button>
+																				{index === 0 && (
+																					<button
+																						className="viewAdd_Btn"
+																						type="button"
+																						onClick={e => {
+																							e.preventDefault();
+																							arrayHelpers.insert(index, {});
+																						}}
+																					>
+																						+
+																					</button>
+																				)}
+																			</div>
+																			{get(errors, e => e.rewards[index].total) && (
+																				<div
+																					style={{
+																						color: '#fff',
+																						fontSize: 12,
+																						padding: '5px 0px',
+																					}}
+																				>
+																					Lỗi: {errors.rewards[index].total}
+																				</div>
+																			)}
+																			{get(errors, e => e.rewards[index].money) && (
+																				<div
+																					style={{
+																						color: '#fff',
+																						fontSize: 12,
+																						padding: '5px 0px',
+																					}}
+																				>
+																					Lỗi: {errors.rewards[index].money}
+																				</div>
 																			)}
 																		</div>
-																		{get(errors, e => e.rewards[index].total) && (
+																	))
+																) : (
+																	<div>
+																		<button
+																			className="btnSubmit_Border"
+																			type="button"
+																			onClick={e => {
+																				e.preventDefault();
+																				arrayHelpers.push({});
+																			}}
+																		>
+																			Thêm giải thưởng
+																		</button>
+																		{get(errors, e => e.rewards) && (
 																			<div
 																				style={{
 																					color: '#fff',
@@ -288,60 +344,25 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																					padding: '5px 0px',
 																				}}
 																			>
-																				Lỗi: {errors.rewards[index].total}
-																			</div>
-																		)}
-																		{get(errors, e => e.rewards[index].money) && (
-																			<div
-																				style={{
-																					color: '#fff',
-																					fontSize: 12,
-																					padding: '5px 0px',
-																				}}
-																			>
-																				Lỗi: {errors.rewards[index].money}
+																				Lỗi: {errors.rewards}
 																			</div>
 																		)}
 																	</div>
-																))
-															) : (
-																<div>
-																	<button
-																		className="btnSubmit_Border"
-																		type="button"
-																		onClick={e => {
-																			e.preventDefault();
-																			arrayHelpers.push({});
-																		}}
-																	>
-																		Thêm giải thưởng
-																	</button>
-																	{get(errors, e => e.rewards) && (
-																		<div
-																			style={{
-																				color: '#fff',
-																				fontSize: 12,
-																				padding: '5px 0px',
-																			}}
-																		>
-																			Lỗi: {errors.rewards}
-																		</div>
-																	)}
-																</div>
-															)}
-														</div>
-													);
-												}}
-											</FieldArray>
-										</Form>
-									);
-								}}
-							</Formik>
-						</div>
-						<div className="btnSubmit">
-							<button className="btnSubmit_Btn" onClick={onClickSubmitForm}>
-								Tạo trò chơi
-							</button>
+																)}
+															</div>
+														);
+													}}
+												</FieldArray>
+											</Form>
+										);
+									}}
+								</Formik>
+							</div>
+							<div className="btnSubmit">
+								<button className="btnSubmit_Btn" onClick={onClickSubmitForm}>
+									Tạo trò chơi
+								</button>
+							</div>
 						</div>
 					</>
 				)}

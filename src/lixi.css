@@ -14,7 +14,7 @@ body {
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
     background-color: #C00405;
 }
-body.bodyX {
+body.bodyX .content {
     padding-top: 120px;
 }
 .bodyX .header {
@@ -30,6 +30,8 @@ body.bodyX {
     margin: 0;
     width: 100%;
     height: 100%;
+    position: relative;
+    z-index: 10;
 }
 .header {
     top: 32px;
@@ -57,6 +59,12 @@ body.bodyX {
     width: 24px;
     height: 24px;
     margin: 0 auto;
+}
+.content-form {
+    padding: 20px;
+    background-color: rgba(0,0,0,0.2);
+    border: 1px #8C0000 solid;
+    border-radius: 10px;
 }
 .viewForm {
     width: 100%;
@@ -103,7 +111,8 @@ body.bodyX {
     border-radius: 5px;
     margin-right: 5px;
 }
-.viewInput_Item::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.viewInput_Item::placeholder,
+.viewInput_RowItem::placeholder {
     color: #EFBC61;
     opacity: 1;
 }
@@ -126,7 +135,7 @@ body.bodyX {
     height: 46px;
     text-align: center;
     background-color: #8C0000;
-    border: 1px #8C0000 solid;
+    border: 1px #EFBC61 solid;
     color: #EFBC61;
     font-weight: bold;
     font-size: 20px;
@@ -155,14 +164,13 @@ body.bodyX {
     clear: both;
 }
 .btnSubmit {
-    padding: 20px;
-
+    padding: 20px 0;
 }
 
 .total-money {
     text-align: center;
-    background-color: #8C0000;
-    border: 1px #8C0000 solid;
+    /* background-color: #8C0000; */
+    /* border: 1px #8C0000 solid; */
     color: #EFBC61;
     border-radius: 8px;
     padding: 10px 0;
@@ -184,16 +192,16 @@ body.bodyX {
     width: 100%;
     font-size: 16px;
     font-weight: bold;
-    min-height: 36px;
-    padding: 5px 0px;
+    min-height: 40px;
+    padding: 8px 0px;
     text-indent: 10px;
-    line-height: 36px;
+    line-height: 40px;
     margin: 0 auto;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
-    background-color: #8C0000;
+    background-color: #EFBC61;
     border: 1px #8C0000 solid;
-    color: #EFBC61;
+    color: #8C0000;
     text-transform: uppercase;
 }
 .btnSubmit_Border {
@@ -209,9 +217,57 @@ body.bodyX {
     border-radius: 5px;
     text-align: center;
     background-color: transparent;
+    border: 1px #EFBC61 solid;
+    color: #EFBC61;
+}
+
+.codeGame {
+    padding: 20px;
+    position: absolute;
+    left: 50px;
+    right: 50px;
+    bottom: 50px;
+}
+.codeGame_Title {
+    color: #EFBC61;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+.codeGame_Code {
+    color: #EFBC61;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px 0;
+    margin-bottom: 20px;
+}
+.codeGame_Share {
+    display: block;
+}
+.codeGame_Share img {
+    display: block;
+    height: 60px;
+    margin: 0 auto;
+}
+.codeGame_Button {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    min-height: 36px;
+    padding: 5px 0px;
+    text-indent: 10px;
+    line-height: 36px;
+    margin: 0 auto;
+    border-radius: 5px;
+    text-align: center;
+    background-color: transparent;
     border: 1px #8C0000 solid;
     color: #EFBC61;
 }
+
 .bg:before {
     content: "";
     /* background: url('./image/maskbg.png') repeat top left; */
@@ -228,6 +284,7 @@ body.bodyX {
     background: url('./image/bg_mobile.jpg') top center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    z-index: 1;
 }
 img {
     max-width: 100%;
