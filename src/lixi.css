@@ -79,7 +79,6 @@ body.bodyX {
     border: 1px #8C0000 solid;
     color: #EFBC61;
     outline: 0;
-    user-select: none;
     -webkit-appearance: none;
     border-radius: 5px;
 }
@@ -100,14 +99,13 @@ body.bodyX {
     border: 1px #8C0000 solid;
     color: #EFBC61;
     outline: 0;
-    user-select: none;
     -webkit-appearance: none;
     border-radius: 5px;
     margin-right: 5px;
 }
 .viewInput_Item::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #EFBC61;
-    opacity: 1; /* Firefox */
+    opacity: 1;
 }
 .rowInput {
     flex-direction: row;
@@ -138,6 +136,21 @@ body.bodyX {
     justify-content: center;
     align-items: center;
 }
+.viewAdd_Border {
+    flex: 1;
+    height: 46px;
+    text-align: center;
+    background-color: #EFBC61;
+    border: 1px #8C0000 solid;
+    color: #8C0000;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 36px;
+    border-radius: 5px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
 .btnSubmit {
     clear: both;
 }
@@ -158,6 +171,22 @@ body.bodyX {
     border-radius: 5px;
     text-align: center;
     background-color: #8C0000;
+    border: 1px #8C0000 solid;
+    color: #EFBC61;
+}
+.btnSubmit_Border {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    min-height: 36px;
+    padding: 5px 0px;
+    text-indent: 10px;
+    line-height: 36px;
+    margin: 0 auto;
+    border-radius: 5px;
+    text-align: center;
+    background-color: transparent;
     border: 1px #8C0000 solid;
     color: #EFBC61;
 }

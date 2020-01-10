@@ -183,7 +183,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 													) : (
 														<div>
 															<button
-																className="btnSubmit_Btn"
+																className="btnSubmit_Border"
 																type="button"
 																onClick={() =>
 																	arrayHelpers.push({
