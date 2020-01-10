@@ -7,7 +7,7 @@ interface GameScoreProps {
 
 const GameScore: React.FC<GameScoreProps> = ({ score }) => {
 	return (
-		<div className="lixi doilixi">
+		<div className="animated easily bounceIn lixi doilixi">
 			<img src={require('src/image/doilixi.png')} />
 			<div className="txt_lixi">
 				<p className="fade">- Bạn nhận được lì xì -</p>

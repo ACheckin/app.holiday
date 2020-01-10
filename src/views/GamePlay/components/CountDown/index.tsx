@@ -17,7 +17,7 @@ interface CoundDownProps {
 const CountDown: React.FC<CoundDownProps> = ({ onComplete }) => {
 	return (
 		<>
-			<div className="time_lac">
+			<div className="animated easily slideInDown time_lac">
 				<img src={require('src/image/time.png')} />
 				<div className="txt_time_lac">
 					<p>Thời gian kết thúc</p>

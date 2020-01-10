@@ -25,25 +25,6 @@ const GameStart: React.FC<GameStartProps> = ({ navigation }) => {
 			<Content>
 				<GameStartJoin />
 				<FooterStart onPlayGameClick={onPlayGameClick} onCreateGameClick={onCreateGameClick} />
-				{/* <div style={{ position: 'absolute', width: '100%', bottom: 80, zIndex: 9990 }}>
-					<div style={{ padding: '0px 20px 0px 20px' }}>
-						<button
-							onClick={onCreateGameClick}
-							style={{
-								background: 'transparent',
-								width: '100%',
-								padding: '10px 20px 10px 20px',
-								borderRadius: 8,
-								border: 'solid 2px #F1C24D',
-								color: '#F1C24D',
-								fontWeight: 700,
-								fontSize: 16,
-							}}
-						>
-							Tạo Game
-						</button>
-					</div>
-				</div> */}
 			</Content>
 		</div>
 	);

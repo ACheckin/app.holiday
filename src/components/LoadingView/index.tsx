@@ -17,8 +17,8 @@ const LoadingView: React.FC = () => {
 				alignItems: 'center',
 			}}
 		>
-			<div style={{ width: 100, height: 100 }}>
-				<img src={require('src/image/btn-lac.png')} alt="" />
+			<div style={{ width: 120, height: 120, } }>
+				<img className="logo-circle" src={require('src/image/btn-lac.png')} alt="" />
 			</div>
 		</div>
 	);

@@ -10,17 +10,13 @@ const FooterStart: React.FC<FooterProps> = ({ onCreateGameClick, onPlayGameClick
 
 	return (
 		<div className="action">
-			<div className="btn_footer ">
+			<div className="animated easily slideInLeft btn_footer">
 				<a onClick={onPlayGameClick} href="javascript:void();">
 					<img src={require('src/image/btn_play.png')} alt="" />
 				</a>
 			</div>
-
-			<div className="btn_footer ">
-				<a
-					onClick={onCreateGameClick}
-					href="javascript:void();"
-				>
+			<div className="animated easily slideInRight btn_footer">
+				<a onClick={onCreateGameClick} href="javascript:void();" >
 					<img src={require('src/image/btn_create.png')} alt="" />
 				</a>
 			</div>

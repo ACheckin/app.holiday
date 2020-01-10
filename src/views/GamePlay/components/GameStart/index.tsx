@@ -2,9 +2,9 @@ import React from 'react';
 
 const GameStart: React.FC = () => {
 	return (
-		<div className="lixi">
-			<img src={require('src/image/molixxi.png')} />
-			<div className="btn_lac">
+		<div className="animated easily bounceIn lixi">
+			<img className="animated easily" src={require('src/image/molixxi.png')} />
+			<div className="animated easily bounceIn btn_lac">
 				<img className="" src={require('src/image/btn-lac.png')} alt="" />
 			</div>
 			<div className="light-top">
