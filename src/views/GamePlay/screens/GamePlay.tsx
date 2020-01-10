@@ -33,7 +33,7 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 	/**
 	 * @event onShake
 	 *
-	 * Handle When Shake Device¬
+	 * Handle When Shake Device
 	 */
 	const onShake = useEventCallback(async () => {
 		if (!Apis.isChangeReward()) {
@@ -61,39 +61,51 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 	}, []);
 
 	useEffect(() => {
-		(async () => {
-			try {
-				const game_detail_response = await Apis.gameDetail({ game_id: '670075' });
+		if (params.game_id) {
+			(async () => {
+				try {
+					const game_detail_response = await Apis.gameDetail({ game_id: params.game_id });
 
-				const start_time = moment.unix(game_detail_response.game.start_time);
-				const end_time = moment.unix(game_detail_response.game.end_time);
-				const current_time = moment().unix();
+					const start_time = moment.unix(game_detail_response.game.start_time);
+					const end_time = moment.unix(game_detail_response.game.end_time);
+					const current_time = moment().unix();
 
-				/**
-				 * Join Game
-				 */
-				const join_game_response = await Apis.joinGame({
-					game_id: '670075',
-				});
-
-				Apis.setGameAccessCode(join_game_response.game_access_code);
-
-				/**
-				 * Listen Firebase Database
-				 */
-				firebase
-					.database()
-					.ref(`/MINIAPP_app_holiday/games/670075/players/${Apis.getUserInfo().id}`)
-					.on('value', snapshot => {
-						const player: Player = snapshot.val();
-
-						if (player) {
-							setScore(player.reward.money);
-							setLoading(false);
-						}
+					/**
+					 * Join Game
+					 */
+					const join_game_response = await Apis.joinGame({
+						game_id: params.game_id,
 					});
-			} catch (e) {}
-		})();
+
+					Apis.setGameAccessCode(join_game_response.game_access_code);
+
+					/**
+					 * Listen Firebase Database
+					 */
+					firebase
+						.database()
+						.ref(`/MINIAPP_app_holiday/games/${params.game_id}/players/${Apis.getUserInfo().id}`)
+						.on('value', snapshot => {
+							const player: Player = snapshot.val();
+
+							if (player) {
+								setScore(player.reward.money);
+								setLoading(false);
+							}
+						});
+
+					/**
+					 * Listen Firebase Database User History Add
+					 */
+					firebase
+						.database()
+						.ref(`/MINIAPP_app_holiday/games/${params.game_id}/players/${Apis.getUserInfo().id}/history`)
+						.on('child_added', snapshot => {
+							const history = snapshot.val();
+						});
+				} catch (e) {}
+			})();
+		}
 	}, []);
 
 	/**
@@ -105,14 +117,24 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 		setIsEndGame(true);
 	});
 
+	/**
+	 * @event onClick
+	 *
+	 * Share Button
+	 */
 	const onShareCLick = useEventCallback(async () => {
 		try {
 			await ACheckinSDK.shareScreen('Chúc bạn và gia đình một năm mới an khang thịnh vượng');
 		} catch (e) {}
 	});
 
+	/**
+	 * @event onClick
+	 *
+	 * History Button
+	 */
 	const onHistoryClick = useEventCallback(() => {
-		navigation.history.push(`/game/670075/history`)
+		navigation.history.push(`/game/670075/history`);
 	});
 
 	return (

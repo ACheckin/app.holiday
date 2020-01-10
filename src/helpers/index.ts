@@ -13,14 +13,15 @@ export function formatMoney(money: number): string {
  * Custom Hook Event Callback
  * @param fn
  */
-export function useEventCallback<T = any>(fn: (e?: T) => void): (e?: T) => any {
-	const ref = useRef<(e?: T) => void>();
+export function useEventCallback<T extends (...args: any[]) => any>(fn: T): T {
+	const ref = useRef<T>();
 
 	ref.current = fn;
 
-	return useCallback(
-		e => {
-			return typeof ref.current === 'function' && ref.current(e);
+	return useCallback<T>(
+		// @ts-ignore
+		(...args) => {
+			return typeof ref.current === 'function' && ref.current(args);
 		},
 		[ref],
 	);
@@ -44,18 +45,16 @@ export function useStates<T>(init_state: T): [T, (state?: T) => void] {
 	return [state.current, setState];
 }
 
-export type RequiredRecursively<T> = Exclude<
-	T extends string | number | boolean
-		? T
-		: {
-			[P in keyof T]-?: T[P] extends (infer U)[]
+export type RequiredRecursively<T> = Exclude<T extends string | number | boolean
+	? T
+	: {
+		[P in keyof T]-?: T[P] extends (infer U)[]
 			? RequiredRecursively<U>[]
 			: T[P] extends Array<infer U>
 				? RequiredRecursively<U>[]
 				: RequiredRecursively<T[P]>;
-		},
-	null | undefined
-	>;
+	},
+	null | undefined>;
 
 export type AccessorFunction<T, R> = (object: RequiredRecursively<T>) => R;
 
