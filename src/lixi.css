@@ -167,7 +167,18 @@ body.bodyX {
     border-radius: 8px;
     padding: 10px 0;
 }
-
+.total-money .title {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+.total-money .money {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
 .btnSubmit_Btn {
     display: block;
     width: 100%;
@@ -183,6 +194,7 @@ body.bodyX {
     background-color: #8C0000;
     border: 1px #8C0000 solid;
     color: #EFBC61;
+    text-transform: uppercase;
 }
 .btnSubmit_Border {
     display: block;
@@ -347,17 +359,17 @@ a {
     animation: brightness 1s linear infinite;
 }
 .outer {
-    animation: pulse 10s linear infinite;
+    animation: pulse 5s linear infinite;
 }
 .hoatop {
     z-index: 4;
     width: 110%;
     left: -10px;
-    -webkit-animation: shake 10s linear infinite;
-    -moz-animation: shake 10s linear infinite;
-    -ms-animation: shake 10s linear infinite;
-    -o-animation: shake 10s linear infinite;
-    animation: shake 10s linear infinite;
+    -webkit-animation: shake 15s linear infinite;
+    -moz-animation: shake 15s linear infinite;
+    -ms-animation: shake 15s linear infinite;
+    -o-animation: shake 15s linear infinite;
+    animation: shake 15s linear infinite;
 }
 .hoatop img {
     width: 84%;

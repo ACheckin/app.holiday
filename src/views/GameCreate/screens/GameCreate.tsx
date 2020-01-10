@@ -139,8 +139,8 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 					<>
 						<div className="content">
 							<div className="total-money">
-								<div>Tổng giải thưởng</div>
-								<div>{formatMoney(total_money)}</div>
+								<div className="title">Tổng giải thưởng</div>
+								<div className="money">{formatMoney(total_money)}</div>
 							</div>
 							{error && (
 								<div
