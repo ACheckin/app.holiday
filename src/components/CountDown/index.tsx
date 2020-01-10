@@ -3,7 +3,7 @@ import Countdown from 'react-countdown-now';
 
 const renderer = ({ hours, minutes, seconds, completed }) => {
 	if (completed) {
-		return "Bắt đầu";
+		return null;
 	} else {
 		// Render a countdown
 		return <span>{seconds}</span>;
@@ -11,18 +11,20 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
 };
 
 interface CoundDownProps {
+	title: string
 	onComplete: () => void;
+	time: number
 }
 
-const CountDown: React.FC<CoundDownProps> = ({ onComplete }) => {
+const CountDown: React.FC<CoundDownProps> = ({ onComplete, title, time }) => {
 	return (
 		<>
 			<div className="time_lac">
 				<img src={require('src/image/time.png')} />
 				<div className="txt_time_lac">
-					<p>Trò chơi sẽ bắt đầu trong</p>
+					<p>{title}</p>
 					<span>
-						<Countdown date={Date.now() + 5000} renderer={renderer} onComplete={onComplete} />
+						<Countdown date={time} renderer={renderer} onComplete={onComplete} />
 					</span>
 				</div>
 			</div>

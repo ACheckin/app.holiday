@@ -5,18 +5,20 @@ import Animation from 'src/views/GamePlay/components/Animation';
 import Content from 'src/views/GamePlay/components/Content';
 import GameStartJoin from 'src/views/GamePlay/components/GameStart';
 import FooterStart from 'src/views/GamePlay/components/FooterStart';
+import { useEventCallback } from 'src/helpers';
 
 interface GameStartProps {
 	navigation: RouteComponentProps;
 }
 
 const GameStart: React.FC<GameStartProps> = ({ navigation }) => {
-	const onCreateGameClick = () => {
+	const onCreateGameClick = useEventCallback(() => {
 		navigation.history.push('/create-game');
-	};
+	});
 
-	const onPlayGameClick = () => {
-	};
+	const onPlayGameClick = useEventCallback(() => {
+		navigation.history.push('/join-game');
+	});
 
 	return (
 		<div className="wrap pagelaclixi">

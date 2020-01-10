@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react';
 import $ from 'jquery';
 
-export function formatMoney(money: number): string {
+export function formatMoney(money: number = 0): string {
 	const formatter = new Intl.NumberFormat('vi-VN', {
 		style: 'currency',
 		currency: 'VND',

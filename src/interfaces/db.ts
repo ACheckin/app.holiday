@@ -17,6 +17,7 @@ export interface GameReward {
 	id: number;
 	money: number;
 	user?: User;
+	history?: { [key: string]: User }
 }
 
 export interface User {

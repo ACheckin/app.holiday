@@ -59,7 +59,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 	const [error, setError] = useState(null);
 	const [total_money, setTotalMoney] = useState(0);
 
-	const [game_code, setGameCode] = useState(null);
+	const [game_code, setGameCode] = useState('123456');
 
 	useStyleIphoneX();
 	useDisableKeyboardScroll();

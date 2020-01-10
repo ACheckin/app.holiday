@@ -9,11 +9,11 @@ import moment from 'moment-timezone';
 
 import Animation from 'src/views/GamePlay/components/Animation';
 import Content from 'src/views/GamePlay/components/Content';
-import CountDown from 'src/views/GamePlay/components/CountDown';
 import Footer from 'src/views/GamePlay/components/Footer';
 import GameStart from 'src/views/GamePlay/components/GameStart';
 import GameScore from 'src/views/GamePlay/components/GameScore';
 import LoadingView from 'src/components/LoadingView';
+import CountDown from 'src/components/CountDown';
 
 interface GamePlayProps {
 	navigation: RouteComponentProps;
@@ -145,7 +145,13 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 				{loading && <LoadingView />}
 				{!loading && (
 					<>
-						{!is_end_game && <CountDown onComplete={onCowndownComplete} />}
+						{!is_end_game && (
+							<CountDown
+								title="Game sẽ kết thúc trong"
+								time={Date.now() + 5000}
+								onComplete={onCowndownComplete}
+							/>
+						)}
 						{score === 0 && <GameStart />}
 						{score > 0 && <GameScore score={score} />}
 						{is_end_game && <Footer onShareClick={onShareCLick} onHistoryClick={onHistoryClick} />}

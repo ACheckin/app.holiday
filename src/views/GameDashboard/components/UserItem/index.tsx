@@ -1,36 +1,61 @@
 import React from 'react';
-import { Player } from 'src/interfaces/db';
+import { GameReward } from 'src/interfaces/db';
 import { formatMoney, get } from 'src/helpers';
+import _ from 'lodash';
 
 interface UserItemProps {
-	user: Player;
+	game_reward: GameReward;
 }
 
-const UserItem: React.FC<UserItemProps> = ({ user }) => {
+const UserItem: React.FC<UserItemProps> = ({ game_reward }) => {
+
+
+	const renderMore = () => {
+		const histories = get(game_reward, e => Object.values(e.history), []);
+
+		if (histories.length === 0 || histories.length === 1) return null;
+
+		const list_user = [];
+		let count_user_more = 0;
+
+		for (let history of histories) {
+			if (history) {
+				if (list_user.length < 4) {
+					list_user.push(history);
+				} else {
+					count_user_more++;
+				}
+			}
+		}
+
+		return (
+			<>
+				{list_user.map(user => (
+					<div className="robUser">
+						<img src={user.avatar} width="22" />
+					</div>
+				))}
+				{count_user_more > 0 && <div className="more">+ {count_user_more} người khác</div>}
+			</>
+		);
+	};
+
 	return (
 		<div className="item">
 			<div className="image-user">
-				<img src={get(user, e => e.avatar, require('src/image/imguser.png'))} width="60" />
+				<img
+					style={{ borderRadius: 30 }}
+					src={get(game_reward, e => e.user.avatar, require('src/image/btn-lac.png'))}
+					width="60"
+				/>
 			</div>
 			<div className="info-item">
-				<div className="nameUser-item">{get(user, e => e.name)}</div>
+				<div className="nameUser-item">{get(game_reward, e => e.user.name, 'Đang hóng')}</div>
 				<div className="robListUsers">
-					<div className="robUser">
-						<img src={require('src/image/Oval.png')} width="22" />
-					</div>
-					<div className="robUser">
-						<img src={require('src/image/Oval.png')} width="22" />
-					</div>
-					<div className="robUser">
-						<img src={require('src/image/Oval.png')} width="22" />
-					</div>
-					<div className="robUser">
-						<img src={require('src/image/Oval.png')} width="22" />
-					</div>
-					<div className="more">+ 12 người khác</div>
+					{renderMore()}
 				</div>
 			</div>
-			<div className="valueUserItem">{formatMoney(get(user, e => e.reward.money, 0))}</div>
+			<div className="valueUserItem">{formatMoney(get(game_reward, e => e.money, 0))}</div>
 		</div>
 	);
 };
