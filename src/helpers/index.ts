@@ -1,4 +1,5 @@
-import { useCallback, useReducer, useRef } from 'react';
+import { useCallback, useEffect, useReducer, useRef } from 'react';
+import $ from 'jquery';
 
 export function formatMoney(money: number): string {
 	const formatter = new Intl.NumberFormat('vi-VN', {
@@ -25,6 +26,41 @@ export function useEventCallback<T extends (...args: any[]) => any>(fn: T): T {
 		},
 		[ref],
 	);
+}
+
+export function useStyleIphoneX() {
+	useEffect(() => {
+		let iPhone = /iPhone/.test(navigator.userAgent) && !window.MSStream;
+		let aspect = window.screen.width / window.screen.height;
+		if (iPhone && aspect.toFixed(3) === '0.462') {
+			$('body').removeClass('bodyFull');
+			$('body').addClass('bodyX');
+			$('body').addClass('isIPX');
+		} else {
+			$('body').removeClass('bodyFull');
+			$('body').removeClass('isIPX');
+		}
+
+		return () => {
+			$('body').addClass('bodyFull');
+			$('body').removeClass('bodyX');
+			$('body').removeClass('isIPX');
+		};
+	}, []);
+}
+
+export function useDisableKeyboardScroll() {
+	function Touchyhandler(e) {
+		e.preventDefault();
+	}
+
+	useEffect(() => {
+		document.addEventListener('touchmove', Touchyhandler, false);
+		//to remove
+		return () => {
+			document.removeEventListener('touchmove', Touchyhandler);
+		};
+	}, []);
 }
 
 /**

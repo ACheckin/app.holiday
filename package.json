@@ -30,6 +30,7 @@
     "@types/react": "^16.9.17",
     "@types/react-dom": "16.9.4",
     "@types/react-router-dom": "^5.1.3",
+    "@types/yup": "^0.26.27",
     "patch-package": "^6.2.0",
     "prettier": "^1.19.1",
     "typescript": "^3.7.4"

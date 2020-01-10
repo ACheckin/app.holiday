@@ -156,8 +156,18 @@ body.bodyX {
 }
 .btnSubmit {
     padding: 20px;
-    
+
 }
+
+.total-money {
+    text-align: center;
+    background-color: #8C0000;
+    border: 1px #8C0000 solid;
+    color: #EFBC61;
+    border-radius: 8px;
+    padding: 10px 0;
+}
+
 .btnSubmit_Btn {
     display: block;
     width: 100%;
@@ -265,38 +275,38 @@ a {
       -webkit-transform: translateX(0);
       transform: translateX(0);
     }
-  
+
     10%, 30%, 50%, 70%, 90% {
       -webkit-transform: translateX(-10px);
       transform: translateX(-10px);
     }
-  
+
     20%, 40%, 60%, 80% {
       -webkit-transform: translateX(10px);
       transform: translateX(10px);
     }
   }
-  
+
   @keyframes shake {
     0%, 100% {
       -webkit-transform: translateX(0);
       -ms-transform: translateX(0);
       transform: translateX(0);
     }
-  
+
     10%, 30%, 50%, 70%, 90% {
       -webkit-transform: translateX(-3px);
       -ms-transform: translateX(-3px);
       transform: translateX(-3px);
     }
-  
+
     20%, 40%, 60%, 80% {
       -webkit-transform: translateX(3px);
       -ms-transform: translateX(3px);
       transform: translateX(3px);
     }
   }
-  
+
   .shake {
     -webkit-animation: shake 2s linear infinite;
     -moz-animation: shake 2s linear infinite;
@@ -305,7 +315,7 @@ a {
     animation: shake 2s linear infinite;
   }
 
-  
+
 @keyframes brightness {
     0%{
         filter: brightness(90%);
@@ -462,7 +472,7 @@ a {
 }
 
 .action {
-   
+
     z-index: 100;
     width: 310px;
     /* left: 50%; */
@@ -473,7 +483,7 @@ a {
 }
 
 .btn_footer,
-.btn_lichsu , 
+.btn_lichsu ,
 .btn_share  {
     padding: 0 10px;
 }
@@ -512,8 +522,8 @@ a {
     color: #F9F3D0;
 }
 .snowflakes {
-   
-   
+
+
 }
 
 .snowflake img {
@@ -558,7 +568,7 @@ a {
         left: 13px;
         animation: brightness 0.5s linear infinite;
     }
-    
+
     .light-bot {
         position: absolute;
         bottom: 19px;
@@ -573,7 +583,7 @@ a {
         left: 13px;
         animation: brightness 0.5s linear infinite;
     }
-    
+
     .lixi.doilixi .btn_lac, .lixi.doilixi .txt_lac {
         top: 165px;
     }
@@ -609,7 +619,7 @@ a {
         left: 13px;
         animation: brightness 0.5s linear infinite;
     }
-    
+
     .light-bot {
         position: absolute;
         bottom: 19px;
@@ -624,7 +634,7 @@ a {
         left: 13px;
         animation: brightness 0.5s linear infinite;
     }
-    
+
     .lixi.doilixi .btn_lac, .lixi.doilixi .txt_lac {
         top: 145px;
     }
@@ -672,7 +682,7 @@ a {
         left: 12px;
         animation: brightness 0.5s linear infinite;
     }
-    
+
     .light-bot {
         position: absolute;
         bottom: 17px;
@@ -694,7 +704,7 @@ a {
         left: 50%;
         transform: translateX(-50%);
         -webkit-transform: translateX(-50%);
-    
+
     }
     .txt_lixi p.show {
         display: block;
@@ -747,7 +757,7 @@ a {
         left: 10px;
         animation: brightness 0.5s linear infinite;
     }
-    
+
     .light-bot {
         position: absolute;
         bottom: 17px;
@@ -772,7 +782,7 @@ a {
         left: 50%;
         transform: translateX(-50%);
         -webkit-transform: translateX(-50%);
-    
+
     }
     .txt_lixi p.show {
         display: block;
