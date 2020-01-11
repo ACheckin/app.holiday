@@ -10,5 +10,5 @@
 	"version": "1.0",
 	"main": "index.html",
 	"use_scroll": false,
-	"permissions": ["device_shake", "basic_info", "device_notification", "device_hardware"]
+	"permissions": ["device_shake", "basic_info", "device_notification", "device_hardware", "user_workspace_email"]
 }

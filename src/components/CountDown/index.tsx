@@ -1,19 +1,26 @@
 import React from 'react';
 import Countdown from 'react-countdown-now';
 
-const renderer = ({ hours, minutes, seconds, completed }) => {
+const renderer = ({ days, hours, minutes, seconds, completed }) => {
 	if (completed) {
 		return null;
 	} else {
 		// Render a countdown
-		return <span>{seconds}</span>;
+		return (
+			<span>
+				{days ? `${days}d ` : ''}
+				{hours ? `${hours}h ` : ''}
+				{minutes ? `${minutes}m ` : ''}
+				{seconds}s
+			</span>
+		);
 	}
 };
 
 interface CoundDownProps {
-	title: string
+	title: string;
 	onComplete: () => void;
-	time: number
+	time: number;
 }
 
 const CountDown: React.FC<CoundDownProps> = ({ onComplete, title, time }) => {

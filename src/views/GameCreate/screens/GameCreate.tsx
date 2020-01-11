@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Field, FieldArray, Form, Formik } from 'formik';
 import * as yup from 'yup';
+import _ from 'lodash';
 
 import { formatMoney, get, useDisableKeyboardScroll, useEventCallback, useStyleIphoneX } from 'src/helpers';
 import { RouteComponentProps } from 'react-router-dom';
@@ -21,15 +22,6 @@ interface FormValues {
 interface GameCreateProps {
 	navigation: RouteComponentProps;
 }
-
-const init_values: FormValues = {
-	name: '',
-	start_time: moment().format('YYYY-MM-DDTHH:mm:s'),
-	end_time: moment()
-		.add(1, 'minute')
-		.format('YYYY-MM-DDTHH:mm:s'),
-	rewards: [],
-};
 
 const validate_schema = yup.object().shape<FormValues>({
 	name: yup.string().required('Bạn chưa nhập tên trò chơi'),
@@ -54,12 +46,23 @@ const validate_schema = yup.object().shape<FormValues>({
 });
 
 const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
+	const [init_values] = useState<FormValues>({
+		name: '',
+		start_time: moment()
+			.add(5, 'minute')
+			.format('YYYY-MM-DDTHH:mm:s'),
+		end_time: moment()
+			.add(6, 'minute')
+			.format('YYYY-MM-DDTHH:mm:s'),
+		rewards: [],
+	});
+
 	const formRef = useRef<Formik<FormValues>>(null);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
 	const [total_money, setTotalMoney] = useState(0);
 
-	const [game_code, setGameCode] = useState('123456');
+	const [game_code, setGameCode] = useState(null);
 
 	useStyleIphoneX();
 	useDisableKeyboardScroll();
@@ -92,7 +95,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 					name: values.name,
 				});
 
-				setGameCode(create_game_response.game_access_code);
+				setGameCode(create_game_response.game_id);
 			}
 		} catch (e) {
 			setError(e.message);
@@ -115,9 +118,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 	 *
 	 * Share Game Code
 	 */
-	const onClickShareGame = useEventCallback(() => {
-
-	});
+	const onClickShareGame = useEventCallback(() => {});
 
 	return (
 		<>
@@ -140,18 +141,17 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 								<img src={require('src/image/light-top.png')} />
 							</div>
 							<div className="light-bot">
-								<img  src={require('src/image/light-bot2.png')} />
+								<img src={require('src/image/light-bot2.png')} />
 							</div>
 							<div className="codeGame">
 								<div className="codeGame_Title">Mã chia sẻ của bạn</div>
 								<div className="codeGame_Code">{game_code}</div>
 								{/* <button className="codeGame_Button">Chia sẻ ngay</button> */}
-								<a className="codeGame_Share" href="javascript:void();" >
+								<a className="codeGame_Share" href="javascript:void();">
 									<img src={require('src/image/btn_share.png')} alt="" />
 								</a>
 							</div>
 						</div>
-						
 					</div>
 				)}
 				{!game_code && (
@@ -183,6 +183,8 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 									onSubmit={onSubmit}
 									validationSchema={validate_schema}
 									validateOnBlur={false}
+									validateOnChange
+									isInitialValid
 									validate={values => {
 										let total_money = 0;
 										for (let reward of values.rewards) {
@@ -293,14 +295,22 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																						type="button"
 																						onClick={e => {
 																							e.preventDefault();
-																							arrayHelpers.insert(index, {});
+																							arrayHelpers.insert(index, {
+																								total: 0,
+																								money: 0,
+																							});
 																						}}
 																					>
 																						+
 																					</button>
 																				)}
 																			</div>
-																			{get(errors, e => e.rewards[index].total) && (
+																			{!_.isEmpty(
+																				get(
+																					errors,
+																					e => e.rewards[index].total,
+																				),
+																			) && (
 																				<div
 																					style={{
 																						color: '#fff',
@@ -311,7 +321,12 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																					Lỗi: {errors.rewards[index].total}
 																				</div>
 																			)}
-																			{get(errors, e => e.rewards[index].money) && (
+																			{!_.isEmpty(
+																				get(
+																					errors,
+																					e => e.rewards[index].money,
+																				),
+																			) && (
 																				<div
 																					style={{
 																						color: '#fff',
@@ -336,7 +351,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																		>
 																			Thêm giải thưởng
 																		</button>
-																		{get(errors, e => e.rewards) && (
+																		{get(errors, e => e.rewards.length > 0) && (
 																			<div
 																				style={{
 																					color: '#fff',

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Web from './Web';
+// import Web from './Web';
 import { ACheckinSDK } from '@acheckin/react-app-sdk';
 import Apis from 'src/services/apis';
 import * as firebase from 'firebase';
@@ -33,7 +33,7 @@ window.asyncACheckinInit = async (game_id: string) => {
 		/**
 		 * Get User Info
 		 */
-		const user_info = await ACheckinSDK.getUserWorkspaceInfo(['id', 'name', 'picture']);
+		const user_info = await ACheckinSDK.getUserWorkspaceInfo(['id', 'name', 'picture', 'email']);
 
 		Apis.setUserInfo(user_info);
 
@@ -46,4 +46,4 @@ window.asyncACheckinInit = async (game_id: string) => {
 	}
 };
 
-ReactDOM.render(<Web />, document.getElementById('root'));
+// ReactDOM.render(<Web />, document.getElementById('root'));

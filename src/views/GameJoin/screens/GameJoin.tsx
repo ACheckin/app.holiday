@@ -52,9 +52,18 @@ const GameJoin: React.FC<GameJoinProps> = ({ navigation }) => {
 			if (formRef.current) {
 				const values = formRef.current.getFormikBag().values;
 
-				await Apis.gameDetail({ game_id: values.game_code });
+				/**
+				 * Join Game
+				 */
+				const join_game_response = await Apis.joinGame({
+					game_id: values.game_code,
+				});
 
-				navigation.history.push(`/game/${values.game_code}`);
+				const game_detail_response = await Apis.gameDetail({ game_id: values.game_code });
+
+				Apis.setGameAccessCode(join_game_response.game_access_code);
+
+				navigation.history.push(`/game/${values.game_code}`, game_detail_response);
 			}
 		} catch (e) {
 			setError(e.message);
@@ -82,63 +91,65 @@ const GameJoin: React.FC<GameJoinProps> = ({ navigation }) => {
 				</div>
 				{loading && <LoadingView />}
 				<div className="content">
-					{error && (
-						<div
-							style={{
-								background: '#fff',
-								color: 'red',
-								marginTop: 5,
-								borderRadius: 5,
-								textAlign: 'center',
-								padding: '5px',
-								fontSize: 14,
-							}}
+					<div className="content-form">
+						{error && (
+							<div
+								style={{
+									background: '#fff',
+									color: 'red',
+									marginTop: 5,
+									borderRadius: 5,
+									textAlign: 'center',
+									padding: '5px',
+									fontSize: 14,
+								}}
+							>
+								{error}
+							</div>
+						)}
+						<Formik<FormValues>
+							ref={formRef}
+							initialValues={init_values}
+							onSubmit={onSubmit}
+							validationSchema={validate_schema}
+							validateOnBlur={false}
+							validateOnChange={false}
 						>
-							{error}
-						</div>
-					)}
-					<Formik<FormValues>
-						ref={formRef}
-						initialValues={init_values}
-						onSubmit={onSubmit}
-						validationSchema={validate_schema}
-						validateOnBlur={false}
-						validateOnChange={false}
-					>
-						{props => {
-							const { errors } = props;
-							return (
-								<Form className="viewForm">
-									<div className="rowInput">
-										<div className="viewInput">
-											<Field
-												className="viewInput_Item"
-												type="number"
-												name="name"
-												placeholder="Mã chia sẻ"
-											/>
-											{errors.game_code && (
-												<div
-													style={{
-														color: '#fff',
-														fontSize: 12,
-														padding: '5px 0px',
-													}}
-												>
-													Lỗi: {errors.game_code}
-												</div>
-											)}
+							{props => {
+								const { errors } = props;
+								return (
+									<Form className="viewForm">
+										<div className="rowInput">
+											<div className="viewInput">
+												<Field
+													className="viewInput_Item"
+													type="number"
+													name="game_code"
+													placeholder="Mã trò chơi"
+												/>
+												{errors.game_code && (
+													<div
+														style={{
+															color: '#fff',
+															fontSize: 12,
+															padding: '5px 0px',
+														}}
+													>
+														Lỗi: {errors.game_code}
+													</div>
+												)}
+											</div>
 										</div>
-									</div>
-								</Form>
-							);
-						}}
-					</Formik>
-				</div>
-				<div className="btnSubmit">
-					<button className="btnSubmit_Btn" onClick={onClickSubmitForm}>
-						Tham gia trò chơi
-					</button>
+									</Form>
+								);
+							}}
+						</Formik>
+					</div>
+					<div className="btnSubmit">
+						<button className="btnSubmit_Btn" onClick={onClickSubmitForm}>
+							Tham gia trò chơi
+						</button>
+					</div>
 				</div>
 			</div>
 		</>
