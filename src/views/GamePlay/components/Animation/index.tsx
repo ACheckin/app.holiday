@@ -22,17 +22,13 @@ const Animation: React.FC = () => {
 				</div>
 			</div>
 			<div className="canhhoa fixed">
-				<OwlCarousel options={options2}>
-					<div>
-						<div className="snowflakes">
-							{_.times(10).map(() => (
-								<div className="snowflake">
-									<img src={require('src/image/hoamai1.png')} alt="" />
-								</div>
-							))}
+				<div className="snowflakes">
+					{_.times(10).map(() => (
+						<div className="snowflake">
+							<img src={require('src/image/hoamai1.png')} alt="" />
 						</div>
-					</div>
-				</OwlCarousel>
+					))}
+				</div>
 			</div>
 		</>
 	);
