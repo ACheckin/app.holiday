@@ -9,6 +9,13 @@
     position: relative;
 }
 
+body .ketqua {
+    margin-top: 65px;
+}
+body.bodyX .ketqua {
+    margin-top: 120px;
+}
+
 .txt_ketqua {
     position: absolute;
     top: -6px;
@@ -36,6 +43,7 @@
     letter-spacing: 0.563636px;
     color: #FFFFFF;
 }
+/* .lichsu {} */
 
 .lichsu .may1 {
     top: 150px;
