@@ -481,6 +481,78 @@ a {
     -webkit-transform: translateX(-50%); */
 
 }
+.laclac {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.laclac img {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+}
+.btn_lac {
+    /* -webkit-animation-name: tada;
+    animation-name: tada;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s; */
+}
+
+.tada {
+   -webkit-animation-name: tada;
+    animation-name: tada;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+}
+
+@-webkit-keyframes tada {
+    from {
+        transform: scale3d(1, 1, 1)
+    }
+    10%, 20% {
+        transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg)
+    }
+    30%, 50%, 70%, 90% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg)
+    }
+    40%, 60%, 80% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg)
+    }
+    to {
+        transform: scale3d(1, 1, 1)
+    }
+}
+
+@keyframes tada {
+    from {
+        transform: scale3d(1, 1, 1)
+    }
+    10%, 20% {
+        transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg)
+    }
+    30%, 50%, 70%, 90% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg)
+    }
+    40%, 60%, 80% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg)
+    }
+    to {
+        transform: scale3d(1, 1, 1)
+    }
+}
 .txt_lac {
     position: absolute;
     width: 55px;
@@ -625,6 +697,20 @@ a {
     height: 100vh;
 }
 
+.logoTet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+}
+.logoTet_Pic {
+    width: 100%;
+    max-width: 40%;
+    display: block;
+    margin: 0 auto;
+}
 @media (max-width: 420px) {
     .wrap, .lixi_wrap {
         height: 100vh;
