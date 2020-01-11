@@ -83,6 +83,7 @@ const GameJoin: React.FC<GameJoinProps> = ({ navigation }) => {
 
 	return (
 		<>
+			<div className="bg fixed" />
 			<div className="container">
 				<div className="header">
 					<a className="btnBack" onClick={onClickBackButton}>

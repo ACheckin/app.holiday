@@ -1,5 +1,5 @@
 {
-	"app_name": "Appota Holiday",
+	"app_name": "Xuan 2020",
 	"app_id": "app.holiday",
 	"app_flashscreen": "images/image.png",
 	"display": "fullscreen",
@@ -7,7 +7,7 @@
 	"app_type": "workspace",
 	"developer_email": "dev@acheckin.vn",
 	"developer_name": "dev",
-	"version": "1.0",
+	"version": "1.4",
 	"main": "index.html",
 	"use_scroll": false,
 	"permissions": ["device_shake", "basic_info", "device_notification", "device_hardware", "user_workspace_email"]

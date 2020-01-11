@@ -29,6 +29,7 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 	const [is_end_game, setIsEndGame] = useState(false);
 	const [is_game_started, setGameStarted] = useState(false);
 	const [game_detail, setGameDetail] = useStates<GameDetailResponse>({} as GameDetailResponse);
+	const [history, setHistory] = useStates();
 
 	const [loading, setLoading] = useState(true);
 	const [sharing, setSharing] = useState(false);
@@ -50,7 +51,7 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 
 				const change_reward_response = await Apis.changeReward({
 					game_access_code: Apis.getGameAccessCode(),
-					game_id: '670075',
+					game_id: params.game_id,
 				});
 
 				Apis.setGameAccessCode(change_reward_response.game_access_code);
@@ -78,16 +79,18 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 						game_detail_response = locations.state;
 					} else {
 						game_detail_response = await Apis.gameDetail({ game_id: params.game_id });
+					}
 
-						/**
-						 * Join Game
-						 */
+					/**
+					 * Join Game
+					 */
+					try {
 						const join_game_response = await Apis.joinGame({
 							game_id: params.game_id,
 						});
 
 						Apis.setGameAccessCode(join_game_response.game_access_code);
-					}
+					} catch (e) {}
 
 					setGameDetail(game_detail_response);
 
@@ -133,6 +136,9 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 						.ref(`/MINIAPP_app_holiday/games/${params.game_id}/players/${Apis.getUserInfo().id}/history`)
 						.on('child_added', snapshot => {
 							const history = snapshot.val();
+							if (history) {
+								setHistory(history);
+							}
 						});
 				} catch (e) {
 					console.log(e);
@@ -221,7 +227,7 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 										/>
 									)}
 									{score === 0 && <GameStart />}
-									{score > 0 && <GameScore score={score} />}
+									{score > 0 && <GameScore score={score} history={history} />}
 									{!sharing && is_end_game && (
 										<Footer onShareClick={onShareCLick} onHistoryClick={onHistoryClick} />
 									)}
@@ -230,6 +236,9 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 						</>
 					)}
 				</Content>
+				<div className="footer fixed" style={{ zIndex: 9999 }}>
+					<img src={require('src/image/footer.png')} alt="" />
+				</div>
 				<div id="warning-message">Vui Lòng Xoay Dọc Màn Hình :)</div>
 			</div>
 		</div>

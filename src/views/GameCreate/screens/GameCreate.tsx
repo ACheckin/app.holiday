@@ -54,13 +54,22 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 		end_time: moment()
 			.add(6, 'minute')
 			.format('YYYY-MM-DDTHH:mm:s'),
-		rewards: [],
+		rewards: [
+			{
+				money: 500000,
+				total: 2,
+			},
+			{
+				money: 100000,
+				total: 2,
+			},
+		],
 	});
 
 	const formRef = useRef<Formik<FormValues>>(null);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
-	const [total_money, setTotalMoney] = useState(0);
+	const [total_money, setTotalMoney] = useState(1200000);
 
 	const [game_code, setGameCode] = useState(null);
 
@@ -158,10 +167,6 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 					<>
 						<div className="content">
 							<div className="content-form">
-								<div className="total-money">
-									<div className="title">Tổng giải thưởng</div>
-									<div className="money">{formatMoney(total_money)}</div>
-								</div>
 								{error && (
 									<div
 										style={{
@@ -258,7 +263,10 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 														)}
 													</div>
 												</div>
-
+												<div className="total-money">
+													<div className="title">Tổng giải thưởng</div>
+													<div className="money">{formatMoney(total_money)}</div>
+												</div>
 												<FieldArray validateOnChange={false} name="rewards">
 													{arrayHelpers => {
 														return (
@@ -274,7 +282,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																			/>
 																			<Field
 																				type="number"
-																				placeholder="Tổng số"
+																				placeholder="Số lượng"
 																				className="viewInput_RowItem"
 																				name={`rewards[${index}][total]`}
 																			/>

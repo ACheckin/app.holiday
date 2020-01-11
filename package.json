@@ -2,6 +2,7 @@
   "name": "reactjs",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@acheckin/react-app-sdk": "^0.0.15",
     "antd": "^3.26.6",

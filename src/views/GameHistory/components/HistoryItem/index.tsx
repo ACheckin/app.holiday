@@ -22,7 +22,20 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ name, avatar, score, type }) 
 				)}
 				{type === 'TAKE' && (
 					<>
-						Nỗ lực quay tay đã mang về cho bạn <b>{formatMoney(score)}</b>
+						{name === '' &&
+						((
+								<>
+									Nỗ lực quay tay đã mang về cho bạn <b>{formatMoney(score)}</b>
+								</>
+							) ||
+							'')}
+						{name !== '' &&
+						((
+								<>
+									Bạn đã giật của {name} <b>{formatMoney(score)}</b>
+								</>
+							) ||
+							'')}
 					</>
 				)}
 				{type === 'START' && (

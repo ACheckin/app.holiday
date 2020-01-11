@@ -13,7 +13,20 @@ interface GameStartProps {
 	navigation: RouteComponentProps;
 }
 
-const email_list = ['hainv@appota.com'];
+const email_list = [
+	'hainv@appota.com',
+	'khanhdd@appota.com',
+	'huongbtl@appota.com',
+	'runaway518@gmail.com',
+	'ceo@appota.com',
+	'viet751993@gmail.com',
+	'huett@appota.com',
+	'nhity@appota.com',
+	'linhlb@appota.com',
+	'xuanda@appota.com',
+	'namnt@appota.com',
+	'ngocnm@appota.com',
+];
 
 const GameStart: React.FC<GameStartProps> = ({ navigation }) => {
 	const [ready, setReady] = useState(false);
@@ -30,18 +43,23 @@ const GameStart: React.FC<GameStartProps> = ({ navigation }) => {
 		const email = get(Apis.getUserInfo(), e => e.email);
 
 		if (_.includes(email_list, email)) {
-			// setReady(true);
+			setReady(true);
 		}
 	}, []);
 
 	return (
-		<div className="wrap pagelaclixi">
-			<div className="bg fixed" />
-			<Animation />
-			<Content>
-				<GameStartJoin ready={ready} />
-				{ready && <FooterStart onPlayGameClick={onPlayGameClick} onCreateGameClick={onCreateGameClick} />}
-			</Content>
+		<div className="container">
+			<div className="wrap pagelaclixi">
+				<div className="bg fixed" />
+				<Animation />
+				<Content>
+					<GameStartJoin ready={ready} />
+					{ready && <FooterStart onPlayGameClick={onPlayGameClick} onCreateGameClick={onCreateGameClick} />}
+				</Content>
+			</div>
+			<div className="footer fixed" style={{ zIndex: 9999 }}>
+				<img src={require('src/image/footer.png')} alt="" />
+			</div>
 		</div>
 	);
 };
