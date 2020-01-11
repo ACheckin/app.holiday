@@ -711,6 +711,7 @@ a {
     display: block;
     margin: 0 auto;
     position: relative;
+    max-width: 600px;
 }
 .logoTet_Pic {
     width: 100%;
