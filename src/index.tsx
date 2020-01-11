@@ -46,4 +46,4 @@ window.asyncACheckinInit = async (game_id: string) => {
 	}
 };
 
-ReactDOM.render(<Web />, document.getElementById('root'));
+// ReactDOM.render(<Web />, document.getElementById('root'));

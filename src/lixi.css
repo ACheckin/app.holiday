@@ -14,6 +14,9 @@ body {
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
     background-color: #C00405;
 }
+body .content {
+    padding-top: 100px;
+}
 body.bodyX .content {
     padding-top: 120px;
 }
@@ -42,6 +45,13 @@ body.bodyX .content {
 }
 .content {
     padding: 20px;
+    height:  calc(100vh - 160px);
+    max-height: 100%;
+    overflow: auto;
+    padding-bottom: 220px;
+}
+.content {
+    padding-bottom: 120px;
 }
 .btnBack {
     width: 36px;
