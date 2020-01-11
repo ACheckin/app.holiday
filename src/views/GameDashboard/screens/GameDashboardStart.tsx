@@ -17,7 +17,9 @@ const GameDashboardStart: React.FC = () => {
 					alignItems: 'center',
 				}}
 			>
-				<div style={{ fontWeight: 700, fontSize: 100, color: '#EFBC61' }}>Chúc mừng năm mới</div>
+				<div className="logoTet">
+					<img className="logoTet_Pic" src={require('src/image/tet.png')} alt=""/>
+				</div>
 			</div>
 		</div>
 	);
