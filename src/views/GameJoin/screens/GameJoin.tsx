@@ -52,17 +52,18 @@ const GameJoin: React.FC<GameJoinProps> = ({ navigation }) => {
 			if (formRef.current) {
 				const values = formRef.current.getFormikBag().values;
 
-				/**
-				 * Join Game
-				 */
-				const join_game_response = await Apis.joinGame({
-					game_id: values.game_code,
-				});
+				try {
+					/**
+					 * Join Game
+					 */
+					const join_game_response = await Apis.joinGame({
+						game_id: values.game_code,
+					});
+
+					Apis.setGameAccessCode(join_game_response.game_access_code);
+				} catch (e) {}
 
 				const game_detail_response = await Apis.gameDetail({ game_id: values.game_code });
-
-				Apis.setGameAccessCode(join_game_response.game_access_code);
-
 				navigation.history.push(`/game/${values.game_code}`, game_detail_response);
 			}
 		} catch (e) {
@@ -87,7 +88,7 @@ const GameJoin: React.FC<GameJoinProps> = ({ navigation }) => {
 			<div className="container">
 				<div className="header">
 					<a className="btnBack" onClick={onClickBackButton}>
-						<img src={require('./back.svg')} />
+						<img src={require('src/image/back.svg')} />
 					</a>
 				</div>
 				{loading && <LoadingView />}

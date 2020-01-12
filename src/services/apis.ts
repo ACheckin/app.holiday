@@ -19,6 +19,15 @@ class Apis {
 	private user_info: UserWorkspaceInfo;
 	private is_joined_game: boolean = false;
 	private is_change_reward = false;
+	private last_time_change_reward: number = 0;
+
+	public setLastTimeChangeReward = (time: number) => {
+		this.last_time_change_reward = time;
+	}
+
+	public getLastTimeChangeReward = ():number => {
+		return this.last_time_change_reward;
+	}
 
 	public setAccessToken = (access_token: string) => {
 		this.access_token = access_token;

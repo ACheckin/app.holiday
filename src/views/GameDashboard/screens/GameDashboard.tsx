@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as firebase from 'firebase';
 import _ from 'lodash';
+import Apis from 'src/services/apis';
 
 import Animation from 'src/views/GameDashboard/components/Animation';
 import UserTop from 'src/views/GameDashboard/components/UserTop';
 import LoadingView from 'src/components/LoadingView';
 import { GameReward } from 'src/interfaces/db';
-import { useStates } from 'src/helpers';
+import { useStates, useEventCallback } from 'src/helpers';
 import UserItem from 'src/views/GameDashboard/components/UserItem';
 import CountDown from 'src/components/CountDown';
+import moment from 'moment-timezone';
 
 interface Params {
 	game_id: string;
@@ -19,6 +21,7 @@ const GameDashboard: React.FC = () => {
 	const [loading, setLoading] = useState(true);
 	const [is_game_started, setIsGameStarted] = useState(false);
 	const [is_game_ended, setIsGameEnded] = useState(false);
+	const [game_detail, setGameDetail] =  useStates();
 
 	const [user_top_1, setUserTop1] = useStates<GameReward>();
 	const [user_top_2, setUserTop2] = useStates<GameReward>();
@@ -28,52 +31,77 @@ const GameDashboard: React.FC = () => {
 
 	const params = useParams<Params>();
 
-	useEffect(() => {
-		if (params.game_id) {
-			firebase
-				.database()
-				.ref(`/MINIAPP_app_holiday/games/${params.game_id}/game_rewards`)
-				.orderByChild('money')
-				.limitToLast(11)
-				.on('value', game_rewards => {
-					if (game_rewards.exists()) {
-						let sorted_game_rewards = [];
-						let player_list = [];
+	const onLoad = useEventCallback(async () => {
+		const game_detail = await Apis.gameDetail({ game_id: params.game_id });
 
-						game_rewards.forEach(game_reward => {
-							sorted_game_rewards.push({
-								id: game_reward.key,
-								...game_reward.val(),
-							});
+		/**
+		 * Game Detail
+		 */
+		setGameDetail(game_detail.game);
+
+		const current_time = moment();
+		const start_time = moment.unix(game_detail.game.start_time);
+		const end_time = moment.unix(game_detail.game.end_time);
+
+		if (current_time.unix() < start_time.unix()) {
+			/**
+			 * Game Pending
+			 */
+
+			 setIsGameStarted(false);
+		} else {
+			
+		}
+
+		firebase
+			.database()
+			.ref(`/MINIAPP_app_holiday/games/${params.game_id}/game_rewards`)
+			.orderByChild('money')
+			.limitToLast(11)
+			.on('value', game_rewards => {
+				if (game_rewards.exists()) {
+					let sorted_game_rewards = [];
+					let player_list = [];
+
+					game_rewards.forEach(game_reward => {
+						sorted_game_rewards.push({
+							id: game_reward.key,
+							...game_reward.val(),
 						});
+					});
 
-						sorted_game_rewards = _.orderBy(sorted_game_rewards, 'money', 'desc');
+					sorted_game_rewards = _.orderBy(sorted_game_rewards, 'money', 'desc');
 
-						let count = 0;
+					let count = 0;
 
-						for (let sorted_game_reward of sorted_game_rewards) {
-							if (count < 3) {
-								if (count === 0) {
-									setUserTop1(sorted_game_reward);
-								}
-								if (count === 1) {
-									setUserTop2(sorted_game_reward);
-								}
-								if (count === 2) {
-									setUserTop3(sorted_game_reward);
-								}
-							} else {
-								player_list.push(sorted_game_reward);
+					for (let sorted_game_reward of sorted_game_rewards) {
+						if (count < 3) {
+							if (count === 0) {
+								setUserTop1(sorted_game_reward);
 							}
-
-							count++;
+							if (count === 1) {
+								setUserTop2(sorted_game_reward);
+							}
+							if (count === 2) {
+								setUserTop3(sorted_game_reward);
+							}
+						} else {
+							player_list.push(sorted_game_reward);
 						}
 
-						setPlayers(player_list);
-
-						setLoading(false);
+						count++;
 					}
-				});
+
+					setPlayers(player_list);
+
+					setLoading(false);
+				}
+			});
+	});
+
+	useEffect(() => {
+		if (params.game_id) {
+			onLoad().catch();
 		}
 	}, []);
 
