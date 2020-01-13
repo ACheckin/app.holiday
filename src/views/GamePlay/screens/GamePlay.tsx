@@ -46,16 +46,29 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 	 */
 	const onShake = useEventCallback(async () => {
 		if (!Apis.isChangeReward()) {
-			try {
-				Apis.setChangeReward(true);
+			Apis.setChangeReward(true);
 
-				const change_reward_response = await Apis.changeReward({
-					game_access_code: Apis.getGameAccessCode(),
-					game_id: params.game_id,
-				});
+			let can_send;
 
-				Apis.setGameAccessCode(change_reward_response.game_access_code);
-			} catch (e) {}
+			const current_time = moment().unix();
+
+			if (Apis.getLastTimeChangeReward()) {
+				can_send = current_time - Apis.getLastTimeChangeReward() > 3000;
+			} else {
+				can_send = true;
+			}
+
+			if (can_send) {
+				try {
+					const change_reward_response = await Apis.changeReward({
+						game_access_code: Apis.getGameAccessCode(),
+						game_id: params.game_id,
+					});
+
+					Apis.setGameAccessCode(change_reward_response.game_access_code);
+					Apis.setLastTimeChangeReward(current_time);
+				} catch (e) {}
+			}
 
 			Apis.setChangeReward(false);
 		}

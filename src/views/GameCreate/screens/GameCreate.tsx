@@ -71,7 +71,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 	const [error, setError] = useState(null);
 	const [total_money, setTotalMoney] = useState(500000 * 2 + 100000 * 2 + 50000 * 3);
 
-	const [game_code, setGameCode] = useState(null);
+	const [game_code, setGameCode] = useState('123456');
 
 	useStyleIphoneX();
 	useDisableKeyboardScroll();
@@ -127,7 +127,10 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 	 *
 	 * Share Game Code
 	 */
-	const onClickShareGame = useEventCallback(() => {});
+	const onClickShareGame = useEventCallback(() => {
+		try {
+		} catch (e) {}
+	});
 
 	return (
 		<>
@@ -153,7 +156,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 								<img src={require('src/image/light-bot2.png')} />
 							</div>
 							<div className="codeGame">
-								<div className="codeGame_Title">Mã chia sẻ của bạn</div>
+								<div className="codeGame_Title">Mã trò choi của bạn</div>
 								<div className="codeGame_Code">{game_code}</div>
 								{/* <button className="codeGame_Button">Chia sẻ ngay</button> */}
 								<a className="codeGame_Share" href="javascript:void();">

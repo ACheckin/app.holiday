@@ -1,6 +1,6 @@
 import querystring from 'querystring';
 import url, { UrlObject } from 'url';
-import { UserWorkspaceInfo } from '@acheckin/react-app-sdk';
+import { ACheckinSDK, UserWorkspaceInfo } from '@acheckin/react-app-sdk';
 import {
 	ArgsToChangeReward,
 	ArgsToCreateGame,
@@ -20,14 +20,34 @@ class Apis {
 	private is_joined_game: boolean = false;
 	private is_change_reward = false;
 	private last_time_change_reward: number = 0;
+	private start_from_qrcode = false;
+	private last_game_id;
+
+	public init = async () => {
+		try {
+			this.last_game_id = await ACheckinSDK.getItem('last_game_id');
+		} catch (e) {}
+	};
+
+	public getLastGameId = () => {
+		return this.last_game_id;
+	};
+
+	public isStartFromQrCode = () => {
+		return this.start_from_qrcode;
+	};
+
+	public setStartFromQrCode = () => {
+		this.start_from_qrcode = true;
+	};
 
 	public setLastTimeChangeReward = (time: number) => {
 		this.last_time_change_reward = time;
-	}
+	};
 
-	public getLastTimeChangeReward = ():number => {
+	public getLastTimeChangeReward = (): number => {
 		return this.last_time_change_reward;
-	}
+	};
 
 	public setAccessToken = (access_token: string) => {
 		this.access_token = access_token;
@@ -73,12 +93,17 @@ class Apis {
 		});
 	};
 
-	public joinGame = (options: ArgsToJoinGame): Promise<JoinGameResponse> => {
-		return this.call({
+	public joinGame = async (options: ArgsToJoinGame): Promise<JoinGameResponse> => {
+		const response = await this.call({
 			path: '/MINIAPP_app_holiday_joinGame',
 			method: 'POST',
 			body: options,
 		});
+
+		await ACheckinSDK.setItem('last_game_id', response.game_id);
+		this.last_game_id = response.game_id;
+
+		return response;
 	};
 
 	public changeReward = (options: ArgsToChangeReward): Promise<ChangeRewardResponse> => {

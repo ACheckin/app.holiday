@@ -8,9 +8,11 @@ import GameStartJoin from 'src/views/GamePlay/components/GameStart';
 import FooterStart from 'src/views/GamePlay/components/FooterStart';
 import { get, useEventCallback } from 'src/helpers';
 import _ from 'lodash';
+import LoadingView from 'src/components/LoadingView';
 
 interface GameStartProps {
 	navigation: RouteComponentProps;
+	game_id: string;
 }
 
 const email_list = [
@@ -28,12 +30,15 @@ const email_list = [
 	'ngocnm@appota.com',
 ];
 
-const GameStart: React.FC<GameStartProps> = ({ navigation }) => {
+const GameStart: React.FC<GameStartProps> = ({ navigation, game_id }) => {
 	const [ready, setReady] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const onCreateGameClick = useEventCallback(() => {
 		navigation.history.push('/create-game');
 	});
+
+	const onLastGameClick = useEventCallback(() => {});
 
 	const onPlayGameClick = useEventCallback(() => {
 		navigation.history.push('/join-game');
@@ -47,14 +52,53 @@ const GameStart: React.FC<GameStartProps> = ({ navigation }) => {
 		}
 	}, []);
 
+	useEffect(() => {
+		if (game_id) {
+			startFromQrCode().catch(() => {});
+		}
+	}, []);
+
+	const startFromQrCode = useEventCallback(async () => {
+		if (!Apis.isStartFromQrCode()) {
+			try {
+				Apis.setStartFromQrCode();
+				setLoading(true);
+
+				try {
+					/**
+					 * Join Game
+					 */
+					const join_game_response = await Apis.joinGame({
+						game_id: game_id,
+					});
+
+					Apis.setGameAccessCode(join_game_response.game_access_code);
+				} catch (e) {}
+
+				const game_detail_response = await Apis.gameDetail({ game_id: game_id });
+				navigation.history.push(`/game/${game_id}`, game_detail_response);
+			} catch (e) {
+				alert(e.message);
+			}
+		}
+	});
+
 	return (
 		<div className="container">
+			{loading && <LoadingView />}
 			<div className="wrap pagelaclixi">
 				<div className="bg fixed" />
 				<Animation />
 				<Content>
 					<GameStartJoin ready={ready} />
-					{ready && <FooterStart onPlayGameClick={onPlayGameClick} onCreateGameClick={onCreateGameClick} />}
+					{ready && (
+						<FooterStart
+							onLastGameClick={onLastGameClick}
+							last_game_id={Apis.getLastGameId()}
+							onPlayGameClick={onPlayGameClick}
+							onCreateGameClick={onCreateGameClick}
+						/>
+					)}
 				</Content>
 			</div>
 			<div className="footer fixed" style={{ zIndex: 9999 }}>
