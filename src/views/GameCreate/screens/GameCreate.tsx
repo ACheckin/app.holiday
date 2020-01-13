@@ -48,12 +48,8 @@ const validate_schema = yup.object().shape<FormValues>({
 const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 	const [init_values] = useState<FormValues>({
 		name: '',
-		start_time: moment()
-			.add(5, 'minute')
-			.format('YYYY-MM-DDTHH:mm:s'),
-		end_time: moment()
-			.add(6, 'minute')
-			.format('YYYY-MM-DDTHH:mm:s'),
+		start_time: moment().add(5, 'minute').format('YYYY-MM-DDTHH:mm:s'), // prettier-ignore
+		end_time: moment().add(6, 'minute').format('YYYY-MM-DDTHH:mm:s'), // prettier-ignore
 		rewards: [
 			{
 				money: 500000,
@@ -63,13 +59,17 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 				money: 100000,
 				total: 2,
 			},
+			{
+				money: 50000,
+				total: 3,
+			},
 		],
 	});
 
 	const formRef = useRef<Formik<FormValues>>(null);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
-	const [total_money, setTotalMoney] = useState(1200000);
+	const [total_money, setTotalMoney] = useState(500000 * 2 + 100000 * 2 + 50000 * 3);
 
 	const [game_code, setGameCode] = useState(null);
 
