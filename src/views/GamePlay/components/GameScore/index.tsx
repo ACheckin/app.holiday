@@ -43,7 +43,7 @@ const GameScore: React.FC<GameScoreProps> = ({ score, history }) => {
 			<div className="txt_lixi">
 				<p className="fade">- Bạn nhận được lì xì -</p>
 				{renderHistory()}
-				<div className="menhgia_lixi">{formatMoney(score)}</div>
+				<div className={formatMoney(score).length < 12 ? "menhgia_lixi" : "menhgia_lixi2"}>{formatMoney(score)}</div>
 			</div>
 			<div className="btn_lac">
 				<img className="shake" src={require('src/image/btn-lac.png')} />

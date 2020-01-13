@@ -633,6 +633,16 @@ a {
     color: #C00405;
 }
 
+.menhgia_lixi2 {
+    font-weight: bold;
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 44px;
+    text-align: center;
+    letter-spacing: 0.563636px;
+    color: #C00405;
+}
+
 .txt_lixi p {
     margin-bottom: 8px;
 }
@@ -990,6 +1000,15 @@ a {
         letter-spacing: 0.563636px;
         color: #C00405;
     }
+    .menhgia_lixi2 {
+        font-weight: bold;
+        font-weight: 900;
+        font-size: 20px;
+        line-height: 44px;
+        text-align: center;
+        letter-spacing: 0.563636px;
+        color: #C00405;
+    }
     .time_lac {
         z-index: 9;
         width: 210px;
@@ -1073,6 +1092,15 @@ a {
         font-weight: bold;
         font-weight: 900;
         font-size: 24px;
+        line-height: 40px;
+        text-align: center;
+        letter-spacing: 0.563636px;
+        color: #C00405;
+    }
+    .menhgia_lixi {
+        font-weight: bold;
+        font-weight: 900;
+        font-size: 18px;
         line-height: 40px;
         text-align: center;
         letter-spacing: 0.563636px;
