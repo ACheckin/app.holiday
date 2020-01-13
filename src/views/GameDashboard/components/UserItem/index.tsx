@@ -44,9 +44,7 @@ const UserItem: React.FC<UserItemProps> = ({ game_reward }) => {
 		<div className="item">
 			<div className="image-user">
 				<img
-					style={{ borderRadius: 30 }}
 					src={get(game_reward, e => e.user.avatar, require('src/image/btn-lac.png'))}
-					width="60"
 				/>
 			</div>
 			<div className="info-item">
@@ -55,7 +53,7 @@ const UserItem: React.FC<UserItemProps> = ({ game_reward }) => {
 					{renderMore()}
 				</div>
 			</div>
-			<div className="valueUserItem">{formatMoney(get(game_reward, e => e.money, 0))}</div>
+			<div className={formatMoney(get(game_reward, e => e.money, 0)).length < 12 ? "valueUserItem" : "valueUserItem2"}>{formatMoney(get(game_reward, e => e.money, 0))}</div>
 		</div>
 	);
 };

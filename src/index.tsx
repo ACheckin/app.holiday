@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+// import Web from './Web';
 import { ACheckinSDK } from '@acheckin/react-app-sdk';
 import Apis from 'src/services/apis';
 import * as firebase from 'firebase';

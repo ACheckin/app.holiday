@@ -43,18 +43,27 @@ body.bodyX .ketqua {
     letter-spacing: 0.563636px;
     color: #FFFFFF;
 }
+.txt_ketqua .menhgia_lixi2 {
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 48px;
+    text-align: center;
+    letter-spacing: 0.563636px;
+    color: #FFFFFF;
+}
 /* .lichsu {} */
 
 .lichsu .may1 {
-    top: 150px;
+    top: 200px;
     z-index: 110;
+    width: 160px;
 
 }
 .lichsu .may2 {
-    top: 200px;
+    top: 220px;
     bottom: inherit;
     z-index: 110;
-
+    width: 160px;
 }
 .item {
     background: #D40606;
@@ -62,7 +71,6 @@ body.bodyX .ketqua {
     border-radius: 20px;
     padding: 12px 15px ;
     margin-bottom: 10px;
-    overflow: hidden;
     position: relative;
     border: 2px solid #F2CC8E;
 }
@@ -109,11 +117,22 @@ body.bodyX .ketqua {
     overflow-x: auto;
     margin-bottom: -50px;
 }
-
-.image-user {
+.danhsach-lichsu .item {
+    padding: 0px 15px;
+	border: 2px solid #f2cc8e;
+	min-height: 74px;
+	border-radius: 50px;
+	padding-left: 80px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.danhsach-lichsu .image-user {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
     border-radius: 100px;
-    position: relative;
+    position: absolute;
+    left: 10px;
+    top: 10px;
     z-index: 10;
     width: 54px;
     height: 54px;
@@ -131,12 +150,10 @@ body.bodyX .ketqua {
     height: 50px;
     border-radius: 100%;
 }
-.info-item {
+.danhsach-lichsu .info-item {
     float: left;
-    width: 75%;
-    padding-top: 8px;
+    width: 100%;
     font-size: 15px;
-    line-height: 18px;
     letter-spacing: 0.211364px;
     position: relative;
     z-index: 10;

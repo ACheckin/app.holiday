@@ -15,7 +15,7 @@ const ScoreHeader: React.FC<ScoreHeaderProps> = ({ score }) => {
 			<img src={require('src/image/bg-ketqua.png')} />
 			<div className="txt_ketqua">
 				<p> Bạn nhận được Lì Xì </p>
-				<div className="menhgia_lixi">{formatter.format(score)}</div>
+				<div className={formatter.format(score).length < 12 ? "menhgia_lixi" : "menhgia_lixi2"}>{formatter.format(score)}</div>
 			</div>
 		</div>
 	);

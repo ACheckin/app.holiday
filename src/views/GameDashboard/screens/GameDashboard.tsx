@@ -100,6 +100,9 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 				<div className="innerBxh">
 					{!is_game_started && (
 						<div>
+							<div className="header_user">
+								<img src={require('src/image/top-bg.png')} alt=""/>
+							</div>
 							<div className="qrCode_Inner">
 								<CountDown
 									title="Game sẽ bắt đầu trong"
@@ -115,20 +118,20 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 									/>
 								</div>
 							</div>
-							<div
-								style={{
-									color: '#fff',
-									fontSize: 30,
-									fontWeight: 700
-								}}
-							>
-								Mở ACheckin để quét QRCode hoặc nhập mã <span style={{ fontSize: 40 }}>{params.game_id}</span> để chơi game
+							<div className="help">
+								Mở ACheckin để quét QRCode hoặc nhập mã <span style={{ fontSize: 30 }}>{params.game_id}</span> để chơi game
 							</div>
 						</div>
 					)}
 
 					{is_game_started && (
 						<>
+							<div className="header_user">
+								<img src={require('src/image/top.png')} alt=""/>
+								<div className="titleName">
+									ACheckin
+								</div>
+							</div>
 							<div className="block-2">
 								{players.map(player => (
 									<UserItem key={player.id} game_reward={player} />
