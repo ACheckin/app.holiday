@@ -129,6 +129,7 @@ const GameJoin: React.FC<GameJoinProps> = ({ navigation }) => {
 													name="game_code"
 													placeholder="Mã trò chơi"
 													pattern="\d*"
+													autoFocus
 												/>
 												{errors.game_code && (
 													<div

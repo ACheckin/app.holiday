@@ -71,7 +71,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 	const [error, setError] = useState(null);
 	const [total_money, setTotalMoney] = useState(500000 * 2 + 100000 * 2 + 50000 * 3);
 
-	const [game_code, setGameCode] = useState('123456');
+	const [game_code, setGameCode] = useState(null);
 
 	useStyleIphoneX();
 	useDisableKeyboardScroll();
@@ -279,15 +279,20 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																		<div key={index} className="rowInput">
 																			<Field
 																				type="number"
+																				// data-type="currency"
 																				placeholder="Số tiền"
 																				className="viewInput_RowItem"
 																				name={`rewards[${index}][money]`}
+																				pattern="\d*"
+																				// pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
 																			/>
 																			<Field
 																				type="number"
 																				placeholder="Số lượng"
 																				className="viewInput_RowItem"
 																				name={`rewards[${index}][total]`}
+																				pattern="\d*"
+																				// pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
 																			/>
 																			<div className="viewAdd">
 																				<button
