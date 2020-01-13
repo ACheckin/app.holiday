@@ -44,6 +44,7 @@
 	margin: 0 auto;
 	position: relative;
 	height: 100vh;
+	overflow: auto;
 }
 
 .imageUser {
@@ -149,6 +150,7 @@
 	text-align: center;
 	max-width: 900px;
 	margin: 0 auto;
+	display: none;
 }
 
 .imageShelf {
@@ -229,7 +231,7 @@
 
 .block-2 {
 	position: absolute;
-	top: 375px;
+	top: 200px;
 	/* width: 100%; */
 	left: 50px;
 	right: 50px;
@@ -252,7 +254,6 @@
 	font-size: 20px;
 	line-height: 24px;
 	text-align: right;
-	letter-spacing: 0.281818px;
 	color: #ffcc00;
 }
 
@@ -278,4 +279,54 @@
 .block-2 .info-item {
 	overflow: unset;
 	padding-top: 0;
+}
+@media (max-width: 768px) {
+	.bxhlixi .hoadao,
+	.snowflakes,
+	.robListUsers {
+		display: none;
+	}
+	.block-2 {
+		display: block;
+		left: 20px;
+		right: 20px;
+	}
+	.innerBxh {
+		padding: 0 20px;
+		overflow: auto;
+	}
+	.image-user {
+		position: absolute;
+		left: 10px;
+		top: 10px;
+	}
+	.image-user,
+	.image-user img {
+		width: 40px;
+		height: 40px;
+	}
+	.info-item {
+		width: 100%;
+		height: auto;
+	}
+	.block-2 .item {
+		padding-left: 60px;
+	}
+	
+	.block-2 .nameUser-item {
+		font-size: 16px;
+		line-height: 20px;
+		margin-top: 0;
+		margin-bottom: 2px;
+	}
+	.block-2 .valueUserItem {
+		position: relative;
+		top: auto;
+		left: auto;
+		right: auto;
+		transform: translateY(0);
+		text-align: left;
+		font-size: 18px;
+		line-height: 20px;
+	}
 }
