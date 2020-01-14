@@ -38,7 +38,28 @@ const GameStart: React.FC<GameStartProps> = ({ navigation, game_id }) => {
 		navigation.history.push('/create-game');
 	});
 
-	const onLastGameClick = useEventCallback(() => {});
+	const onLastGameClick = useEventCallback(async () => {
+		setLoading(true);
+		try {
+			try {
+				/**
+				 * Join Game
+				 */
+				const join_game_response = await Apis.joinGame({
+					game_id: Apis.getLastGameId(),
+				});
+
+				Apis.setGameAccessCode(join_game_response.game_access_code);
+			} catch (e) {}
+
+			const game_detail_response = await Apis.gameDetail({ game_id: Apis.getLastGameId() });
+			navigation.history.push(`/game/${Apis.getLastGameId()}`, game_detail_response);
+		} catch (e) {
+			alert(e.message);
+		}
+
+		setLoading(false);
+	});
 
 	const onPlayGameClick = useEventCallback(() => {
 		navigation.history.push('/join-game');

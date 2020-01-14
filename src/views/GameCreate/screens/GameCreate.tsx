@@ -1,13 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Field, FieldArray, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import _ from 'lodash';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 import { formatMoney, get, useDisableKeyboardScroll, useEventCallback, useStyleIphoneX } from 'src/helpers';
 import { RouteComponentProps } from 'react-router-dom';
 import moment from 'moment-timezone';
 import Apis from 'src/services/apis';
 import LoadingView from 'src/components/LoadingView';
+import NumberField from 'src/components/NumberField';
+import MoneyField from 'src/components/MoneyField';
 
 interface FormValues {
 	name?: string;
@@ -70,8 +73,11 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
 	const [total_money, setTotalMoney] = useState(500000 * 2 + 100000 * 2 + 50000 * 3);
+	const [total, setTotal] = useState(7);
 
-	const [game_code, setGameCode] = useState('1234');
+	const [change, setChange] = useState(null);
+
+	const [game_code, setGameCode] = useState(null);
 
 	useStyleIphoneX();
 	useDisableKeyboardScroll();
@@ -132,6 +138,20 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 		} catch (e) {}
 	});
 
+	useEffect(() => {
+		if (formRef.current) {
+			let total_money = 0;
+			let total = 0;
+			for (let reward of formRef.current.getFormikBag().values.rewards) {
+				total_money += reward.money * reward.total;
+				total += reward.total;
+			}
+
+			setTotalMoney(total_money || 0);
+			setTotal(total);
+		}
+	}, [change]);
+
 	return (
 		<>
 			<div className="bg fixed" />
@@ -165,17 +185,50 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 							</div>
 						</div>
 						<div className="action">
-							<div className="action_help">
-								Bạn hãy 'Copy' mã trò chơi để bắt đầu 'Chơi game'
-							</div>
+							<div className="action_help">Nhấn vào 'Copy' để lấy đường dẫn bảng xếp hạng.</div>
 							<div className="action2col">
-								<div className="animated easily slideInLeft btn_footer">
-									<a href="javascript:void();">
-										<img src={require('src/image/btn_copy.png')} alt="" />
-									</a>
-								</div>
+								<CopyToClipboard
+									text={`https://e.acheckin.vn/${game_code}`}
+									onCopy={() => {
+										alert(`Bạn đã copy https://e.acheckin.vn/${game_code}`);
+									}}
+								>
+									<div className="animated easily slideInLeft btn_footer">
+										<a href="javascript:void();">
+											<img src={require('src/image/btn_copy.png')} alt="" />
+										</a>
+									</div>
+								</CopyToClipboard>
+
 								<div className="animated easily slideInRight btn_footer">
-									<a href="javascript:void();">
+									<a
+										href="javascript:void();"
+										onClick={async () => {
+											setLoading(true);
+
+											try {
+												/**
+												 * Join Game
+												 */
+												const join_game_response = await Apis.joinGame({
+													game_id: game_code,
+												});
+
+												Apis.setGameAccessCode(join_game_response.game_access_code);
+											} catch (e) {}
+
+											try {
+												const game_detail_response = await Apis.gameDetail({
+													game_id: game_code,
+												});
+												navigation.history.push(`/game/${game_code}`, game_detail_response);
+											} catch (e) {
+												alert(e.message);
+											}
+
+											setLoading(false);
+										}}
+									>
 										<img src={require('src/image/btn_play.png')} alt="" />
 									</a>
 								</div>
@@ -208,19 +261,11 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 									onSubmit={onSubmit}
 									validationSchema={validate_schema}
 									validateOnBlur={false}
-									validateOnChange
+									validateOnChange={false}
 									isInitialValid
-									validate={values => {
-										let total_money = 0;
-										for (let reward of values.rewards) {
-											total_money += reward.money * reward.total;
-										}
-
-										setTotalMoney(total_money || 0);
-									}}
 								>
 									{props => {
-										const { values, errors } = props;
+										const { values, errors, handleChange } = props;
 
 										return (
 											<Form className="viewForm">
@@ -231,6 +276,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 															type="text"
 															name="name"
 															placeholder="Tên trò chơi"
+															autoFocus
 														/>
 														{errors.name && (
 															<div
@@ -286,6 +332,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 												<div className="total-money">
 													<div className="title">Tổng giải thưởng</div>
 													<div className="money">{formatMoney(total_money)}</div>
+													<div className="total">{total} giải thưởng</div>
 												</div>
 												<FieldArray validateOnChange={false} name="rewards">
 													{arrayHelpers => {
@@ -294,23 +341,34 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																<div className="headerInput">
 																	<div className="headerInput_Item">Số tiền</div>
 																	<div className="headerInput_Item">Số lượng</div>
-																	<div className="headerInput_Item" style={{textAlign:'center'}}>Xóa/Thêm</div>
+																	<div
+																		className="headerInput_Item"
+																		style={{ textAlign: 'center' }}
+																	>
+																		Xóa/Thêm
+																	</div>
 																</div>
 																{values.rewards && values.rewards.length > 0 ? (
 																	values.rewards.map((reward, index) => (
 																		<div key={index} className="rowInput">
-																			<Field
-																				type="number"
-																				placeholder="Số tiền"
-																				className="viewInput_RowItem currency"
-																				name={`rewards[${index}][money]`}
-																				pattern="\d*"
-																				// pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
-																			/>
-																			<Field
-																				type="number"
-																				placeholder="Số lượng"
+																			<MoneyField
 																				className="viewInput_RowItem"
+																				onChange={e => {
+																					setChange(e);
+
+																					return handleChange(e);
+																				}}
+																				value={reward.money}
+																				name={`rewards[${index}][money]`}
+																			/>
+																			<NumberField
+																				className="viewInput_RowItem"
+																				onChange={e => {
+																					setChange(e);
+
+																					return handleChange(e);
+																				}}
+																				value={reward.total}
 																				name={`rewards[${index}][total]`}
 																				pattern="\d*"
 																				// pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
@@ -322,6 +380,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																					onClick={e => {
 																						e.preventDefault();
 																						arrayHelpers.remove(index);
+																						setChange(index);
 																					}}
 																				>
 																					-
@@ -330,7 +389,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																					<button
 																						className="viewAdd_Btn"
 																						type="button"
-																						style={{marginLeft: 5}}
+																						style={{ marginLeft: 5 }}
 																						onClick={e => {
 																							e.preventDefault();
 																							arrayHelpers.insert(index, {
@@ -384,7 +443,10 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																			type="button"
 																			onClick={e => {
 																				e.preventDefault();
-																				arrayHelpers.push({});
+																				arrayHelpers.push({
+																					money: 0,
+																					total: 0,
+																				});
 																			}}
 																		>
 																			Thêm giải thưởng

@@ -7,8 +7,15 @@
 	"app_type": "workspace",
 	"developer_email": "dev@acheckin.vn",
 	"developer_name": "dev",
-	"version": "1.4",
+	"version": "1.7",
 	"main": "index.html",
 	"use_scroll": false,
-	"permissions": ["device_shake", "basic_info", "device_notification", "device_hardware", "user_workspace_email"]
+	"permissions": [
+		"device_shake",
+		"basic_info",
+		"device_notification",
+		"device_hardware",
+		"user_workspace_email",
+		"device_storage"
+	]
 }

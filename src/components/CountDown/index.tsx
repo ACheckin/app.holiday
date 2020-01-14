@@ -31,8 +31,7 @@ const CountDown: React.FC<CoundDownProps> = ({ onComplete, title, time, isPC }) 
 				<div className="time_play">
 					<img src={require('src/image/time_bg.png')} />
 					<div className="time_countdown">
-						12
-						{/* <Countdown date={time} renderer={renderer} onComplete={onComplete} /> */}
+						<Countdown date={time} renderer={renderer} onComplete={onComplete} />
 					</div>
 				</div>
 			</>

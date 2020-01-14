@@ -17,16 +17,26 @@ const GameScore: React.FC<GameScoreProps> = ({ score, history }) => {
 			} else {
 				const user = get(history, e => e.from);
 
-
-
 				if (action === 'TAKE') {
-					return <p className="show fade in">Nỗ nực quay tay đã mang về cho bạn</p>;
+					const name = get(user, e => e.name);
+
+					if (name) {
+						return (
+							<p className="show fade in">
+								Bạn đã giật lì xì của <b>{get(user, e => e.name)} </b>
+								{'\n'}
+								Lì xì mới của bạn là
+							</p>
+						);
+					} else {
+						return <p className="show fade in">Nỗ nực quay tay đã mang về cho bạn</p>;
+					}
 				}
 
 				if (action === 'BE_TAKEN') {
 					return (
 						<p className="show fade in">
-							<b>{get(user, e => e.name, '')} </b>đã giật mất lì xì của bạn.{'\n'}
+							<b>{get(user, e => e.name)} </b>đã giật mất lì xì của bạn.{'\n'}
 							Lì xì mới của bạn là
 						</p>
 					);
@@ -43,7 +53,9 @@ const GameScore: React.FC<GameScoreProps> = ({ score, history }) => {
 			<div className="txt_lixi">
 				<p className="fade">- Bạn nhận được lì xì -</p>
 				{renderHistory()}
-				<div className={formatMoney(score).length < 12 ? "menhgia_lixi" : "menhgia_lixi2"}>{formatMoney(score)}</div>
+				<div className={formatMoney(score).length < 12 ? 'menhgia_lixi' : 'menhgia_lixi2'}>
+					{formatMoney(score)}
+				</div>
 			</div>
 			<div className="btn_lac">
 				<img className="shake" src={require('src/image/btn-lac.png')} />

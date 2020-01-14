@@ -94,14 +94,20 @@ class Apis {
 	};
 
 	public joinGame = async (options: ArgsToJoinGame): Promise<JoinGameResponse> => {
+		console.log(options);
+
 		const response = await this.call({
 			path: '/MINIAPP_app_holiday_joinGame',
 			method: 'POST',
 			body: options,
 		});
 
-		await ACheckinSDK.setItem('last_game_id', response.game_id);
-		this.last_game_id = response.game_id;
+		try {
+			this.last_game_id = response.game_id;
+			await ACheckinSDK.setItem('last_game_id', `${response.game_id}`);
+		} catch (e) {
+			console.log(e);
+		}
 
 		return response;
 	};

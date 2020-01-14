@@ -215,6 +215,12 @@ body.bodyX .content {
     font-size: 30px;
     text-align: center;
 }
+.total-money .total {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
 .btnSubmit_Btn {
     display: block;
     width: 100%;
