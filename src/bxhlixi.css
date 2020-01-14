@@ -235,11 +235,15 @@
 	/* width: 100%; */
 	left: 50px;
 	right: 50px;
+	/* display: grid;
+	grid-template-columns: auto auto;
+	grid-gap: 5px 20px; */
+}
+.block-2 .block-inner{
 	display: grid;
 	grid-template-columns: auto auto;
 	grid-gap: 5px 20px;
 }
-
 .block-2 .robListUsers {
 	justify-content: flex-start;
 }
@@ -403,6 +407,14 @@
 	right: 120px;
 	bottom: 40px;
 }
+.welcome {
+	color: #fff;
+	display: block;
+	text-align: center;
+	font-size: 30px;
+	padding:0 50px 10px 50px;
+	margin-bottom: 40px;
+}
 @media (max-width: 768px) {
 	.bxhlixi .hoadao,
 	.bxhlixi .hoamai,
@@ -488,4 +500,26 @@
 		left: 20px;
 		right: 20px;
 	}
+}
+
+.btnFooter {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 10px;
+	background-color: #f2cc8e;
+	text-align: center;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+.btnFooter_Item {
+	background-color: #be0706;
+	padding: 5px 10px;
+	border-radius: 5px;
+	color: #f2cc8e;
+	text-decoration: none;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 14px;
+	margin: 0 5px;
 }

@@ -144,9 +144,14 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 								/>
 							)}
 							<div className="block-2">
-								{players.map(player => (
-									<UserItem key={player.id} game_reward={player} />
-								))}
+								<div className="welcome">
+									"Bằng tất cả sự kính trọng của mình, tôi xin cảm ơn những tình cảm tốt đẹp của CBCNV Công ty trong suốt một năm qua. Chúc anh/chị/em một năm mới an khang, thịnh vượng."
+								</div>
+								<div className="block-inner">
+									{players.map(player => (
+										<UserItem key={player.id} game_reward={player} />
+									))}
+								</div>
 							</div>
 						
 							<audio autoPlay={true} loop={true} controls={false}>
@@ -156,6 +161,10 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 					)}
 				</div>
 			)}
+			<div className="btnFooter">
+				<a className="btnFooter_Item" href="#">Xem tất cả</a>
+				<a className="btnFooter_Item" href="#">Xuất dữ liệu</a>
+			</div>
 		</div>
 	);
 };
