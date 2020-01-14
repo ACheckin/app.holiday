@@ -21,9 +21,23 @@ interface CoundDownProps {
 	title: string;
 	onComplete: () => void;
 	time: number;
+	isPC: boolean;
 }
 
-const CountDown: React.FC<CoundDownProps> = ({ onComplete, title, time }) => {
+const CountDown: React.FC<CoundDownProps> = ({ onComplete, title, time, isPC }) => {
+	if (isPC === true) {
+		return (
+			<>
+				<div className="time_play">
+					<img src={require('src/image/time_bg.png')} />
+					<div className="time_countdown">
+						12
+						{/* <Countdown date={time} renderer={renderer} onComplete={onComplete} /> */}
+					</div>
+				</div>
+			</>
+		);
+	}
 	return (
 		<>
 			<div className="time_lac">

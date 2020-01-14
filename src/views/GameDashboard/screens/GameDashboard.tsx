@@ -105,6 +105,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 							</div>
 							<div className="qrCode_Inner">
 								<CountDown
+									isPC = {true}
 									title="Game sẽ bắt đầu trong"
 									time={get(game_detail, e => e.start_time * 1000, 0)}
 									onComplete={() => {
@@ -132,13 +133,9 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 									ACheckin
 								</div>
 							</div>
-							<div className="block-2">
-								{players.map(player => (
-									<UserItem key={player.id} game_reward={player} />
-								))}
-							</div>
-							{!is_game_ended && (
+							{is_game_ended && (
 								<CountDown
+									isPC = {true}
 									title="Game sẽ kết thúc trong"
 									time={get(game_detail, e => e.end_time * 1000, 0)}
 									onComplete={() => {
@@ -146,6 +143,12 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 									}}
 								/>
 							)}
+							<div className="block-2">
+								{players.map(player => (
+									<UserItem key={player.id} game_reward={player} />
+								))}
+							</div>
+						
 							<audio autoPlay={true} loop={true} controls={false}>
 								<source src={require('src/image/soxo.mp3')} />
 							</audio>

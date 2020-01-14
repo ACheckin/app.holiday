@@ -223,6 +223,7 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 							{!is_game_started && (
 								<>
 									<CountDown
+										isPC={false}
 										title="Game sẽ bắt đầu trong"
 										time={get(game_detail, e => e.game.start_time) * 1000}
 										onComplete={onCowndownStartGame}
@@ -234,6 +235,7 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 								<>
 									{!is_end_game && (
 										<CountDown
+											isPC={false}
 											title="Game sẽ kết thúc trong"
 											time={get(game_detail, e => e.game.end_time) * 1000}
 											onComplete={onCowndownComplete}

@@ -53,7 +53,7 @@ const UserItem: React.FC<UserItemProps> = ({ game_reward }) => {
 					{renderMore()}
 				</div>
 			</div>
-			<div className={formatMoney(get(game_reward, e => e.money, 0)).length < 12 ? "valueUserItem" : "valueUserItem2"}>{formatMoney(get(game_reward, e => e.money, 0))}</div>
+			<div className={formatMoney(get(game_reward, e => e.money, 0)).length < 10 ? "valueUserItem" : "valueUserItem2"}>{formatMoney(get(game_reward, e => e.money, 0))}</div>
 		</div>
 	);
 };

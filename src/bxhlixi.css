@@ -20,7 +20,7 @@
 
 .hoamai img,
 .hoadao img {
-	animation-duration: 15s;
+	animation-duration: 10s;
 }
 
 .qrCode_Inner {
@@ -292,7 +292,6 @@
     position: relative;
     z-index: 10;
     color: #FFFFFF;
-    height: 40px;
     overflow: hidden;
 }
 .block-2 .image-user img {
@@ -306,7 +305,7 @@
 	line-height: 24px;
 	letter-spacing: 0.281818px;
 	color: #ffffff;
-	margin-top: 12px;
+	margin-top: 6px;
 	margin-bottom: 6px;
 }
 
@@ -317,6 +316,8 @@
 	border-radius: 50px;
 	padding-left: 140px;
 	margin-bottom: 40px;
+	display: flex;
+	align-items: center;
 }
 .block-2 .item::before,
 .block-2 .item::after {
@@ -330,7 +331,7 @@
 }
 .header_user {
 	text-align: center;
-	max-width: 640px;
+	max-width: 600px;
 	width: 100%;
 	margin: 0 auto;
 	position: relative;
@@ -343,14 +344,14 @@
 }
 .header_user .titleName {
 	text-align: center;
-	font-size: 40px;
+	font-size: 30px;
 	font-weight: bold;
 	color: #fff;
 	text-shadow: 0 1px 2px rgba(204, 102, 102, 0.5);
 	position: absolute;
 	left: 120px;
 	right: 120px;
-	bottom: 40px;
+	bottom: 10px;
 }
 .header_user .titleName_Code {
 	text-align: center;
@@ -362,6 +363,34 @@
 	left: 120px;
 	right: 120px;
 	bottom: 40px;
+}
+.time_play {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 253px;
+	height: 51px;
+	margin: 0 auto;
+	font-size: 26px;
+	font-weight: bold;
+	line-height: 36px;
+	text-align: center;
+	color: #be0706;
+}
+.time_play img {
+	width: 100%;
+}
+.time_play .time_countdown {
+	position: absolute;
+	top: 0;
+	width: 253px;
+	height: 36px;
+	font-size: 26px;
+	line-height: 36px;
+	font-weight: bold;
+	text-align: center;
+	color: #be0706;
 }
 .help {
 	text-align: center;
