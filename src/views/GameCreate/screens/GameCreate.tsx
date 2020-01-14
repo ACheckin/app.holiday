@@ -71,7 +71,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 	const [error, setError] = useState(null);
 	const [total_money, setTotalMoney] = useState(500000 * 2 + 100000 * 2 + 50000 * 3);
 
-	const [game_code, setGameCode] = useState(null);
+	const [game_code, setGameCode] = useState('1234');
 
 	useStyleIphoneX();
 	useDisableKeyboardScroll();
@@ -156,12 +156,29 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 								<img src={require('src/image/light-bot2.png')} />
 							</div>
 							<div className="codeGame">
-								<div className="codeGame_Title">Mã trò choi của bạn</div>
+								<div className="codeGame_Title">Mã trò chơi của bạn</div>
 								<div className="codeGame_Code">{game_code}</div>
 								{/* <button className="codeGame_Button">Chia sẻ ngay</button> */}
-								<a className="codeGame_Share" href="javascript:void();">
+								{/* <a className="codeGame_Share" href="javascript:void();">
 									<img src={require('src/image/btn_share.png')} alt="" />
-								</a>
+								</a> */}
+							</div>
+						</div>
+						<div className="action">
+							<div className="action_help">
+								Bạn hãy 'Copy' mã trò chơi để bắt đầu 'Chơi game'
+							</div>
+							<div className="action2col">
+								<div className="animated easily slideInLeft btn_footer">
+									<a href="javascript:void();">
+										<img src={require('src/image/btn_copy.png')} alt="" />
+									</a>
+								</div>
+								<div className="animated easily slideInRight btn_footer">
+									<a href="javascript:void();">
+										<img src={require('src/image/btn_play.png')} alt="" />
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>

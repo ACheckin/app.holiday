@@ -672,6 +672,13 @@ a {
     margin-top: 40px;
     /* flex-direction: column; */
 }
+.action_help {
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
 .action2col {
     width: 100%;
     display: flex;
