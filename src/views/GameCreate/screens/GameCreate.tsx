@@ -274,14 +274,18 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 													{arrayHelpers => {
 														return (
 															<div>
+																<div className="headerInput">
+																	<div className="headerInput_Item">Số tiền</div>
+																	<div className="headerInput_Item">Số lượng</div>
+																	<div className="headerInput_Item" style={{textAlign:'center'}}>Xóa/Thêm</div>
+																</div>
 																{values.rewards && values.rewards.length > 0 ? (
 																	values.rewards.map((reward, index) => (
 																		<div key={index} className="rowInput">
 																			<Field
 																				type="number"
-																				// data-type="currency"
 																				placeholder="Số tiền"
-																				className="viewInput_RowItem"
+																				className="viewInput_RowItem currency"
 																				name={`rewards[${index}][money]`}
 																				pattern="\d*"
 																				// pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
@@ -309,6 +313,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																					<button
 																						className="viewAdd_Btn"
 																						type="button"
+																						style={{marginLeft: 5}}
 																						onClick={e => {
 																							e.preventDefault();
 																							arrayHelpers.insert(index, {
