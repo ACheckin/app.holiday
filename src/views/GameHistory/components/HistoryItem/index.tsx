@@ -5,10 +5,11 @@ interface HistoryItemProps {
 	name: string;
 	avatar: string;
 	score: number;
+	old_score: number;
 	type: 'START' | 'TAKE' | 'BE_TAKEN';
 }
 
-const HistoryItem: React.FC<HistoryItemProps> = ({ name, avatar, score, type }) => {
+const HistoryItem: React.FC<HistoryItemProps> = ({ name, avatar, score, old_score, type }) => {
 	return (
 		<div className="item">
 			<div className="image-user">
@@ -17,7 +18,7 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ name, avatar, score, type }) 
 			<div className="info-item">
 				{type === 'BE_TAKEN' && (
 					<>
-						<b>{name}</b> đã giật mất <b>{formatMoney(score)}</b> của bạn
+						<b>{name}</b> đã giật mất <b>{formatMoney(old_score)}</b> của bạn
 					</>
 				)}
 				{type === 'TAKE' && (

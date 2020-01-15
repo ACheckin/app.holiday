@@ -16,6 +16,12 @@ firebase.initializeApp({
 	databaseURL: 'https://acheckin-project.firebaseio.com',
 });
 
+if (process.env.NODE_ENV !== 'development') {
+	console.log = () => {};
+	console.warn = () => {};
+	console.error = () => {};
+}
+
 window.asyncACheckinInit = async (game_id: string) => {
 	/**
 	 * Init Acheckin SDK

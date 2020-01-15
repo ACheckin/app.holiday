@@ -28,6 +28,7 @@ const email_list = [
 	'xuanda@appota.com',
 	'namnt@appota.com',
 	'ngocnm@appota.com',
+	'huutq@appota.com',
 ];
 
 const GameStart: React.FC<GameStartProps> = ({ navigation, game_id }) => {

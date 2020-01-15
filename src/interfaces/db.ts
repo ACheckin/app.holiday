@@ -24,6 +24,7 @@ export interface User {
 	avatar: string;
 	name: string;
 	id?: string;
+	staff_id?: string
 }
 
 export interface Player {
@@ -51,6 +52,7 @@ export interface HistoryValue {
 export interface HistoryReward {
 	id: number;
 	money: number;
+	old_money?: number
 }
 
 export interface Reward {

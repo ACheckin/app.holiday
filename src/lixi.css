@@ -217,8 +217,14 @@ body.bodyX .content {
 }
 .total-money .total {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 12px;
     text-align: center;
+    border: 1px solid #efbc61;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 2px 10px;
+    margin-top: 2px;
+    margin-bottom: 5px;
 }
 
 .btnSubmit_Btn {

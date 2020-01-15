@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as firebase from 'firebase';
 import _ from 'lodash';
@@ -26,6 +26,8 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 	const [is_game_ended, setIsGameEnded] = useState(false);
 	const [game_detail, setGameDetail] = useStates();
 	const [error, setError] = useState(null);
+
+	const audioRef = useRef<any>();
 
 	const [result_players, setResultPlayers] = useStates<GameReward[]>([]);
 
@@ -87,6 +89,8 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 
 						sorted_game_rewards = _.orderBy(sorted_game_rewards, 'money', 'desc');
 
+						console.log(sorted_game_rewards);
+
 						setPlayers(sorted_game_rewards);
 						setLoading(false);
 					}
@@ -104,6 +108,13 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 	}, []);
 
 	useEffect(() => {
+		if (is_game_started) {
+			console.log('audioRef.current', audioRef.current);
+			audioRef.current && audioRef.current.play();
+		}
+	}, [is_game_started]);
+
+	useEffect(() => {
 		if (is_game_ended) {
 			firebase
 				.database()
@@ -115,6 +126,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 
 					for (let user of users) {
 						result.push({
+							staff_id: get(user, e => e.user.staff_id),
 							name: get(user, e => e.user.name),
 							money: get(user, e => e.money, 0),
 						});
@@ -139,7 +151,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 						alignItems: 'center',
 						color: '#fff',
 						fontWeight: 700,
-						fontSize: 30
+						fontSize: 30,
 					}}
 				>
 					{error}
@@ -205,11 +217,16 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 									))}
 								</div>
 							</div>
-
 							{!is_game_ended && (
-								<audio autoPlay={true} loop={true} controls={false}>
-									<source src={require('src/image/soxo.mp3')} />
-								</audio>
+								<iframe
+									scrolling="no"
+									width="1"
+									height="1"
+									src="https://zingmp3.vn/embed/song/ZW9CI9EA?start=true"
+									frameBorder="0"
+									allow="autoplay"
+									allowFullScreen
+								/>
 							)}
 							{is_game_ended && (
 								<iframe
@@ -231,6 +248,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 						className="btnFooter_Item"
 						data={result_players}
 						headers={[
+							{ label: 'Mã nhân viên', key: 'staff_id' },
 							{ label: 'Họ và tên', key: 'name' },
 							{ label: 'Số tiền lì xì', key: 'money' },
 						]}

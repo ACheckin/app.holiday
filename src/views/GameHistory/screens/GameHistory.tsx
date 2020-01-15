@@ -66,6 +66,7 @@ const GameHistory: React.FC<GameHistoryProps> = ({ navigation }) => {
 							{history_data.map(history => (
 								<HistoryItem
 									score={history.reward.money}
+									old_score={get(history, e => e.reward.old_money, 0)}
 									type={history.action}
 									name={get(history, e => e.from.name, '')}
 									avatar={get(history, e => e.from.avatar, '')}
