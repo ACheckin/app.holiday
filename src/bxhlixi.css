@@ -39,14 +39,16 @@
 }
 
 .innerBxh {
-	max-width: 1200px;
-	padding: 0 50px;
+	width: 100%;
 	margin: 0 auto;
 	position: relative;
 	height: 100vh;
 	overflow: auto;
 }
-
+.innerBxh_Content {
+	max-width: 1200px;
+	padding: 0 50px;
+}
 .imageUser {
 	display: inline-block;
 	background-color: #fff;
@@ -438,8 +440,10 @@
 		grid-template-columns: none;
 	}
 	.innerBxh {
-		padding: 0 20px;
 		overflow: auto;
+	}
+	.innerBxh_Content {
+		padding: 0 20px;
 	}
 	.block-2 .item {
 		padding: 0px 15px;
