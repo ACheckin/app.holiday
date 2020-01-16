@@ -843,6 +843,9 @@ a {
         margin: 0 auto;
         flex-direction: column;
     }
+    .wrap, .lichsu {
+        width: 340px;
+    }
     .lixi_wrap {
         height: 460px;
     }
@@ -903,6 +906,9 @@ a {
         align-items: center;
         margin: 0 auto;
         flex-direction: column;
+    }
+    .wrap, .lichsu {
+        width: 340px;
     }
     .lixi_wrap {
         height: 420px;
@@ -983,6 +989,9 @@ a {
         align-items: center;
         margin: 0 auto;
         flex-direction: column;
+    }
+    .wrap, .lichsu {
+        width: 280px;
     }
     .lixi_wrap {
         height: 380px;
@@ -1077,6 +1086,9 @@ a {
         align-items: center;
         margin: 0 auto;
         flex-direction: column;
+    }
+    .wrap, .lichsu {
+        width: 240px;
     }
     .lixi_wrap {
         height: 340px;
