@@ -11,11 +11,13 @@ import Apis from 'src/services/apis';
 import LoadingView from 'src/components/LoadingView';
 import NumberField from 'src/components/NumberField';
 import MoneyField from 'src/components/MoneyField';
+import DatetimeField from 'src/components/DateTimeField';
 
 interface FormValues {
 	name?: string;
 	start_time?: string;
 	end_time?: string;
+	custom?: string;
 	rewards?: {
 		money: number;
 		total: number;
@@ -45,14 +47,17 @@ const validate_schema = yup.object().shape<FormValues>({
 		)
 		.min(1, 'Bạn chưa thêm giải thưởng cho trò chơi'),
 	start_time: yup.string().required('Bạn chưa nhập thời gian bắt đầu'),
+	custom: yup.string().required('Bạn chưa nhập lời cảm ơn'),
 	end_time: yup.string().required('Bạn chưa nhập thời gian kết thúc'),
 });
 
 const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
-	const [init_values] = useState<FormValues>({
+	const init_values: FormValues = {
 		name: '',
-		start_time: moment().add(5, 'minute').format('YYYY-MM-DDTHH:mm:s'), // prettier-ignore
-		end_time: moment().add(6, 'minute').format('YYYY-MM-DDTHH:mm:s'), // prettier-ignore
+		custom:
+			'Bằng tất cả sự chân thành của mình, tôi xin cảm ơn những đóng góp của tất cả các thành viên trong Công ty trong suốt một năm qua. Chúc anh/chị/em một năm mới an khang,thịnh vượng.',
+		start_time: moment().add(5, 'minute').format('YYYY-MM-DDTHH:mm:ss'), // prettier-ignore
+		end_time: moment().add(6, 'minute').format('YYYY-MM-DDTHH:mm:ss'), // prettier-ignore
 		rewards: [
 			{
 				money: 500000,
@@ -67,7 +72,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 				total: 3,
 			},
 		],
-	});
+	};
 
 	const formRef = useRef<Formik<FormValues>>(null);
 	const [loading, setLoading] = useState(false);
@@ -108,6 +113,7 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 					start_time: moment(values.start_time).unix(),
 					end_time: moment(values.end_time).unix(),
 					name: values.name,
+					custom: values.custom,
 				});
 
 				setGameCode(create_game_response.game_id);
@@ -126,16 +132,6 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 	 */
 	const onClickBackButton = useEventCallback(() => {
 		navigation.history.push('/');
-	});
-
-	/**
-	 * @event onClick
-	 *
-	 * Share Game Code
-	 */
-	const onClickShareGame = useEventCallback(() => {
-		try {
-		} catch (e) {}
 	});
 
 	useEffect(() => {
@@ -185,7 +181,9 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 							</div>
 						</div>
 						<div className="action">
-							<div className="action_help">Nhấn vào 'Copy' để lấy đường dẫn bảng xếp hạng.</div>
+							<div className="action_help">
+								Nhấn vào 'Copy' để lấy đường dẫn bảng xếp hạng, chỉ nên mở trên màn hình lớn.
+							</div>
 							<div className="action2col">
 								<CopyToClipboard
 									text={`https://e.acheckin.vn/${game_code}`}
@@ -291,10 +289,11 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 														)}
 													</div>
 													<div className="viewInput">
-														<Field
+														<DatetimeField
 															className="viewInput_Item"
-															type="datetime-local"
 															name="start_time"
+															value={values.start_time}
+															onChange={handleChange}
 															placeholder="Thời gian bắt đầu"
 														/>
 														{errors.start_time && (
@@ -310,10 +309,11 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 														)}
 													</div>
 													<div className="viewInput">
-														<Field
+														<DatetimeField
 															className="viewInput_Item"
-															type="datetime-local"
 															name="end_time"
+															value={values.end_time}
+															onChange={handleChange}
 															placeholder="Thời gian kết thúc"
 														/>
 														{errors.end_time && (
@@ -325,6 +325,28 @@ const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
 																}}
 															>
 																Lỗi: {errors.end_time}
+															</div>
+														)}
+													</div>
+													<div className="viewInput">
+														<div className="viewInput_Item">
+															<textarea
+																className="viewInput_Item_Area"
+																name="custom"
+																placeholder="Lời cảm ơn"
+																value={values.custom}
+																onChange={handleChange}
+															/>
+														</div>
+														{errors.custom && (
+															<div
+																style={{
+																	color: '#fff',
+																	fontSize: 12,
+																	padding: '5px 0px',
+																}}
+															>
+																Lỗi: {errors.custom}
 															</div>
 														)}
 													</div>

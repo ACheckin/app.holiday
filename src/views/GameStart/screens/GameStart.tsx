@@ -6,9 +6,9 @@ import Animation from 'src/views/GamePlay/components/Animation';
 import Content from 'src/views/GamePlay/components/Content';
 import GameStartJoin from 'src/views/GamePlay/components/GameStart';
 import FooterStart from 'src/views/GamePlay/components/FooterStart';
-import { get, useEventCallback } from 'src/helpers';
-import _ from 'lodash';
+import { useEventCallback } from 'src/helpers';
 import LoadingView from 'src/components/LoadingView';
+import Exception from 'src/services/exception';
 
 interface GameStartProps {
 	navigation: RouteComponentProps;
@@ -32,7 +32,7 @@ const email_list = [
 ];
 
 const GameStart: React.FC<GameStartProps> = ({ navigation, game_id }) => {
-	const [ready, setReady] = useState(false);
+	const [ready, setReady] = useState(true);
 	const [loading, setLoading] = useState(false);
 
 	const onCreateGameClick = useEventCallback(() => {
@@ -51,7 +51,15 @@ const GameStart: React.FC<GameStartProps> = ({ navigation, game_id }) => {
 				});
 
 				Apis.setGameAccessCode(join_game_response.game_access_code);
-			} catch (e) {}
+			} catch (e) {
+				if (e.code === Exception.ERROR_CAN_NOT_JOIN_GAME) {
+					throw new Exception('Bạn đã quá chậm chân, chúc bạn may mắn vào lần sau! ');
+				}
+
+				if (e.code === 500) {
+					throw new Exception('Join game không thành công, vui lòng thử lại!');
+				}
+			}
 
 			const game_detail_response = await Apis.gameDetail({ game_id: Apis.getLastGameId() });
 			navigation.history.push(`/game/${Apis.getLastGameId()}`, game_detail_response);
@@ -66,13 +74,13 @@ const GameStart: React.FC<GameStartProps> = ({ navigation, game_id }) => {
 		navigation.history.push('/join-game');
 	});
 
-	useEffect(() => {
-		const email = get(Apis.getUserInfo(), e => e.email);
-
-		if (_.includes(email_list, email)) {
-			setReady(true);
-		}
-	}, []);
+	// useEffect(() => {
+	// 	const email = get(Apis.getUserInfo(), e => e.email);
+	//
+	// 	if (_.includes(email_list, email)) {
+	// 		setReady(true);
+	// 	}
+	// }, []);
 
 	useEffect(() => {
 		if (game_id) {
@@ -95,7 +103,15 @@ const GameStart: React.FC<GameStartProps> = ({ navigation, game_id }) => {
 					});
 
 					Apis.setGameAccessCode(join_game_response.game_access_code);
-				} catch (e) {}
+				} catch (e) {
+					if (e.code === Exception.ERROR_CAN_NOT_JOIN_GAME) {
+						throw new Exception('Bạn đã quá chậm chân, chúc bạn may mắn vào lần sau! ');
+					}
+
+					if (e.code === 500) {
+						throw new Exception('Join game không thành công, vui lòng thử lại!');
+					}
+				}
 
 				const game_detail_response = await Apis.gameDetail({ game_id: game_id });
 				navigation.history.push(`/game/${game_id}`, game_detail_response);

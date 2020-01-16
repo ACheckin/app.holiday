@@ -10,6 +10,7 @@ import {
 	GameDetailResponse,
 	JoinGameResponse,
 } from 'src/interfaces/apis';
+import Exception from './exception';
 
 class Apis {
 	static END_POINT = 'asia-east2-acheckin-project.cloudfunctions.net';
@@ -156,14 +157,18 @@ class Apis {
 
 				request_options.headers = request_headers;
 
-				const raw_response = await fetch(url.format(url_object), request_options);
-				const json_response = await raw_response.json();
+				try {
+					const raw_response = await fetch(url.format(url_object), request_options);
+					const json_response = await raw_response.json();
 
-				if (json_response.status === false) {
-					return reject(new Error(json_response.message));
+					if (json_response.status === false) {
+						return reject(new Exception(json_response.message, json_response.err_code));
+					}
+
+					return resolve(json_response);
+				} catch (e) {
+					return reject(new Exception('Request Error', 500));
 				}
-
-				return resolve(json_response);
 			} catch (e) {
 				return reject(e);
 			}

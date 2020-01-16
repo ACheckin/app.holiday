@@ -19,8 +19,8 @@ const GameDashboardStart: React.FC = () => {
 			>
 				<div className="logoTet">
 					<div className="logoTet_Inner">
-						<img className="logoTet_Bg" src={require('src/image/tet_bg.png')} alt=""/>
-						<img className="logoTet_Circle" src={require('src/image/tet_circle.png')} alt=""/>
+						<img className="logoTet_Bg" src={require('src/image/tet_bg.png')} alt="" />
+						<img className="logoTet_Circle" src={require('src/image/tet_circle.png')} alt="" />
 					</div>
 				</div>
 			</div>

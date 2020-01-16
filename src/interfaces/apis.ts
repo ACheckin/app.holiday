@@ -4,6 +4,7 @@ export interface ArgsToCreateGame {
 		money: number
 		total: number
 	}[]
+	custom: string;
 	start_time: number
 	end_time: number
 }

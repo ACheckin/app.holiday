@@ -65,8 +65,8 @@ const GameHistory: React.FC<GameHistoryProps> = ({ navigation }) => {
 						<div className="danhsach-lichsu wrap_danhsach ">
 							{history_data.map(history => (
 								<HistoryItem
-									score={history.reward.money}
-									old_score={get(history, e => e.reward.old_money, 0)}
+									money={history.reward.money}
+									old_money={get(history, e => e.reward.old_money, 0)}
 									type={history.action}
 									name={get(history, e => e.from.name, '')}
 									avatar={get(history, e => e.from.avatar, '')}

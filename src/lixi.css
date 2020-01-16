@@ -100,6 +100,22 @@ body.bodyX .content {
     -webkit-appearance: none;
     border-radius: 5px;
 }
+
+.viewInput_Item_Area {
+    min-height: 150px;
+    line-height: 1.4;
+    margin: 0;
+    flex: 1;
+    padding: 10px;
+    display: block;
+    width: 80%;
+    outline: 0;
+    border-width: 0;
+    color: inherit;
+    background: inherit;
+    font-size: 16px;
+}
+
 .viewInput_Row {
     margin: 8px 0;
 }

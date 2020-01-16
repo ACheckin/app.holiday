@@ -6,6 +6,7 @@ import Apis from 'src/services/apis';
 import { useDisableKeyboardScroll, useEventCallback, useStyleIphoneX } from 'src/helpers';
 import { RouteComponentProps } from 'react-router-dom';
 import LoadingView from 'src/components/LoadingView';
+import Exception from 'src/services/exception';
 
 interface FormValues {
 	game_code: string;
@@ -61,7 +62,15 @@ const GameJoin: React.FC<GameJoinProps> = ({ navigation }) => {
 					});
 
 					Apis.setGameAccessCode(join_game_response.game_access_code);
-				} catch (e) {}
+				} catch (e) {
+					if (e.code === Exception.ERROR_CAN_NOT_JOIN_GAME) {
+						throw new Exception('Bạn đã quá chậm chân, chúc bạn may mắn vào lần sau! ');
+					}
+
+					if (e.code === 500) {
+						throw new Exception('Join game không thành công, vui lòng thử lại!');
+					}
+				}
 
 				const game_detail_response = await Apis.gameDetail({ game_id: values.game_code });
 				navigation.history.push(`/game/${values.game_code}`, game_detail_response);

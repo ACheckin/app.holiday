@@ -53,7 +53,7 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 			const current_time = moment().unix();
 
 			if (Apis.getLastTimeChangeReward()) {
-				can_send = current_time - Apis.getLastTimeChangeReward() > 3;
+				can_send = current_time - Apis.getLastTimeChangeReward() > 4;
 			} else {
 				can_send = true;
 			}
@@ -72,6 +72,8 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 
 			Apis.setChangeReward(false);
 		}
+
+		return;
 	});
 
 	useEffect(() => {

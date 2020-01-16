@@ -15,6 +15,7 @@ const routes = [
 ];
 
 const Web: React.FC = () => {
+
 	return (
 		<Router>
 			<Switch>

@@ -49,6 +49,18 @@ export function useStyleIphoneX() {
 	}, []);
 }
 
+export function detectmob(): boolean {
+	return !!(
+		navigator.userAgent.match(/Android/i) ||
+		navigator.userAgent.match(/webOS/i) ||
+		navigator.userAgent.match(/iPhone/i) ||
+		navigator.userAgent.match(/iPad/i) ||
+		navigator.userAgent.match(/iPod/i) ||
+		navigator.userAgent.match(/BlackBerry/i) ||
+		navigator.userAgent.match(/Windows Phone/i)
+	);
+}
+
 export function useDisableKeyboardScroll() {
 	function Touchyhandler(e) {
 		e.preventDefault();
@@ -81,16 +93,18 @@ export function useStates<T>(init_state?: T): [T, (state?: T) => void] {
 	return [state.current, setState];
 }
 
-export type RequiredRecursively<T> = Exclude<T extends string | number | boolean
-	? T
-	: {
-		[P in keyof T]-?: T[P] extends (infer U)[]
-			? RequiredRecursively<U>[]
-			: T[P] extends Array<infer U>
-				? RequiredRecursively<U>[]
-				: RequiredRecursively<T[P]>;
-	},
-	null | undefined>;
+export type RequiredRecursively<T> = Exclude<
+	T extends string | number | boolean
+		? T
+		: {
+				[P in keyof T]-?: T[P] extends (infer U)[]
+					? RequiredRecursively<U>[]
+					: T[P] extends Array<infer U>
+					? RequiredRecursively<U>[]
+					: RequiredRecursively<T[P]>;
+		  },
+	null | undefined
+>;
 
 export type AccessorFunction<T, R> = (object: RequiredRecursively<T>) => R;
 

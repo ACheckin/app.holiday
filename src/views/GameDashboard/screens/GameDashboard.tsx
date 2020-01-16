@@ -8,7 +8,7 @@ import { CSVLink } from 'react-csv';
 import Animation from 'src/views/GameDashboard/components/Animation';
 import LoadingView from 'src/components/LoadingView';
 import { GameReward } from 'src/interfaces/db';
-import { get, useEventCallback, useStates } from 'src/helpers';
+import { detectmob, get, useEventCallback, useStates } from 'src/helpers';
 import UserItem from 'src/views/GameDashboard/components/UserItem';
 import CountDown from 'src/components/CountDown';
 import moment from 'moment-timezone';
@@ -26,6 +26,9 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 	const [is_game_ended, setIsGameEnded] = useState(false);
 	const [game_detail, setGameDetail] = useStates();
 	const [error, setError] = useState(null);
+
+	const [workspace_id, setWorkspaceId] = useState(null);
+	const [custom, setCustom] = useState(null);
 
 	const audioRef = useRef<any>();
 
@@ -73,6 +76,16 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 
 			firebase
 				.database()
+				.ref(`/MINIAPP_app_holiday/games/${params.game_id}`)
+				.once('value', snapshot => {
+					const game = snapshot.val();
+
+					setWorkspaceId(game.workspace_id);
+					setCustom(get(game, e => e.custom, null));
+				});
+
+			firebase
+				.database()
 				.ref(`/MINIAPP_app_holiday/games/${params.game_id}/game_rewards`)
 				.orderByChild('money')
 				.limitToLast(16)
@@ -88,8 +101,6 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 						});
 
 						sorted_game_rewards = _.orderBy(sorted_game_rewards, 'money', 'desc');
-
-						console.log(sorted_game_rewards);
 
 						setPlayers(sorted_game_rewards);
 						setLoading(false);
@@ -116,26 +127,50 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 
 	useEffect(() => {
 		if (is_game_ended) {
-			firebase
-				.database()
-				.ref(`/MINIAPP_app_holiday/games/${params.game_id}/game_rewards`)
-				.orderByChild('money')
-				.once('value', snapshot => {
-					const users = snapshot.val();
-					const result = [];
+			setTimeout(() => {
+				firebase
+					.database()
+					.ref(`/MINIAPP_app_holiday/games/${params.game_id}/game_rewards`)
+					.orderByChild('money')
+					.once('value', snapshot => {
+						const users = snapshot.val();
+						const result = [];
 
-					for (let user of users) {
-						result.push({
-							staff_id: get(user, e => e.user.staff_id),
-							name: get(user, e => e.user.name),
-							money: get(user, e => e.money, 0),
-						});
-					}
+						for (let user of users) {
+							result.push({
+								staff_id: get(user, e => e.user.staff_id),
+								name: get(user, e => e.user.name),
+								money: get(user, e => e.money, 0),
+							});
+						}
 
-					setResultPlayers(result);
-				});
+						setResultPlayers(result);
+					});
+			}, 500);
 		}
 	}, [is_game_ended]);
+
+	if (detectmob()) {
+		return (
+			<div className="bxh bxhlixi">
+				<div
+					style={{
+						height: ' 100vh',
+						justifyContent: 'center',
+						alignItems: 'center',
+						display: 'flex',
+						padding: 30,
+						color: '#fff',
+						textAlign: 'center',
+						fontWeight: 700,
+					}}
+				>
+					Bảng xếp hạng không khả dụng trên trình duyệt thiết bị di động, vui lòng mở bằng trình duyệt của máy
+					tính
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className="bxh bxhlixi">
@@ -159,76 +194,32 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 			)}
 			{!loading && !error && (
 				<div className="innerBxh">
-					{!is_game_started && (
-						<div>
-							<div className="header_user">
-								<img src={require('src/image/top-bg.png')} alt="" />
-							</div>
-							<div className="qrCode_Inner">
-								<CountDown
-									isPC={false}
-									title="Game sẽ bắt đầu trong"
-									time={get(game_detail, e => e.start_time * 1000, 0)}
-									onComplete={() => {
-										setIsGameStarted(true);
-									}}
-								/>
-								<div className="qrCode">
-									<QRCode
-										value={`ac://ap?p=app.holiday&d=${params.game_id}&wi=appota.acheckin.vn`}
-										size={320}
+					<div className="innerBxh_Content">
+						{!is_game_started && (
+							<div>
+								<div className="header_user">
+									<img src={require('src/image/top-bg.png')} alt="" />
+								</div>
+								<div className="qrCode_Inner">
+									<CountDown
+										isPC={false}
+										title="Game sẽ bắt đầu trong"
+										time={get(game_detail, e => e.start_time * 1000, 0)}
+										onComplete={() => {
+											setIsGameStarted(true);
+										}}
 									/>
-								</div>
-							</div>
-							<div className="help">
-								Mở ACheckin để quét QRCode hoặc nhập mã{' '}
-								<span style={{ fontSize: 30 }}>{params.game_id}</span> để chơi game
-							</div>
-						</div>
-					)}
-
-					{is_game_started && (
-						<>
-							<div className="header_user">
-								<img src={require('src/image/top.png')} alt="" />
-								<div className="titleName">{get(game_detail, e => e.name)}</div>
-							</div>
-							{!is_game_ended && (
-								<CountDown
-									isPC={true}
-									title="Game sẽ kết thúc trong"
-									time={get(game_detail, e => e.end_time * 1000, 0)}
-									onComplete={() => {
-										setIsGameEnded(true);
-									}}
-								/>
-							)}
-							<div className="block-2">
-								{is_game_ended && (
-									<div className="welcome">
-										"Bằng tất cả sự kính trọng của mình, tôi xin cảm ơn những tình cảm tốt đẹp của
-										CBCNV Công ty trong suốt một năm qua. Chúc anh/chị/em một năm mới an khang,
-										thịnh vượng."
+									<div className="qrCode">
+										<QRCode
+											value={`acheckin://ap?p=app.holiday&d=${params.game_id}&wi=${workspace_id}`}
+											size={320}
+										/>
 									</div>
-								)}
-								<div className="block-inner">
-									{players.map(player => (
-										<UserItem key={player.id} game_reward={player} />
-									))}
 								</div>
-							</div>
-							{!is_game_ended && (
-								<iframe
-									scrolling="no"
-									width="1"
-									height="1"
-									src="https://zingmp3.vn/embed/song/ZW9CI9EA?start=true"
-									frameBorder="0"
-									allow="autoplay"
-									allowFullScreen
-								/>
-							)}
-							{is_game_ended && (
+								<div className="help">
+									Mở ACheckin để quét QRCode hoặc nhập mã{' '}
+									<span style={{ fontSize: 30 }}>{params.game_id}</span> để chơi game
+								</div>
 								<iframe
 									src="https://www.nhaccuatui.com/mh/background/KTpIOEABzL"
 									width="1"
@@ -237,9 +228,63 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 									allowFullScreen
 									allow="autoplay"
 								/>
-							)}
-						</>
-					)}
+							</div>
+						)}
+
+						{is_game_started && (
+							<>
+								<div className="header_user">
+									<img src={require('src/image/top.png')} alt="" />
+									<div className="titleName">{get(game_detail, e => e.name)}</div>
+								</div>
+								{!is_game_ended && (
+									<CountDown
+										isPC={true}
+										title="Game sẽ kết thúc trong"
+										time={get(game_detail, e => e.end_time * 1000, 0)}
+										onComplete={() => {
+											setIsGameEnded(true);
+										}}
+									/>
+								)}
+								<div className="block-2">
+									{is_game_ended && (
+										<div className="welcome">
+											{custom
+												? custom
+												: 'Bằng tất cả sự chân thành của mình, tôi xin cảm ơn những đóng góp của tất cả các thành viên trong Công ty trong suốt một năm qua. Chúc anh/chị/em một năm mới an khang,thịnh vượng.'}
+										</div>
+									)}
+									<div className="block-inner">
+										{players.map(player => (
+											<UserItem key={player.id} game_reward={player} />
+										))}
+									</div>
+								</div>
+								{!is_game_ended && (
+									<iframe
+										scrolling="no"
+										width="1"
+										height="1"
+										src="https://zingmp3.vn/embed/song/ZW9CI9EA?start=true"
+										frameBorder="0"
+										allow="autoplay"
+										allowFullScreen
+									/>
+								)}
+								{is_game_ended && (
+									<iframe
+										src="https://www.nhaccuatui.com/mh/background/KTpIOEABzL"
+										width="1"
+										height="1"
+										frameBorder="0"
+										allowFullScreen
+										allow="autoplay"
+									/>
+								)}
+							</>
+						)}
+					</div>
 				</div>
 			)}
 			{is_game_ended && result_players.length > 0 && (
