@@ -45,6 +45,13 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 	 * Handle When Shake Device
 	 */
 	const onShake = useEventCallback(async () => {
+		const end_time = moment.unix(game_detail.game.end_time);
+		const current_time = moment();
+
+		if (game_detail && game_detail.game && game_detail.game.end_time && current_time > end_time) {
+			return;
+		}
+
 		if (!Apis.isChangeReward()) {
 			Apis.setChangeReward(true);
 

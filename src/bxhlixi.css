@@ -47,6 +47,7 @@
 }
 .innerBxh_Content {
 	max-width: 1200px;
+	height: 100%;
 	padding: 0 50px;
 	margin: 0 auto;
 	position: relative;

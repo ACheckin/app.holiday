@@ -37,7 +37,7 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ name, avatar, money, old_mone
 			} else {
 				return (
 					<>
-						Bạn đã giật của {name} <b>{formatMoney(money)}</b>
+						Bạn đã giật của <b>{name}</b> <b>{formatMoney(money)}</b>
 					</>
 				);
 			}
