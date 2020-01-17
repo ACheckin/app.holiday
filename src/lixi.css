@@ -693,7 +693,8 @@ a {
 }
 
 .action {
-    z-index: 100;
+    z-index: 1000;
+    position: relative;
     /* display: flex; */
     width: 310px;
     margin: 0 auto;
@@ -712,12 +713,14 @@ a {
     display: flex;
     margin: 0 auto;
     min-height: 100%;
+    overflow: hidden;
 }
 .action1col {
     width: 100%;
     margin: 0 auto;
     margin-bottom: 10px;
     text-align: center;
+    overflow: hidden;
 }
 .action2col img {
     display: block;

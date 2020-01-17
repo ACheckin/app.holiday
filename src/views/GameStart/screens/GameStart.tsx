@@ -139,7 +139,7 @@ const GameStart: React.FC<GameStartProps> = ({ navigation, game_id }) => {
 					)}
 				</Content>
 			</div>
-			<div className="footer fixed" style={{ zIndex: 9999 }}>
+			<div className="footer fixed" style={{ zIndex: 10 }}>
 				<img src={require('src/image/footer.png')} alt="" />
 			</div>
 		</div>
