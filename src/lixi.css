@@ -467,15 +467,19 @@ a {
 .hoatop, .nen, .outer {
     top: 0;
     left: 0;
+    z-index: 4;
 }
 .nen {
     animation: brightness 1s linear infinite;
+}
+.nen img {
+    width: 100%;
 }
 .outer {
     animation: pulse 5s linear infinite;
 }
 .hoatop {
-    z-index: 4;
+    z-index: 5;
     width: 110%;
     left: -10px;
     -webkit-animation: shake 15s linear infinite;
