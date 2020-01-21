@@ -258,12 +258,12 @@
 
 .block-2 .valueUserItem {
 	position: absolute;
-	right: 15px;
+	right: 12px;
 	z-index: 9;
 	top: 50%;
 	transform: translateY(-50%);
 	font-weight: bold;
-	font-size: 24px;
+	font-size: 20px;
 	line-height: 24px;
 	text-align: right;
 	color: #ffcc00;
@@ -276,8 +276,8 @@
 	top: 50%;
 	transform: translateY(-50%);
 	font-weight: bold;
-	font-size: 18px;
-	line-height: 22px;
+	font-size: 16px;
+	line-height: 20px;
 	text-align: right;
 	color: #ffcc00;
 	letter-spacing: -0.8px;
@@ -316,11 +316,12 @@
 .block-2 .nameUser-item {
 	font-weight: bold;
 	font-size: 18px;
-	line-height: 22px;
+	line-height: 20px;
 	letter-spacing: 0.281818px;
 	color: #ffffff;
 	margin-top: 5px;
 	margin-bottom: 5px;
+	padding-right: 80px;
 }
 
 .block-2 .item {
@@ -496,6 +497,7 @@
 		line-height: 20px;
 		margin-top: 0;
 		margin-bottom: 2px;
+		padding-right: 30px;
 	}
 	.block-2 .valueUserItem {
 		position: relative;
