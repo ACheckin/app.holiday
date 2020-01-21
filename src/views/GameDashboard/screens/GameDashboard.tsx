@@ -172,27 +172,37 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 		}
 	}, [is_game_ended]);
 
-	if (detectmob()) {
-		return (
-			<div className="bxh bxhlixi">
-				<div
-					style={{
-						height: ' 100vh',
-						justifyContent: 'center',
-						alignItems: 'center',
-						display: 'flex',
-						padding: 30,
-						color: '#fff',
-						textAlign: 'center',
-						fontWeight: 700,
-					}}
-				>
-					Bảng xếp hạng không khả dụng trên trình duyệt thiết bị di động, vui lòng mở bằng trình duyệt của máy
-					tính
-				</div>
-			</div>
+	// if (detectmob()) {
+	// 	return (
+	// 		<div className="bxh bxhlixi">
+	// 			<div
+	// 				style={{
+	// 					height: ' 100vh',
+	// 					justifyContent: 'center',
+	// 					alignItems: 'center',
+	// 					display: 'flex',
+	// 					padding: 30,
+	// 					color: '#fff',
+	// 					textAlign: 'center',
+	// 					fontWeight: 700,
+	// 				}}
+	// 			>
+	// 				Bảng xếp hạng không khả dụng trên trình duyệt thiết bị di động, vui lòng mở bằng trình duyệt của máy
+	// 				tính
+	// 			</div>
+	// 		</div>
+	// 	);
+	// }
+
+	const onClickJoinGame = useEventCallback(() => {
+		const deeplink = `https://d.acheckin.vn/app?p=app.holiday&d=${params.game_id}&wi=${workspace_id}`;
+
+		window.open(
+			`https://app.acheckin.vn/?link=${encodeURIComponent(
+				deeplink,
+			)}&apn=vn.acheckin&isi=1451269978&ibi=vn.acheckin&efr=1`,
 		);
-	}
+	});
 
 	return (
 		<div className="bxh bxhlixi">
@@ -309,7 +319,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 					</div>
 				</div>
 			)}
-			{is_game_ended && result_players.length > 0 && !detectmob() &&(
+			{is_game_ended && result_players.length > 0 && !detectmob() && (
 				<div className="btnFooter">
 					<CSVLink
 						className="btnFooter_Item"
@@ -325,9 +335,11 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 					</CSVLink>
 				</div>
 			)}
-			{detectmob() &&(
+			{detectmob() && workspace_id && (
 				<div className="btnFooter">
-					<a className="btnFooter_Item">Tham gia game</a>
+					<a className="btnFooter_Item" onClick={onClickJoinGame}>
+						Tham gia game
+					</a>
 				</div>
 			)}
 		</div>

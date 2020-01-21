@@ -24,6 +24,14 @@ const GameDashboardStart: React.FC = () => {
 					</div>
 				</div>
 			</div>
+			<iframe
+				src="https://www.nhaccuatui.com/mh/background/KTpIOEABzL"
+				width="1"
+				height="1"
+				frameBorder="0"
+				allowFullScreen
+				allow="autoplay"
+			/>
 		</div>
 	);
 };
