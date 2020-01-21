@@ -93,7 +93,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 					.database()
 					.ref(`/MINIAPP_app_holiday/games/${params.game_id}/game_rewards`)
 					.orderByChild('money')
-					.limitToLast(16)
+					.limitToLast(24)
 					.on('value', game_rewards => {
 						if (game_rewards.exists()) {
 							let sorted_game_rewards = [];
@@ -133,7 +133,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 
 	const onEndGame = useEventCallback(async () => {
 		try {
-			const result = await Apis.getGameResult({ game_id: params.game_id, history: true, top: 20 });
+			const result = await Apis.getGameResult({ game_id: params.game_id, history: true, top: 24 });
 
 			let rewards = [];
 			for (let reward of result.rewards) {
@@ -309,7 +309,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 					</div>
 				</div>
 			)}
-			{is_game_ended && result_players.length > 0 && (
+			{is_game_ended && result_players.length > 0 && !detectmob() &&(
 				<div className="btnFooter">
 					<CSVLink
 						className="btnFooter_Item"
@@ -323,6 +323,11 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 					>
 						Xuất dữ liệu
 					</CSVLink>
+				</div>
+			)}
+			{detectmob() &&(
+				<div className="btnFooter">
+					<a className="btnFooter_Item">Tham gia game</a>
 				</div>
 			)}
 		</div>

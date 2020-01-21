@@ -32,7 +32,7 @@ const UserItem: React.FC<UserItemProps> = ({ game_reward, is_endgame }) => {
 						<img src={user.avatar} width="22" />
 					</div>
 				))}
-				{count_user_more > 0 && <div className="more">+ {count_user_more} người khác</div>}
+				{count_user_more > 0 && <div className="more">+{count_user_more}</div>}
 			</>
 		);
 	};

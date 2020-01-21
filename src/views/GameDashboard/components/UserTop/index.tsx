@@ -33,7 +33,7 @@ const UserTop: React.FC<UserTopProps> = ({ game_reward, type }) => {
 						<img src={user.avatar} width="22" />
 					</div>
 				))}
-				{count_user_more > 0 && <div className="more">+ {count_user_more} người khác</div>}
+				{count_user_more > 0 && <div className="more">+ {count_user_more}</div>}
 			</>
 		);
 	};

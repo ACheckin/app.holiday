@@ -46,9 +46,9 @@
 	overflow: auto;
 }
 .innerBxh_Content {
-	max-width: 1200px;
+	/* max-width: 1200px; */
 	height: 100%;
-	padding: 0 50px;
+	padding: 0 40px;
 	margin: 0 auto;
 	position: relative;
 }
@@ -117,6 +117,7 @@
 	line-height: 12px;
 	letter-spacing: 0.140909px;
 	color: #be0706;
+	font-weight: bold;
 	padding: 0 7px;
 	display: flex;
 	align-items: center;
@@ -238,8 +239,8 @@
 	position: absolute;
 	top: 270px;
 	/* width: 100%; */
-	left: 50px;
-	right: 50px;
+	left: 30px;
+	right: 30px;
 	padding-bottom: 100px;
 	/* display: grid;
 	grid-template-columns: auto auto;
@@ -247,11 +248,12 @@
 }
 .block-2 .block-inner{
 	display: grid;
-	grid-template-columns: auto auto;
-	grid-gap: 5px 20px;
+	grid-template-columns: auto auto auto;
+	grid-gap: 5px 15px;
 }
 .block-2 .robListUsers {
 	justify-content: flex-start;
+	margin-left: 5px;
 }
 
 .block-2 .valueUserItem {
@@ -261,10 +263,11 @@
 	top: 50%;
 	transform: translateY(-50%);
 	font-weight: bold;
-	font-size: 30px;
+	font-size: 24px;
 	line-height: 24px;
 	text-align: right;
 	color: #ffcc00;
+	letter-spacing: -0.8px;
 }
 .block-2 .valueUserItem2 {
 	position: absolute;
@@ -273,19 +276,20 @@
 	top: 50%;
 	transform: translateY(-50%);
 	font-weight: bold;
-	font-size: 20px;
-	line-height: 24px;
+	font-size: 18px;
+	line-height: 22px;
 	text-align: right;
 	color: #ffcc00;
+	letter-spacing: -0.8px;
 }
 .block-2 .image-user {
-	width: 120px;
-	height: 120px;
+	width: 90px;
+	height: 90px;
 	border-radius: 100%;
 	position: absolute;
 	z-index: 100;
 	left: -5px;
-	top: -20px;
+	top: -10px;
 	background-color: #f2cc8e;
 	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
     margin-right: 15px;
@@ -305,33 +309,33 @@
     overflow: hidden;
 }
 .block-2 .image-user img {
-	width: 114px;
-	height: 114px;
+	width: 86px;
+	height: 86px;
 	border-radius: 100%;
 }
 .block-2 .nameUser-item {
 	font-weight: bold;
-	font-size: 20px;
-	line-height: 24px;
+	font-size: 18px;
+	line-height: 22px;
 	letter-spacing: 0.281818px;
 	color: #ffffff;
-	margin-top: 6px;
-	margin-bottom: 6px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .block-2 .item {
 	padding: 0px 15px;
 	border: 2px solid #f2cc8e;
-	min-height: 80px;
-	border-radius: 50px;
-	padding-left: 140px;
-	margin-bottom: 40px;
+	min-height: 70px;
+	border-radius: 36px;
+	padding-left: 100px;
+	margin-bottom: 30px;
 	display: flex;
 	align-items: center;
 }
 .block-2 .item::before,
 .block-2 .item::after {
-	border-radius: 50px;
+	border-radius: 36px;
 }
 
 
@@ -417,9 +421,14 @@
 	color: #fff;
 	display: block;
 	text-align: center;
-	font-size: 30px;
+	font-size: 24px;
 	padding:0 50px 10px 50px;
 	margin-bottom: 40px;
+}
+@media (max-width: 1200px) {
+	.block-2 .block-inner {
+		grid-template-columns: auto auto;
+	}
 }
 @media (max-width: 768px) {
 	.bxhlixi .hoadao,
@@ -429,14 +438,15 @@
 		display: none;
 	}
 	.welcome {
-		font-size: 24px;
+		font-size: 20px;
 		padding: 0 20px 10px 20px;
+		margin-bottom: 20px;
 	}
 	.block-2 {
 		display: block;
 		left: 20px;
 		right: 20px;
-		top: 200px;
+		top: 240px;
 	}
 	.block-2 .block-inner {
 		display: block;
@@ -509,12 +519,27 @@
 	.header_user .titleName {
 		left: 20px;
 		right: 20px;
-		bottom: -20px;
+		bottom: 10px;
 		font-size: 30px;
 	}
 	.help {
 		left: 20px;
 		right: 20px;
+	}
+}
+
+@media (max-width: 600px) {
+	.block-2 {
+		display: block;
+		left: 20px;
+		right: 20px;
+		top: 160px;
+	}
+	.header_user .titleName {
+		left: 20px;
+		right: 20px;
+		bottom: 0px;
+		font-size: 22px;
 	}
 }
 
