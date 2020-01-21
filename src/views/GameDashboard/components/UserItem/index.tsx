@@ -1,12 +1,12 @@
 import React from 'react';
-import { GameReward } from 'src/interfaces/db';
 import { formatMoney, get } from 'src/helpers';
 
 interface UserItemProps {
-	game_reward: GameReward;
+	game_reward: any;
+	is_endgame: boolean
 }
 
-const UserItem: React.FC<UserItemProps> = ({ game_reward }) => {
+const UserItem: React.FC<UserItemProps> = ({ game_reward, is_endgame }) => {
 	const renderMore = () => {
 		const histories = get(game_reward, e => Object.values(e.history), []);
 
@@ -40,10 +40,12 @@ const UserItem: React.FC<UserItemProps> = ({ game_reward }) => {
 	return (
 		<div className="item">
 			<div className="image-user">
-				<img src={get(game_reward, e => e.user.avatar, require('src/image/btn-lac.png'))} />
+				{!is_endgame && <img src={get(game_reward, e => e.user.avatar, require('src/image/btn-lac.png'))} />}
+				{is_endgame && <img src={get(game_reward, e => e.avatar, require('src/image/btn-lac.png'))} />}
 			</div>
 			<div className="info-item">
-				<div className="nameUser-item">{get(game_reward, e => e.user.name, 'Đang hóng')}</div>
+				{!is_endgame && <div className="nameUser-item">{get(game_reward, e => e.user.name, 'Đang hóng')}</div>}
+				{is_endgame && <div className="nameUser-item">{get(game_reward, e => e.name, 'Đang hóng')}</div>}
 				<div className="robListUsers">{renderMore()}</div>
 			</div>
 			<div

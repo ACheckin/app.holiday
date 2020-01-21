@@ -15,7 +15,7 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ name, avatar, money, old_mone
 			if (money > old_money) {
 				return (
 					<>
-						<b>{name}</b> đã tặng bạn <b>{formatMoney(old_money)}</b>
+						<b>{name}</b> đã tặng bạn <b>{formatMoney(money)}</b>
 					</>
 				);
 			} else {
@@ -35,11 +35,19 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ name, avatar, money, old_mone
 					</>
 				);
 			} else {
-				return (
-					<>
-						Bạn đã giật của <b>{name}</b> <b>{formatMoney(money)}</b>
-					</>
-				);
+				if (money > old_money) {
+					return (
+						<>
+							Bạn đã giật của <b>{name}</b> <b>{formatMoney(money)}</b>
+						</>
+					);
+				} else {
+					return (
+						<>
+							Bạn đã tặng <b>{formatMoney(old_money)}</b> cho <b>{name}</b>
+						</>
+					);
+				}
 			}
 		}
 

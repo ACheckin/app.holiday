@@ -4,7 +4,7 @@ import Apis from 'src/services/apis';
 import { RouteComponentProps, useLocation, useParams } from 'react-router-dom';
 import * as firebase from 'firebase';
 import { Player } from 'src/interfaces/db';
-import { get, useEventCallback, useStates, useStyleIphoneX } from 'src/helpers';
+import { formatMoney, get, useEventCallback, useStates, useStyleIphoneX } from 'src/helpers';
 import moment from 'moment-timezone';
 
 import Animation from 'src/views/GamePlay/components/Animation';
@@ -60,7 +60,7 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 			const current_time = moment().unix();
 
 			if (Apis.getLastTimeChangeReward()) {
-				can_send = current_time - Apis.getLastTimeChangeReward() > 4;
+				can_send = true;
 			} else {
 				can_send = true;
 			}
@@ -134,6 +134,7 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 						}
 					}
 
+					let money = 0;
 					/**
 					 * Listen Firebase Database
 					 */
@@ -145,6 +146,30 @@ const GamePlay: React.FC<GamePlayProps> = ({ navigation }) => {
 
 							if (player) {
 								setScore(player.reward.money);
+
+								try {
+									if (money !== 0) {
+										if (money !== player.reward.money) {
+											ACheckinSDK.vibrate().catch(() => {});
+										}
+									}
+
+									if (money !== 0 && money > player.reward.money) {
+										ACheckinSDK.setLocalNotification({
+											title: 'Lì xì 2020',
+											body: 'Bị giật mất tiền rồi má, nhanh lắc đi!',
+										}).catch(() => {});
+									}
+
+									if (money !== 0 && money < player.reward.money) {
+										ACheckinSDK.setLocalNotification({
+											title: 'Lì xì 2020',
+											body: `Kìa nhận được ${formatMoney(player.reward.money)} rồi!`,
+										}).catch(() => {});
+									}
+								} catch (e) {}
+
+								money = player.reward.money;
 							}
 
 							setLoading(false);

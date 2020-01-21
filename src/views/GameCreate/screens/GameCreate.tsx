@@ -29,7 +29,10 @@ interface GameCreateProps {
 }
 
 const validate_schema = yup.object().shape<FormValues>({
-	name: yup.string().required('Bạn chưa nhập tên trò chơi'),
+	name: yup
+		.string()
+		.required('Bạn chưa nhập tên trò chơi')
+		.max(50, 'Độ dài của tên trò chơi tối đa 30 ký tự'),
 	rewards: yup
 		.array()
 		.required('Bạn chưa nhập giải thưởng cho trò chơi')
@@ -47,38 +50,117 @@ const validate_schema = yup.object().shape<FormValues>({
 		)
 		.min(1, 'Bạn chưa thêm giải thưởng cho trò chơi'),
 	start_time: yup.string().required('Bạn chưa nhập thời gian bắt đầu'),
-	custom: yup.string().required('Bạn chưa nhập lời cảm ơn'),
+	custom: yup
+		.string()
+		.required('Bạn chưa nhập lời cảm ơn')
+		.max(300, 'Độ dài lời chúc tối đa 300 ký tự'),
 	end_time: yup.string().required('Bạn chưa nhập thời gian kết thúc'),
 });
 
+const rewards_default = [
+	{
+		money: 500000,
+		total: 2,
+	},
+	{
+		money: 100000,
+		total: 2,
+	},
+	{
+		money: 50000,
+		total: 3,
+	},
+];
+
+const rewards_28 = [
+	{
+		money: 500000,
+		total: 418,
+	},
+	{
+		money: 1000000,
+		total: 10,
+	},
+	{
+		money: 2000000,
+		total: 5,
+	},
+	{
+		money: 5000000,
+		total: 2,
+	},
+];
+
+const rewards_30 = [
+	{
+		money: 100000,
+		total: 403,
+	},
+	{
+		money: 500000,
+		total: 20,
+	},
+	{
+		money: 1000000,
+		total: 10,
+	},
+	{
+		money: 2000000,
+		total: 2,
+	},
+];
+
 const GameCreate: React.FC<GameCreateProps> = ({ navigation }) => {
+	const getReward = () => {
+		const current_date = Number(moment().format('YYYYMMDD'));
+
+		if (Apis.getUserInfo().email === 'ceo@appota.com') {
+			if (current_date < 20200123) {
+				return rewards_28;
+			} else {
+				return rewards_30;
+			}
+		}
+
+		return rewards_default;
+	};
+
+	const getTotalMoney = () => {
+		const rewards = getReward();
+		let money = 0;
+
+		for (let reward of rewards) {
+			money += reward.total * reward.money;
+		}
+
+		return money;
+	};
+
+	const getTotal = () => {
+		const rewards = getReward();
+		let total = 0;
+
+		for (let reward of rewards) {
+			total += reward.total;
+		}
+
+		return total;
+	};
+
 	const init_values: FormValues = {
 		name: '',
 		custom:
 			'Bằng tất cả sự chân thành của mình, tôi xin cảm ơn những đóng góp của tất cả các thành viên trong Công ty trong suốt một năm qua. Chúc anh/chị/em một năm mới an khang,thịnh vượng.',
 		start_time: moment().add(5, 'minute').format('YYYY-MM-DDTHH:mm:ss'), // prettier-ignore
 		end_time: moment().add(6, 'minute').format('YYYY-MM-DDTHH:mm:ss'), // prettier-ignore
-		rewards: [
-			{
-				money: 500000,
-				total: 2,
-			},
-			{
-				money: 100000,
-				total: 2,
-			},
-			{
-				money: 50000,
-				total: 3,
-			},
-		],
+		rewards: getReward(),
 	};
 
 	const formRef = useRef<Formik<FormValues>>(null);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
-	const [total_money, setTotalMoney] = useState(500000 * 2 + 100000 * 2 + 50000 * 3);
-	const [total, setTotal] = useState(7);
+	const [total_money, setTotalMoney] = useState(getTotalMoney());
+	const [total, setTotal] = useState(getTotal());
 
 	const [change, setChange] = useState(null);
 

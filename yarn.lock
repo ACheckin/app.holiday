@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@acheckin/react-app-sdk@^0.0.15":
-  version "0.0.15"
-  resolved "http://192.168.9.38:5000/@acheckin%2freact-app-sdk/-/react-app-sdk-0.0.15.tgz#2e67cb8b9b6406ac1b6dd29ed35e6db20ff7ecdc"
-  integrity sha512-bF/k7VKnF7aimJJ+GYOaZcKwcCeKuJt1ZUlOGF+B9zENGSeaafO5p7moFgfsUlnctm9WvVY2aZoxDpLIl7ETMQ==
+"@acheckin/react-app-sdk@^0.0.16":
+  version "0.0.16"
+  resolved "http://192.168.9.38:5000/@acheckin%2freact-app-sdk/-/react-app-sdk-0.0.16.tgz#56b538554239a7ae14d723dc3e186bee5a7ccd13"
+  integrity sha512-CQhkt1P1Qi3KEIcNzl5w6pyLNvihAh4eY9o5k1hR2I8xehHHl4ffpUHDPmiCT/2fKWxWH6bWSxbRKrgpWusyXQ==
 
 "@ant-design/colors@^3.1.0":
   version "3.1.0"

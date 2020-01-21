@@ -53,6 +53,8 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 			const start_time = moment.unix(game_detail.game.start_time);
 			const end_time = moment.unix(game_detail.game.end_time);
 
+			let end_game = false;
+
 			if (current_time.unix() < start_time.unix()) {
 				/**
 				 * Game Pending
@@ -66,6 +68,8 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 					 */
 					setIsGameStarted(true);
 					setIsGameEnded(true);
+
+					end_game = true;
 				} else {
 					/**
 					 * In Game
@@ -84,28 +88,30 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 					setCustom(get(game, e => e.custom, null));
 				});
 
-			firebase
-				.database()
-				.ref(`/MINIAPP_app_holiday/games/${params.game_id}/game_rewards`)
-				.orderByChild('money')
-				.limitToLast(16)
-				.on('value', game_rewards => {
-					if (game_rewards.exists()) {
-						let sorted_game_rewards = [];
+			if (!end_game) {
+				firebase
+					.database()
+					.ref(`/MINIAPP_app_holiday/games/${params.game_id}/game_rewards`)
+					.orderByChild('money')
+					.limitToLast(16)
+					.on('value', game_rewards => {
+						if (game_rewards.exists()) {
+							let sorted_game_rewards = [];
 
-						game_rewards.forEach(game_reward => {
-							sorted_game_rewards.push({
-								id: game_reward.key,
-								...game_reward.val(),
+							game_rewards.forEach(game_reward => {
+								sorted_game_rewards.push({
+									id: game_reward.key,
+									...game_reward.val(),
+								});
 							});
-						});
 
-						sorted_game_rewards = _.orderBy(sorted_game_rewards, 'money', 'desc');
+							sorted_game_rewards = _.orderBy(sorted_game_rewards, 'money', 'desc');
 
-						setPlayers(sorted_game_rewards);
-						setLoading(false);
-					}
-				});
+							setPlayers(sorted_game_rewards);
+							setLoading(false);
+						}
+					});
+			}
 		} catch (e) {
 			setError(e.message);
 			setLoading(false);
@@ -125,28 +131,44 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 		}
 	}, [is_game_started]);
 
+	const onEndGame = useEventCallback(async () => {
+		try {
+			const result = await Apis.getGameResult({ game_id: params.game_id, history: true, top: 20 });
+
+			let rewards = [];
+			for (let reward of result.rewards) {
+				rewards.push({
+					id: reward.user_id,
+					...reward,
+				});
+			}
+
+			setPlayers(_.orderBy(rewards, 'money', 'desc'));
+			setLoading(false);
+		} catch (e) {}
+	});
+
+	const onEndGameDownload = useEventCallback(async () => {
+		try {
+			const result = await Apis.getGameResult({ game_id: params.game_id });
+
+			let rewards = [];
+			for (let reward of result.rewards) {
+				rewards.push({
+					id: reward.user_id,
+					...reward,
+				});
+			}
+
+			setResultPlayers(_.orderBy(rewards, 'money', 'desc'));
+			setLoading(false);
+		} catch (e) {}
+	});
+
 	useEffect(() => {
 		if (is_game_ended) {
-			setTimeout(() => {
-				firebase
-					.database()
-					.ref(`/MINIAPP_app_holiday/games/${params.game_id}/game_rewards`)
-					.orderByChild('money')
-					.once('value', snapshot => {
-						const users = snapshot.val();
-						const result = [];
-
-						for (let user of users) {
-							result.push({
-								staff_id: get(user, e => e.user.staff_id),
-								name: get(user, e => e.user.name),
-								money: get(user, e => e.money, 0),
-							});
-						}
-
-						setResultPlayers(result);
-					});
-			}, 500);
+			onEndGame().catch(() => {});
+			onEndGameDownload().catch(() => {});
 		}
 	}, [is_game_ended]);
 
@@ -257,7 +279,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 									)}
 									<div className="block-inner">
 										{players.map(player => (
-											<UserItem key={player.id} game_reward={player} />
+											<UserItem is_endgame={is_game_ended} key={player.id} game_reward={player} />
 										))}
 									</div>
 								</div>

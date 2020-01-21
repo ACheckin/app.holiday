@@ -7,7 +7,7 @@
 	"app_type": "workspace",
 	"developer_email": "dev@acheckin.vn",
 	"developer_name": "dev",
-	"version": "1.11",
+	"version": "1.14",
 	"main": "index.html",
 	"use_scroll": false,
 	"permissions": [

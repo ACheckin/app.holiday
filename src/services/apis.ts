@@ -8,6 +8,7 @@ import {
 	ChangeRewardResponse,
 	CreateGameResponse,
 	GameDetailResponse,
+	GameResultResponse,
 	JoinGameResponse,
 } from 'src/interfaces/apis';
 import Exception from './exception';
@@ -124,6 +125,14 @@ class Apis {
 	public gameDetail = (options: { game_id: string }): Promise<GameDetailResponse> => {
 		return this.call({
 			path: '/MINIAPP_app_holiday_gameDetails',
+			method: 'GET',
+			qs: options,
+		});
+	};
+
+	public getGameResult = (options: { game_id: string; history?: boolean, top?: number }): Promise<GameResultResponse> => {
+		return this.call({
+			path: '/MINIAPP_app_holiday_gameResult',
 			method: 'GET',
 			qs: options,
 		});

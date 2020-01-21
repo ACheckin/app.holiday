@@ -62,4 +62,14 @@ export interface GameDetailResponse {
 	}
 }
 
+export interface GameResultResponse {
+	status: boolean
+	rewards: {
+		user_id: string
+		staff_id: string
+		name: string
+		money: number
+	}[];
+}
+
 
