@@ -2,10 +2,13 @@
 # yarn lockfile v1
 
 
-"@acheckin/react-app-sdk@^0.0.16":
-  version "0.0.16"
-  resolved "http://192.168.9.38:5000/@acheckin%2freact-app-sdk/-/react-app-sdk-0.0.16.tgz#56b538554239a7ae14d723dc3e186bee5a7ccd13"
-  integrity sha512-CQhkt1P1Qi3KEIcNzl5w6pyLNvihAh4eY9o5k1hR2I8xehHHl4ffpUHDPmiCT/2fKWxWH6bWSxbRKrgpWusyXQ==
+"@acheckin/react-sdk@^1.0.0":
+  version "1.0.0"
+  resolved "https://npm.pkg.github.com/download/@acheckin/react-sdk/1.0.0/c6e6894e361d4ba70e493727318684adfdf75c6144454a99f529589d96fc0804#8ace4d7c1c3b189bddc144ebbba857bef52dbf42"
+  integrity sha512-MHdqjkwj4j0NlKElbfH4wQ8b7XrhcA40ShcUnMIssertsPjkBJqLXESsOIolTraqDNEytyvm294bR9t3dLtsPg==
+  dependencies:
+    prettier "^1.19.1"
+    typescript "^3.7.2"
 
 "@ant-design/colors@^3.1.0":
   version "3.1.0"
