@@ -167,8 +167,12 @@ const GameDashboard: React.FC<GameDashboardProps> = ({}) => {
 
 	useEffect(() => {
 		if (is_game_ended) {
-			onEndGame().catch(() => {});
-			onEndGameDownload().catch(() => {});
+			setLoading(true);
+			setTimeout(() => {
+				onEndGame().catch(() => {});
+				onEndGameDownload().catch(() => {});
+				setLoading(false);
+			}, 2000);
 		}
 	}, [is_game_ended]);
 

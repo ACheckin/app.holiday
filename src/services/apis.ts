@@ -1,6 +1,6 @@
 import querystring from 'querystring';
 import url, { UrlObject } from 'url';
-import { ACheckinSDK, UserWorkspaceInfo } from '@acheckin/react-app-sdk';
+import { ACheckinSDK, UserWorkspaceInfo } from '@acheckin/react-sdk';
 import {
 	ArgsToChangeReward,
 	ArgsToCreateGame,

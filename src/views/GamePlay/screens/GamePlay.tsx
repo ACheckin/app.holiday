@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ACheckinSDK } from '@acheckin/react-app-sdk';
+import { ACheckinSDK } from '@acheckin/react-sdk';
 import Apis from 'src/services/apis';
 import { RouteComponentProps, useLocation, useParams } from 'react-router-dom';
 import * as firebase from 'firebase';
